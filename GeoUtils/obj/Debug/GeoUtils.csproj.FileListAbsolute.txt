@@ -2,3 +2,8 @@ C:\Users\isabel.lima\git\traveltimeanalysis\bin\GeoUtils.dll
 C:\Users\isabel.lima\git\traveltimeanalysis\bin\GeoUtils.pdb
 C:\Users\isabel.lima\git\traveltimeanalysis\GeoUtils\obj\Debug\GeoUtils.dll
 C:\Users\isabel.lima\git\traveltimeanalysis\GeoUtils\obj\Debug\GeoUtils.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\GeoUtils.dll
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\GeoUtils.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\GeoUtils\obj\Debug\GeoUtils.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\GeoUtils\obj\Debug\GeoUtils.dll
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\GeoUtils\obj\Debug\GeoUtils.pdb

@@ -3,3 +3,8 @@ C:\Users\isabel.lima\git\traveltimeanalysis\bin\OSMUtils.pdb
 C:\Users\isabel.lima\git\traveltimeanalysis\OSMUtils\obj\Debug\OSMUtils.csprojResolveAssemblyReference.cache
 C:\Users\isabel.lima\git\traveltimeanalysis\OSMUtils\obj\Debug\OSMUtils.dll
 C:\Users\isabel.lima\git\traveltimeanalysis\OSMUtils\obj\Debug\OSMUtils.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\OSMUtils.dll
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\OSMUtils.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\OSMUtils\obj\Debug\OSMUtils.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\OSMUtils\obj\Debug\OSMUtils.dll
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\OSMUtils\obj\Debug\OSMUtils.pdb

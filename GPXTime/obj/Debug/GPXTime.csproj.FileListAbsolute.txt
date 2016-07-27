@@ -4,3 +4,9 @@ C:\Users\isabel.lima\git\traveltimeanalysis\bin\GPXTime.pdb
 C:\Users\isabel.lima\git\traveltimeanalysis\GPXTime\obj\Debug\GPXTime.csprojResolveAssemblyReference.cache
 C:\Users\isabel.lima\git\traveltimeanalysis\GPXTime\obj\Debug\GPXTime.exe
 C:\Users\isabel.lima\git\traveltimeanalysis\GPXTime\obj\Debug\GPXTime.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\GPXTime.exe.config
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\GPXTime.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\GPXTime.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\GPXTime\obj\Debug\GPXTime.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\GPXTime\obj\Debug\GPXTime.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\GPXTime\obj\Debug\GPXTime.pdb

@@ -4,3 +4,9 @@ C:\Users\isabel.lima\git\traveltimeanalysis\bin\TMatch.pdb
 C:\Users\isabel.lima\git\traveltimeanalysis\TMatch\obj\x86\Debug\TMatch.csprojResolveAssemblyReference.cache
 C:\Users\isabel.lima\git\traveltimeanalysis\TMatch\obj\x86\Debug\TMatch.exe
 C:\Users\isabel.lima\git\traveltimeanalysis\TMatch\obj\x86\Debug\TMatch.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TMatch.exe.config
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TMatch.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TMatch.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TMatch\obj\x86\Debug\TMatch.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TMatch\obj\x86\Debug\TMatch.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TMatch\obj\x86\Debug\TMatch.pdb
