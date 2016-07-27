@@ -1,0 +1,6 @@
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\GPXTime.exe.config
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\GPXTime.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\GPXTime.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\GPXTime\obj\Debug\GPXTime.csprojResolveAssemblyReference.cache
+C:\Users\isabel.lima\git\traveltimeanalysis\GPXTime\obj\Debug\GPXTime.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\GPXTime\obj\Debug\GPXTime.pdb

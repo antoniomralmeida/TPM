@@ -1,5 +1,5 @@
-C:\Users\isabel.lima\git\traveltimeanalysis\Utils\bin\x86\Debug\Utils.exe.config
-C:\Users\isabel.lima\git\traveltimeanalysis\Utils\bin\x86\Debug\Utils.exe
-C:\Users\isabel.lima\git\traveltimeanalysis\Utils\bin\x86\Debug\Utils.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\Utils.exe.config
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\Utils.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\Utils.pdb
 C:\Users\isabel.lima\git\traveltimeanalysis\Utils\obj\x86\Debug\Utils.exe
 C:\Users\isabel.lima\git\traveltimeanalysis\Utils\obj\x86\Debug\Utils.pdb

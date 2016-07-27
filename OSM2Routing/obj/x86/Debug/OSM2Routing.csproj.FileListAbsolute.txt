@@ -1,4 +1,5 @@
 C:\Users\isabel.lima\git\traveltimeanalysis\bin\sample.config
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\OSM2Routing.exe.config
 C:\Users\isabel.lima\git\traveltimeanalysis\bin\OSM2Routing.exe
 C:\Users\isabel.lima\git\traveltimeanalysis\bin\OSM2Routing.pdb
 C:\Users\isabel.lima\git\traveltimeanalysis\OSM2Routing\obj\x86\Debug\OSM2Routing.csprojResolveAssemblyReference.cache

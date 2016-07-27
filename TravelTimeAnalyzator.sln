@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMatch", "TMatch\TMatch.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotRoutes", "HotRoutes\HotRoutes.csproj", "{B6815CAC-68EF-4B2E-8758-2F74677769E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPXTime", "GPXTime\GPXTime.csproj", "{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -175,6 +177,22 @@ Global
 		{B6815CAC-68EF-4B2E-8758-2F74677769E0}.Release|x64.Build.0 = Release|x64
 		{B6815CAC-68EF-4B2E-8758-2F74677769E0}.Release|x86.ActiveCfg = Release|x86
 		{B6815CAC-68EF-4B2E-8758-2F74677769E0}.Release|x86.Build.0 = Release|x86
+		{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}.Debug|x64.Build.0 = Debug|Any CPU
+		{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}.Debug|x86.Build.0 = Debug|Any CPU
+		{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}.Release|x64.ActiveCfg = Release|Any CPU
+		{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}.Release|x64.Build.0 = Release|Any CPU
+		{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}.Release|x86.ActiveCfg = Release|Any CPU
+		{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

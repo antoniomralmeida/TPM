@@ -6,7 +6,7 @@ using System.IO;
 
 using LK.GPXUtils;
 
-namespace CSV2GPX
+namespace LK.CSV2GPX
 {
     class Program
     {
