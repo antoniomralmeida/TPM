@@ -1,0 +1,6 @@
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\TMatch.exe.config
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\TMatch.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\TMatch.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\TMatch\obj\x86\Debug\TMatch.csprojResolveAssemblyReference.cache
+C:\Users\isabel.lima\git\traveltimeanalysis\TMatch\obj\x86\Debug\TMatch.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\TMatch\obj\x86\Debug\TMatch.pdb

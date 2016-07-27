@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <StartArguments>Analyzer.exe --db=testdata/stops.xml --map=testData/map-r.osm --output=testdata/stops-models.xml --analyze</StartArguments>
+    <StartWorkingDirectory>D:\Projects\GSoC\src\bin\</StartWorkingDirectory>
+  </PropertyGroup>
+</Project>

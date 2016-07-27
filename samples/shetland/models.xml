@@ -1,0 +1,1289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<models-db>
+  <model node-from="322596308" node-to="322596188" way="29322865" freeflow="34.8" avg-delay="3.6">
+    <traffic-delay from="05:30:00" to="10:15:00" day="Any" delay="2.5" />
+    <traffic-delay from="14:45:00" to="20:15:00" day="Any" delay="4.1" />
+  </model>
+  <model node-from="322596188" node-to="322596183" way="29322860" freeflow="15.9" avg-delay="0.0" />
+  <model node-from="322596183" node-to="322596181" way="29322860" freeflow="3.4" avg-delay="0.2">
+    <traffic-delay from="05:45:00" to="06:45:00" day="Workday" delay="0.2" />
+    <traffic-delay from="06:45:00" to="08:30:00" day="Any" delay="0.2" />
+    <traffic-delay from="08:30:00" to="10:30:00" day="Weekend" delay="0.2" />
+    <traffic-delay from="15:00:00" to="17:45:00" day="Weekend" delay="0.1" />
+  </model>
+  <model node-from="322596181" node-to="322596171" way="29322860" freeflow="59.5" avg-delay="9.9">
+    <traffic-delay from="05:45:00" to="06:00:00" day="Workday" delay="9.2" />
+    <traffic-delay from="06:00:00" to="08:15:00" day="Monday, Tuesday, Wednesday, Friday" delay="9.2" />
+    <traffic-delay from="06:00:00" to="08:15:00" day="Thursday" delay="18.8" />
+    <traffic-delay from="08:15:00" to="08:45:00" day="Workday" delay="9.2" />
+    <traffic-delay from="09:30:00" to="10:30:00" day="Weekend" delay="18.3" />
+    <traffic-delay from="15:00:00" to="17:45:00" day="Weekend" delay="9.4" />
+  </model>
+  <model node-from="198489801" node-to="196079062" way="32997755" freeflow="51.4" avg-delay="0.0">
+    <traffic-delay from="05:45:00" to="06:00:00" day="Workday" delay="2.7" />
+    <traffic-delay from="06:00:00" to="09:45:00" day="Any" delay="2.7" />
+    <traffic-delay from="13:30:00" to="16:30:00" day="Any" delay="0.3" />
+    <traffic-delay from="16:30:00" to="16:45:00" day="Weekend" delay="0.3" />
+    <traffic-delay from="16:45:00" to="18:30:00" day="Any" delay="0.3" />
+  </model>
+  <model node-from="196079062" node-to="196079095" way="20190088" freeflow="51.2" avg-delay="5.7">
+    <traffic-delay from="05:45:00" to="06:00:00" day="Workday" delay="6.4" />
+    <traffic-delay from="06:00:00" to="09:15:00" day="Any" delay="5.7" />
+    <traffic-delay from="09:15:00" to="10:15:00" day="Weekend" delay="3.2" />
+    <traffic-delay from="13:30:00" to="14:15:00" day="Weekend" delay="3.8" />
+    <traffic-delay from="14:15:00" to="19:15:00" day="Any" delay="4.3" />
+  </model>
+  <model node-from="196079095" node-to="196079106" way="20190088" freeflow="26.1" avg-delay="3.1">
+    <traffic-delay from="05:45:00" to="06:00:00" day="Workday" delay="2.9" />
+    <traffic-delay from="06:00:00" to="09:15:00" day="Any" delay="2.5" />
+    <traffic-delay from="11:15:00" to="11:30:00" day="Weekend" delay="1.5" />
+    <traffic-delay from="11:30:00" to="13:30:00" day="Any" delay="1.5" />
+    <traffic-delay from="13:30:00" to="13:45:00" day="Weekend" delay="1.5" />
+    <traffic-delay from="15:15:00" to="18:15:00" day="Any" delay="4.2" />
+    <traffic-delay from="18:15:00" to="19:15:00" day="Any" delay="17.3" />
+  </model>
+  <model node-from="196079106" node-to="330680319" way="23485789" freeflow="31.6" avg-delay="3.5">
+    <traffic-delay from="08:00:00" to="16:45:00" day="Any" delay="2.5" />
+  </model>
+  <model node-from="330680319" node-to="330680337" way="23485789" freeflow="4.4" avg-delay="0.4">
+    <traffic-delay from="08:00:00" to="16:00:00" day="Any" delay="0.2" />
+  </model>
+  <model node-from="330680337" node-to="322560665" way="23485789" freeflow="45.5" avg-delay="5.4">
+    <traffic-delay from="08:00:00" to="16:45:00" day="Any" delay="2.9" />
+  </model>
+  <model node-from="322560665" node-to="196074233" way="23485789" freeflow="26.9" avg-delay="2.6">
+    <traffic-delay from="08:15:00" to="13:30:00" day="Any" delay="1.9" />
+  </model>
+  <model node-from="196074233" node-to="196038370" way="19143058" freeflow="121.7" avg-delay="16.3">
+    <traffic-delay from="08:15:00" to="16:30:00" day="Any" delay="2.3" />
+  </model>
+  <model node-from="196038370" node-to="196038408" way="23473362" freeflow="73.8" avg-delay="6.7">
+    <traffic-delay from="08:15:00" to="16:30:00" day="Any" delay="2.5" />
+  </model>
+  <model node-from="196038408" node-to="196038414" way="23473359" freeflow="15.8" avg-delay="1.8">
+    <traffic-delay from="08:15:00" to="16:30:00" day="Any" delay="0.8" />
+  </model>
+  <model node-from="196038414" node-to="322560660" way="32997750" freeflow="11.2" avg-delay="1.3">
+    <traffic-delay from="08:15:00" to="16:30:00" day="Any" delay="1.0" />
+  </model>
+  <model node-from="322560660" node-to="322560630" way="32997750" freeflow="16.6" avg-delay="1.9">
+    <traffic-delay from="13:30:00" to="16:30:00" day="Any" delay="1.5" />
+  </model>
+  <model node-from="322560630" node-to="322560654" way="32997750" freeflow="7.1" avg-delay="3.1">
+    <traffic-delay from="09:00:00" to="12:45:00" day="Any" delay="1.0" />
+    <traffic-delay from="13:30:00" to="16:15:00" day="Any" delay="0.6" />
+  </model>
+  <model node-from="322560654" node-to="322560649" way="32997750" freeflow="7.6" avg-delay="1.6">
+    <traffic-delay from="08:15:00" to="13:45:00" day="Any" delay="1.0" />
+    <traffic-delay from="13:45:00" to="14:00:00" day="Workday" delay="2.5" />
+    <traffic-delay from="13:45:00" to="14:00:00" day="Weekend" delay="1.0" />
+    <traffic-delay from="14:00:00" to="16:30:00" day="Any" delay="2.1" />
+  </model>
+  <model node-from="322560649" node-to="322253407" way="32997750" freeflow="21.9" avg-delay="4.3">
+    <traffic-delay from="08:15:00" to="14:00:00" day="Any" delay="3.1" />
+    <traffic-delay from="14:00:00" to="16:00:00" day="Any" delay="7.3" />
+    <traffic-delay from="16:00:00" to="16:30:00" day="Any" delay="3.1" />
+  </model>
+  <model node-from="322253407" node-to="322253504" way="32997750" freeflow="19.4" avg-delay="3.6">
+    <traffic-delay from="08:00:00" to="09:15:00" day="Any" delay="5.4" />
+    <traffic-delay from="09:15:00" to="16:30:00" day="Any" delay="2.5" />
+  </model>
+  <model node-from="322253504" node-to="322253373" way="32997750" freeflow="2.3" avg-delay="2.8">
+    <traffic-delay from="09:15:00" to="12:00:00" day="Any" delay="2.7" />
+    <traffic-delay from="13:30:00" to="16:30:00" day="Any" delay="3.7" />
+  </model>
+  <model node-from="322253373" node-to="322253548" way="32997750" freeflow="18.7" avg-delay="6.3">
+    <traffic-delay from="09:45:00" to="13:15:00" day="Any" delay="1.2" />
+    <traffic-delay from="13:15:00" to="13:30:00" day="Any" delay="6.8" />
+    <traffic-delay from="13:30:00" to="15:45:00" day="Any" delay="0.3" />
+    <traffic-delay from="15:45:00" to="16:00:00" day="Workday" delay="0.5" />
+    <traffic-delay from="15:45:00" to="16:00:00" day="Weekend" delay="11.3" />
+    <traffic-delay from="16:00:00" to="16:15:00" day="Any" delay="0.3" />
+    <traffic-delay from="16:15:00" to="16:30:00" day="Any" delay="11.3" />
+  </model>
+  <model node-from="322253548" node-to="254161720" way="32997750" freeflow="17.5" avg-delay="3.3">
+    <traffic-delay from="08:30:00" to="13:30:00" day="Weekend" delay="2.4" />
+    <traffic-delay from="13:30:00" to="14:30:00" day="Any" delay="1.7" />
+    <traffic-delay from="14:30:00" to="16:00:00" day="Workday" delay="0.7" />
+    <traffic-delay from="14:30:00" to="16:30:00" day="Weekend" delay="4.8" />
+  </model>
+  <model node-from="254161720" node-to="254161712" way="23469944" freeflow="0.0" avg-delay="1.2">
+    <traffic-delay from="09:45:00" to="11:30:00" day="Any" delay="1.2" />
+    <traffic-delay from="11:30:00" to="11:45:00" day="Workday" delay="0.8" />
+    <traffic-delay from="11:30:00" to="11:45:00" day="Weekend" delay="1.2" />
+    <traffic-delay from="11:45:00" to="13:45:00" day="Any" delay="0.8" />
+    <traffic-delay from="13:45:00" to="14:00:00" day="Workday" delay="0.8" />
+    <traffic-delay from="13:45:00" to="14:00:00" day="Weekend" delay="5.0" />
+    <traffic-delay from="14:00:00" to="14:15:00" day="Any" delay="5.0" />
+    <traffic-delay from="14:15:00" to="16:15:00" day="Workday" delay="2.3" />
+    <traffic-delay from="14:15:00" to="16:15:00" day="Weekend" delay="5.0" />
+    <traffic-delay from="16:15:00" to="16:30:00" day="Any" delay="0.8" />
+    <traffic-delay from="16:30:00" to="18:00:00" day="Any" delay="2.3" />
+  </model>
+  <model node-from="254161712" node-to="254161714" way="23469944" freeflow="0.2" avg-delay="2.5">
+    <traffic-delay from="11:15:00" to="13:45:00" day="Any" delay="2.3" />
+    <traffic-delay from="13:45:00" to="16:00:00" day="Workday" delay="3.0" />
+    <traffic-delay from="13:45:00" to="16:00:00" day="Weekend" delay="2.3" />
+    <traffic-delay from="16:00:00" to="19:45:00" day="Any" delay="2.3" />
+  </model>
+  <model node-from="254161714" node-to="254649316" way="29359841" freeflow="8.7" avg-delay="2.7">
+    <traffic-delay from="13:30:00" to="14:15:00" day="Any" delay="3.1" />
+    <traffic-delay from="14:15:00" to="14:30:00" day="Monday" delay="0.2" />
+    <traffic-delay from="14:15:00" to="14:30:00" day="Tuesday, Wednesday, Thursday, Friday, Weekend" delay="3.1" />
+    <traffic-delay from="14:30:00" to="15:45:00" day="Monday, Wednesday, Thursday, Friday" delay="0.2" />
+    <traffic-delay from="14:30:00" to="15:45:00" day="Tuesday, Weekend" delay="3.1" />
+    <traffic-delay from="15:45:00" to="16:00:00" day="Workday" delay="0.2" />
+    <traffic-delay from="15:45:00" to="16:00:00" day="Weekend" delay="3.1" />
+    <traffic-delay from="16:00:00" to="18:00:00" day="Any" delay="3.1" />
+  </model>
+  <model node-from="254649316" node-to="254161705" way="29359841" freeflow="30.1" avg-delay="1.8">
+    <traffic-delay from="09:30:00" to="19:45:00" day="Any" delay="3.2" />
+  </model>
+  <model node-from="254161705" node-to="254161697" way="23469943" freeflow="5.6" avg-delay="2.2">
+    <traffic-delay from="09:00:00" to="13:45:00" day="Any" delay="1.8" />
+    <traffic-delay from="13:45:00" to="16:00:00" day="Workday" delay="2.0" />
+    <traffic-delay from="13:45:00" to="16:00:00" day="Weekend" delay="2.9" />
+    <traffic-delay from="16:00:00" to="18:00:00" day="Any" delay="2.9" />
+  </model>
+  <model node-from="254161697" node-to="254161702" way="23469943" freeflow="12.8" avg-delay="2.2">
+    <traffic-delay from="08:30:00" to="13:30:00" day="Weekend" delay="2.1" />
+    <traffic-delay from="13:45:00" to="16:00:00" day="Any" delay="1.7" />
+    <traffic-delay from="16:00:00" to="16:45:00" day="Weekend" delay="2.0" />
+  </model>
+  <model node-from="254161702" node-to="254161700" way="23469943" freeflow="13.8" avg-delay="2.5">
+    <traffic-delay from="09:00:00" to="13:30:00" day="Any" delay="0.8" />
+    <traffic-delay from="13:30:00" to="19:45:00" day="Any" delay="3.4" />
+  </model>
+  <model node-from="254161700" node-to="196039183" way="23469943" freeflow="16.3" avg-delay="0.6">
+    <traffic-delay from="09:30:00" to="09:45:00" day="Weekend" delay="0.6" />
+    <traffic-delay from="09:45:00" to="11:45:00" day="Any" delay="1.0" />
+    <traffic-delay from="11:45:00" to="13:15:00" day="Weekend" delay="0.6" />
+    <traffic-delay from="14:00:00" to="14:30:00" day="Any" delay="0.6" />
+    <traffic-delay from="14:30:00" to="17:00:00" day="Workday" delay="0.6" />
+    <traffic-delay from="14:30:00" to="17:15:00" day="Weekend" delay="3.1" />
+  </model>
+  <model node-from="196039183" node-to="196039186" way="30690837" freeflow="6.2" avg-delay="3.8">
+    <traffic-delay from="08:15:00" to="19:45:00" day="Any" delay="3.8" />
+    <traffic-delay from="19:45:00" to="20:00:00" day="Workday" delay="2.1" />
+    <traffic-delay from="19:45:00" to="20:00:00" day="Weekend" delay="3.8" />
+    <traffic-delay from="20:00:00" to="20:45:00" day="Any" delay="2.1" />
+  </model>
+  <model node-from="196039186" node-to="196039189" way="30690837" freeflow="0.7" avg-delay="4.3">
+    <traffic-delay from="10:00:00" to="12:45:00" day="Any" delay="4.3" />
+    <traffic-delay from="12:45:00" to="13:45:00" day="Workday" delay="5.2" />
+    <traffic-delay from="12:45:00" to="13:45:00" day="Weekend" delay="4.3" />
+    <traffic-delay from="13:45:00" to="14:30:00" day="Any" delay="5.2" />
+    <traffic-delay from="14:30:00" to="14:45:00" day="Workday" delay="6.8" />
+    <traffic-delay from="14:30:00" to="14:45:00" day="Weekend" delay="5.2" />
+    <traffic-delay from="14:45:00" to="16:45:00" day="Any" delay="6.8" />
+    <traffic-delay from="16:45:00" to="17:00:00" day="Workday" delay="6.8" />
+    <traffic-delay from="16:45:00" to="17:00:00" day="Weekend" delay="5.2" />
+    <traffic-delay from="17:00:00" to="20:45:00" day="Any" delay="5.2" />
+  </model>
+  <model node-from="196039189" node-to="566667784" way="44641156" freeflow="5.0" avg-delay="0.9">
+    <traffic-delay from="11:30:00" to="13:15:00" day="Any" delay="0.6" />
+    <traffic-delay from="13:15:00" to="13:30:00" day="Any" delay="1.1" />
+    <traffic-delay from="13:30:00" to="14:45:00" day="Workday" delay="1.1" />
+    <traffic-delay from="14:45:00" to="15:15:00" day="Any" delay="1.1" />
+    <traffic-delay from="15:15:00" to="17:00:00" day="Workday" delay="2.7" />
+    <traffic-delay from="15:15:00" to="16:45:00" day="Weekend" delay="1.1" />
+    <traffic-delay from="18:45:00" to="19:00:00" day="Workday" delay="1.8" />
+    <traffic-delay from="19:00:00" to="19:15:00" day="Any" delay="1.8" />
+    <traffic-delay from="19:15:00" to="20:45:00" day="Any" delay="0.6" />
+  </model>
+  <model node-from="566667780" node-to="279555023" way="44641153" freeflow="42.5" avg-delay="1.9">
+    <traffic-delay from="09:45:00" to="12:00:00" day="Weekend" delay="1.3" />
+    <traffic-delay from="12:00:00" to="20:30:00" day="Any" delay="1.9" />
+    <traffic-delay from="20:30:00" to="20:45:00" day="Workday" delay="4.1" />
+  </model>
+  <model node-from="279555023" node-to="566667805" way="44641153" freeflow="24.4" avg-delay="2.9">
+    <traffic-delay from="08:30:00" to="11:00:00" day="Weekend" delay="5.9" />
+    <traffic-delay from="11:00:00" to="13:45:00" day="Weekend" delay="2.1" />
+    <traffic-delay from="13:45:00" to="19:15:00" day="Any" delay="3.4" />
+    <traffic-delay from="19:15:00" to="20:45:00" day="Workday" delay="8.3" />
+    <traffic-delay from="19:15:00" to="20:00:00" day="Weekend" delay="2.1" />
+  </model>
+  <model node-from="566667805" node-to="566667815" way="23473355" freeflow="0.8" avg-delay="2.7">
+    <traffic-delay from="13:15:00" to="20:15:00" day="Any" delay="2.8" />
+  </model>
+  <model node-from="566667815" node-to="322596109" way="44641154" freeflow="14.8" avg-delay="0.7">
+    <traffic-delay from="11:30:00" to="15:00:00" day="Weekend" delay="0.4" />
+    <traffic-delay from="15:00:00" to="17:30:00" day="Any" delay="0.5" />
+    <traffic-delay from="17:30:00" to="18:15:00" day="Weekend" delay="0.2" />
+    <traffic-delay from="18:15:00" to="20:00:00" day="Any" delay="0.8" />
+    <traffic-delay from="20:00:00" to="21:45:00" day="Workday" delay="0.8" />
+  </model>
+  <model node-from="322596109" node-to="322560534" way="44641154" freeflow="1.4" avg-delay="0.2" />
+  <model node-from="322560534" node-to="254196202" way="44641154" freeflow="14.4" avg-delay="1.3">
+    <traffic-delay from="12:30:00" to="15:00:00" day="Weekend" delay="0.3" />
+    <traffic-delay from="15:00:00" to="20:00:00" day="Any" delay="1.4" />
+    <traffic-delay from="20:00:00" to="21:45:00" day="Workday" delay="1.4" />
+  </model>
+  <model node-from="254196202" node-to="330580163" way="35967858" freeflow="4.9" avg-delay="2.4">
+    <traffic-delay from="12:15:00" to="22:00:00" day="Any" delay="2.6" />
+  </model>
+  <model node-from="330580163" node-to="330580189" way="35967858" freeflow="8.9" avg-delay="1.2">
+    <traffic-delay from="12:30:00" to="15:15:00" day="Weekend" delay="0.3" />
+    <traffic-delay from="15:00:00" to="15:15:00" day="Workday" delay="3.2" />
+    <traffic-delay from="20:15:00" to="20:45:00" day="Workday" delay="1.2" />
+  </model>
+  <model node-from="330580189" node-to="330580196" way="35967858" freeflow="8.9" avg-delay="1.0">
+    <traffic-delay from="12:30:00" to="15:00:00" day="Weekend" delay="0.5" />
+    <traffic-delay from="15:00:00" to="20:15:00" day="Any" delay="1.0" />
+    <traffic-delay from="20:15:00" to="20:45:00" day="Workday" delay="1.0" />
+  </model>
+  <model node-from="330580196" node-to="279895899" way="35967858" freeflow="34.5" avg-delay="4.4">
+    <traffic-delay from="11:30:00" to="12:30:00" day="Weekend" delay="9.6" />
+    <traffic-delay from="12:30:00" to="15:00:00" day="Weekend" delay="0.8" />
+    <traffic-delay from="15:00:00" to="16:00:00" day="Any" delay="3.9" />
+    <traffic-delay from="16:00:00" to="16:15:00" day="Workday" delay="1.8" />
+    <traffic-delay from="16:00:00" to="16:15:00" day="Weekend" delay="9.6" />
+    <traffic-delay from="16:15:00" to="20:15:00" day="Any" delay="1.8" />
+    <traffic-delay from="20:15:00" to="22:00:00" day="Workday" delay="3.9" />
+  </model>
+  <model node-from="279895899" node-to="196078987" way="35967858" freeflow="20.4" avg-delay="4.0">
+    <traffic-delay from="12:30:00" to="12:45:00" day="Weekend" delay="8.4" />
+    <traffic-delay from="12:45:00" to="15:00:00" day="Weekend" delay="0.6" />
+    <traffic-delay from="15:00:00" to="16:00:00" day="Any" delay="1.0" />
+    <traffic-delay from="16:00:00" to="16:15:00" day="Workday" delay="1.0" />
+    <traffic-delay from="16:00:00" to="16:15:00" day="Weekend" delay="8.4" />
+    <traffic-delay from="16:15:00" to="17:45:00" day="Any" delay="1.0" />
+    <traffic-delay from="17:45:00" to="19:30:00" day="Any" delay="5.4" />
+    <traffic-delay from="19:30:00" to="22:00:00" day="Workday" delay="4.6" />
+  </model>
+  <model node-from="196078987" node-to="196079106" way="32997753" freeflow="89.7" avg-delay="8.5">
+    <traffic-delay from="08:15:00" to="15:00:00" day="Weekend" delay="13.3" />
+    <traffic-delay from="15:00:00" to="18:00:00" day="Any" delay="0.9" />
+    <traffic-delay from="18:00:00" to="22:00:00" day="Workday" delay="15.0" />
+    <traffic-delay from="18:00:00" to="20:15:00" day="Weekend" delay="0.9" />
+  </model>
+  <model node-from="196079106" node-to="196079095" way="20190088" freeflow="26.2" avg-delay="2.8">
+    <traffic-delay from="10:45:00" to="13:00:00" day="Weekend" delay="0.5" />
+    <traffic-delay from="13:00:00" to="20:15:00" day="Any" delay="3.5" />
+    <traffic-delay from="20:15:00" to="22:00:00" day="Workday" delay="3.5" />
+  </model>
+  <model node-from="196079095" node-to="196079062" way="20190088" freeflow="52.3" avg-delay="4.7">
+    <traffic-delay from="11:30:00" to="15:00:00" day="Weekend" delay="3.5" />
+    <traffic-delay from="15:00:00" to="18:00:00" day="Any" delay="2.6" />
+    <traffic-delay from="18:00:00" to="19:30:00" day="Workday" delay="14.4" />
+    <traffic-delay from="18:00:00" to="19:30:00" day="Weekend" delay="4.5" />
+    <traffic-delay from="19:30:00" to="20:15:00" day="Any" delay="2.6" />
+    <traffic-delay from="20:15:00" to="22:00:00" day="Workday" delay="2.6" />
+  </model>
+  <model node-from="196079062" node-to="198489801" way="32997755" freeflow="47.8" avg-delay="8.0">
+    <traffic-delay from="12:45:00" to="15:00:00" day="Weekend" delay="1.8" />
+    <traffic-delay from="15:00:00" to="20:15:00" day="Any" delay="5.7" />
+    <traffic-delay from="20:15:00" to="22:00:00" day="Workday" delay="5.7" />
+  </model>
+  <model node-from="322596198" node-to="322596188" way="29322860" freeflow="36.6" avg-delay="0.0" />
+  <model node-from="322596188" node-to="322596308" way="29322865" freeflow="40.7" avg-delay="0.0">
+    <traffic-delay from="12:45:00" to="19:30:00" day="Any" delay="2.4" />
+    <traffic-delay from="19:30:00" to="19:45:00" day="Workday" delay="21.4" />
+    <traffic-delay from="19:30:00" to="19:45:00" day="Weekend" delay="0.8" />
+    <traffic-delay from="19:45:00" to="22:15:00" day="Any" delay="0.6" />
+  </model>
+  <model node-from="196079106" node-to="196078987" way="32997753" freeflow="87.8" avg-delay="3.5">
+    <traffic-delay from="05:45:00" to="06:00:00" day="Workday" delay="8.1" />
+    <traffic-delay from="06:00:00" to="08:30:00" day="Any" delay="5.2" />
+    <traffic-delay from="08:30:00" to="08:45:00" day="Workday" delay="8.1" />
+    <traffic-delay from="10:45:00" to="13:15:00" day="Any" delay="4.2" />
+    <traffic-delay from="13:15:00" to="13:30:00" day="Weekend" delay="5.2" />
+  </model>
+  <model node-from="196078987" node-to="279895899" way="35967858" freeflow="21.6" avg-delay="0.7">
+    <traffic-delay from="05:30:00" to="20:15:00" day="Any" delay="1.9" />
+  </model>
+  <model node-from="279895899" node-to="330580196" way="35967858" freeflow="34.2" avg-delay="3.8">
+    <traffic-delay from="05:30:00" to="06:15:00" day="Any" delay="3.9" />
+    <traffic-delay from="06:15:00" to="06:30:00" day="Workday" delay="9.7" />
+    <traffic-delay from="06:15:00" to="06:30:00" day="Weekend" delay="3.9" />
+    <traffic-delay from="06:30:00" to="20:15:00" day="Any" delay="2.7" />
+  </model>
+  <model node-from="330580196" node-to="330580189" way="35967858" freeflow="8.2" avg-delay="1.2">
+    <traffic-delay from="05:30:00" to="20:00:00" day="Any" delay="1.3" />
+  </model>
+  <model node-from="330580189" node-to="330580163" way="35967858" freeflow="8.2" avg-delay="1.4">
+    <traffic-delay from="05:45:00" to="07:00:00" day="Workday" delay="1.2" />
+    <traffic-delay from="07:00:00" to="08:45:00" day="Any" delay="0.2" />
+    <traffic-delay from="08:45:00" to="11:15:00" day="Weekend" delay="0.9" />
+    <traffic-delay from="13:45:00" to="14:00:00" day="Weekend" delay="2.8" />
+    <traffic-delay from="14:00:00" to="15:15:00" day="Any" delay="2.9" />
+    <traffic-delay from="15:15:00" to="18:30:00" day="Workday" delay="2.9" />
+    <traffic-delay from="15:15:00" to="18:00:00" day="Weekend" delay="0.2" />
+  </model>
+  <model node-from="330580163" node-to="254196202" way="35967858" freeflow="6.6" avg-delay="1.4">
+    <traffic-delay from="05:30:00" to="14:15:00" day="Any" delay="1.3" />
+  </model>
+  <model node-from="254196202" node-to="322560534" way="44641154" freeflow="13.2" avg-delay="3.9">
+    <traffic-delay from="05:30:00" to="13:45:00" day="Any" delay="4.6" />
+    <traffic-delay from="13:45:00" to="15:00:00" day="Workday" delay="3.3" />
+    <traffic-delay from="13:45:00" to="15:00:00" day="Weekend" delay="1.2" />
+    <traffic-delay from="15:00:00" to="16:45:00" day="Any" delay="1.0" />
+    <traffic-delay from="16:45:00" to="18:00:00" day="Workday" delay="3.3" />
+    <traffic-delay from="16:45:00" to="18:00:00" day="Weekend" delay="1.2" />
+    <traffic-delay from="18:00:00" to="20:15:00" day="Any" delay="3.3" />
+  </model>
+  <model node-from="322560534" node-to="322596109" way="44641154" freeflow="1.3" avg-delay="0.2">
+    <traffic-delay from="05:30:00" to="20:15:00" day="Any" delay="0.2" />
+  </model>
+  <model node-from="322596109" node-to="566667815" way="44641154" freeflow="12.7" avg-delay="2.6">
+    <traffic-delay from="05:30:00" to="05:45:00" day="Any" delay="2.8" />
+    <traffic-delay from="05:45:00" to="06:15:00" day="Workday" delay="5.5" />
+    <traffic-delay from="05:45:00" to="06:15:00" day="Weekend" delay="2.8" />
+    <traffic-delay from="06:15:00" to="07:30:00" day="Any" delay="1.1" />
+    <traffic-delay from="07:30:00" to="08:15:00" day="Workday" delay="5.5" />
+    <traffic-delay from="07:30:00" to="08:15:00" day="Weekend" delay="2.8" />
+    <traffic-delay from="08:15:00" to="13:45:00" day="Any" delay="1.1" />
+    <traffic-delay from="13:45:00" to="20:15:00" day="Any" delay="3.6" />
+  </model>
+  <model node-from="566667805" node-to="279555023" way="44641153" freeflow="23.8" avg-delay="0.9">
+    <traffic-delay from="05:30:00" to="09:00:00" day="Any" delay="2.1" />
+    <traffic-delay from="09:15:00" to="20:15:00" day="Any" delay="1.2" />
+  </model>
+  <model node-from="279555023" node-to="566667780" way="44641153" freeflow="44.5" avg-delay="4.6">
+    <traffic-delay from="05:45:00" to="09:00:00" day="Any" delay="4.9" />
+    <traffic-delay from="09:30:00" to="20:15:00" day="Any" delay="4.7" />
+  </model>
+  <model node-from="279554841" node-to="566667797" way="44641158" freeflow="0.9" avg-delay="1.7">
+    <traffic-delay from="05:45:00" to="09:00:00" day="Any" delay="1.4" />
+  </model>
+  <model node-from="566667797" node-to="279554830" way="44641157" freeflow="1.1" avg-delay="0.9">
+    <traffic-delay from="05:45:00" to="06:15:00" day="Any" delay="0.8" />
+    <traffic-delay from="06:15:00" to="06:30:00" day="Any" delay="0.6" />
+    <traffic-delay from="06:30:00" to="07:15:00" day="Workday" delay="0.8" />
+    <traffic-delay from="06:30:00" to="07:15:00" day="Weekend" delay="0.6" />
+    <traffic-delay from="07:15:00" to="08:30:00" day="Any" delay="0.6" />
+    <traffic-delay from="08:30:00" to="09:00:00" day="Any" delay="0.8" />
+    <traffic-delay from="13:45:00" to="17:30:00" day="Any" delay="1.3" />
+  </model>
+  <model node-from="279554830" node-to="279554842" way="25645221" freeflow="3.0" avg-delay="4.0">
+    <traffic-delay from="05:45:00" to="06:00:00" day="Any" delay="4.6" />
+    <traffic-delay from="06:00:00" to="06:15:00" day="Workday" delay="3.4" />
+    <traffic-delay from="06:00:00" to="06:15:00" day="Weekend" delay="4.6" />
+    <traffic-delay from="06:15:00" to="07:30:00" day="Any" delay="3.4" />
+    <traffic-delay from="07:30:00" to="08:45:00" day="Workday" delay="3.4" />
+    <traffic-delay from="07:30:00" to="08:45:00" day="Weekend" delay="4.6" />
+    <traffic-delay from="08:45:00" to="09:00:00" day="Any" delay="4.6" />
+    <traffic-delay from="11:45:00" to="16:30:00" day="Any" delay="1.7" />
+  </model>
+  <model node-from="322253373" node-to="322253383" way="29301148" freeflow="10.7" avg-delay="1.4">
+    <traffic-delay from="13:30:00" to="16:30:00" day="Any" delay="0.9" />
+  </model>
+  <model node-from="322253383" node-to="322253527" way="29301148" freeflow="7.7" avg-delay="0.9">
+    <traffic-delay from="13:30:00" to="16:30:00" day="Any" delay="0.8" />
+  </model>
+  <model node-from="196038485" node-to="196038481" way="18943724" freeflow="11.5" avg-delay="4.8">
+    <traffic-delay from="08:45:00" to="13:45:00" day="Any" delay="5.3" />
+    <traffic-delay from="13:45:00" to="14:15:00" day="Any" delay="9.7" />
+    <traffic-delay from="14:15:00" to="14:30:00" day="Workday" delay="0.3" />
+    <traffic-delay from="14:15:00" to="14:30:00" day="Weekend" delay="9.7" />
+    <traffic-delay from="14:30:00" to="16:00:00" day="Any" delay="0.1" />
+    <traffic-delay from="16:00:00" to="16:30:00" day="Workday" delay="0.3" />
+    <traffic-delay from="16:00:00" to="16:30:00" day="Weekend" delay="9.7" />
+    <traffic-delay from="16:30:00" to="19:15:00" day="Any" delay="0.3" />
+  </model>
+  <model node-from="196038481" node-to="254649315" way="18943724" freeflow="19.1" avg-delay="3.9">
+    <traffic-delay from="09:00:00" to="13:30:00" day="Any" delay="5.1" />
+    <traffic-delay from="13:30:00" to="19:15:00" day="Any" delay="1.3" />
+  </model>
+  <model node-from="254649315" node-to="196038472" way="18943724" freeflow="8.2" avg-delay="0.1">
+    <traffic-delay from="13:30:00" to="16:15:00" day="Any" delay="0.1" />
+    <traffic-delay from="16:15:00" to="18:15:00" day="Weekend" delay="0.6" />
+  </model>
+  <model node-from="196038472" node-to="322532068" way="18943724" freeflow="19.6" avg-delay="3.4">
+    <traffic-delay from="09:00:00" to="09:15:00" day="Weekend" delay="3.5" />
+    <traffic-delay from="09:15:00" to="18:45:00" day="Any" delay="1.9" />
+  </model>
+  <model node-from="322532068" node-to="254161716" way="18943724" freeflow="8.6" avg-delay="2.2">
+    <traffic-delay from="08:45:00" to="10:45:00" day="Any" delay="1.4" />
+    <traffic-delay from="13:00:00" to="13:15:00" day="Weekend" delay="2.4" />
+    <traffic-delay from="13:15:00" to="15:00:00" day="Any" delay="2.4" />
+    <traffic-delay from="15:00:00" to="16:45:00" day="Workday" delay="2.0" />
+  </model>
+  <model node-from="254161716" node-to="254161719" way="23469944" freeflow="1.3" avg-delay="4.1">
+    <traffic-delay from="09:45:00" to="12:15:00" day="Any" delay="3.8" />
+    <traffic-delay from="13:15:00" to="14:15:00" day="Any" delay="6.2" />
+    <traffic-delay from="14:15:00" to="14:30:00" day="Workday" delay="3.7" />
+    <traffic-delay from="14:15:00" to="16:45:00" day="Weekend" delay="6.2" />
+    <traffic-delay from="14:30:00" to="15:45:00" day="Workday" delay="8.7" />
+    <traffic-delay from="15:45:00" to="16:45:00" day="Workday" delay="3.7" />
+    <traffic-delay from="16:45:00" to="19:15:00" day="Any" delay="3.7" />
+  </model>
+  <model node-from="254161720" node-to="322253548" way="32997750" freeflow="15.4" avg-delay="1.3">
+    <traffic-delay from="11:00:00" to="19:15:00" day="Any" delay="2.2" />
+  </model>
+  <model node-from="322253548" node-to="322253373" way="32997750" freeflow="20.0" avg-delay="4.0">
+    <traffic-delay from="13:15:00" to="14:15:00" day="Any" delay="4.0" />
+    <traffic-delay from="14:15:00" to="16:45:00" day="Workday" delay="7.0" />
+    <traffic-delay from="14:15:00" to="16:45:00" day="Weekend" delay="2.8" />
+    <traffic-delay from="16:45:00" to="18:30:00" day="Any" delay="4.0" />
+  </model>
+  <model node-from="322253373" node-to="322253504" way="32997750" freeflow="0.3" avg-delay="0.0">
+    <traffic-delay from="13:15:00" to="14:15:00" day="Any" delay="2.2" />
+    <traffic-delay from="14:15:00" to="16:45:00" day="Workday" delay="2.8" />
+    <traffic-delay from="14:15:00" to="16:45:00" day="Weekend" delay="2.2" />
+    <traffic-delay from="16:45:00" to="18:30:00" day="Any" delay="2.2" />
+  </model>
+  <model node-from="322253504" node-to="322253407" way="32997750" freeflow="18.3" avg-delay="1.8">
+    <traffic-delay from="12:00:00" to="13:00:00" day="Any" delay="3.8" />
+    <traffic-delay from="13:00:00" to="15:45:00" day="Any" delay="0.8" />
+    <traffic-delay from="15:45:00" to="17:15:00" day="Any" delay="5.4" />
+  </model>
+  <model node-from="322253407" node-to="322560649" way="32997750" freeflow="25.5" avg-delay="0.0">
+    <traffic-delay from="08:15:00" to="13:30:00" day="Weekend" delay="1.4" />
+    <traffic-delay from="13:30:00" to="16:45:00" day="Any" delay="0.3" />
+  </model>
+  <model node-from="322560649" node-to="322560654" way="32997750" freeflow="6.8" avg-delay="0.7">
+    <traffic-delay from="11:15:00" to="13:30:00" day="Weekend" delay="0.5" />
+    <traffic-delay from="13:30:00" to="16:45:00" day="Any" delay="1.1" />
+    <traffic-delay from="16:45:00" to="18:15:00" day="Weekend" delay="0.4" />
+  </model>
+  <model node-from="322560654" node-to="322560630" way="32997750" freeflow="8.3" avg-delay="3.3">
+    <traffic-delay from="12:15:00" to="13:45:00" day="Any" delay="0.2" />
+    <traffic-delay from="13:45:00" to="14:00:00" day="Any" delay="8.5" />
+    <traffic-delay from="14:00:00" to="14:15:00" day="Workday" delay="8.5" />
+  </model>
+  <model node-from="322560630" node-to="322560631" way="29301149" freeflow="15.0" avg-delay="0.0" />
+  <model node-from="322560631" node-to="322560643" way="29301149" freeflow="6.8" avg-delay="1.5">
+    <traffic-delay from="08:00:00" to="09:00:00" day="Any" delay="2.1" />
+    <traffic-delay from="09:00:00" to="11:00:00" day="Workday" delay="0.3" />
+    <traffic-delay from="09:00:00" to="11:00:00" day="Weekend" delay="2.1" />
+    <traffic-delay from="11:00:00" to="16:15:00" day="Any" delay="0.3" />
+  </model>
+  <model node-from="322560643" node-to="322560625" way="29301149" freeflow="14.3" avg-delay="4.2">
+    <traffic-delay from="09:00:00" to="13:15:00" day="Any" delay="0.4" />
+    <traffic-delay from="13:15:00" to="16:15:00" day="Any" delay="5.3" />
+  </model>
+  <model node-from="322560625" node-to="322560622" way="29301149" freeflow="18.2" avg-delay="3.4">
+    <traffic-delay from="13:15:00" to="16:15:00" day="Any" delay="2.5" />
+  </model>
+  <model node-from="322560622" node-to="322253441" way="29301149" freeflow="24.4" avg-delay="4.7">
+    <traffic-delay from="13:15:00" to="16:15:00" day="Any" delay="1.6" />
+  </model>
+  <model node-from="322253441" node-to="322253407" way="29301149" freeflow="31.8" avg-delay="3.0">
+    <traffic-delay from="08:00:00" to="16:15:00" day="Any" delay="0.6" />
+  </model>
+  <model node-from="196079048" node-to="322560522" way="25674879" freeflow="3.3" avg-delay="4.3">
+    <traffic-delay from="09:15:00" to="17:30:00" day="Any" delay="4.3" />
+  </model>
+  <model node-from="322560522" node-to="322560521" way="25674879" freeflow="6.7" avg-delay="2.4">
+    <traffic-delay from="13:15:00" to="13:45:00" day="Any" delay="1.8" />
+    <traffic-delay from="13:45:00" to="14:30:00" day="Workday" delay="3.2" />
+    <traffic-delay from="13:45:00" to="14:30:00" day="Weekend" delay="0.3" />
+    <traffic-delay from="14:30:00" to="17:00:00" day="Any" delay="3.1" />
+    <traffic-delay from="17:00:00" to="17:15:00" day="Workday" delay="1.8" />
+    <traffic-delay from="17:00:00" to="17:15:00" day="Weekend" delay="3.2" />
+    <traffic-delay from="17:15:00" to="17:30:00" day="Any" delay="1.8" />
+  </model>
+  <model node-from="322560521" node-to="196079046" way="25674879" freeflow="14.7" avg-delay="1.3">
+    <traffic-delay from="09:30:00" to="13:45:00" day="Weekend" delay="1.1" />
+    <traffic-delay from="13:45:00" to="16:30:00" day="Any" delay="1.4" />
+    <traffic-delay from="16:30:00" to="17:15:00" day="Weekend" delay="1.7" />
+  </model>
+  <model node-from="196079046" node-to="322560480" way="25674879" freeflow="2.5" avg-delay="2.4">
+    <traffic-delay from="09:15:00" to="17:30:00" day="Any" delay="2.5" />
+  </model>
+  <model node-from="322560480" node-to="196079039" way="25674879" freeflow="3.5" avg-delay="1.7">
+    <traffic-delay from="09:15:00" to="17:30:00" day="Any" delay="1.7" />
+  </model>
+  <model node-from="196079039" node-to="322560469" way="25674879" freeflow="5.9" avg-delay="0.4">
+    <traffic-delay from="09:45:00" to="11:45:00" day="Saturday" delay="0.6" />
+    <traffic-delay from="13:45:00" to="14:00:00" day="Saturday" delay="0.5" />
+    <traffic-delay from="14:00:00" to="15:15:00" day="Tuesday, Saturday" delay="0.4" />
+    <traffic-delay from="15:15:00" to="17:00:00" day="Saturday" delay="0.7" />
+  </model>
+  <model node-from="322560469" node-to="322560463" way="25674879" freeflow="0.7" avg-delay="0.3">
+    <traffic-delay from="09:45:00" to="11:45:00" day="Saturday" delay="0.4" />
+    <traffic-delay from="13:45:00" to="14:00:00" day="Saturday" delay="0.4" />
+    <traffic-delay from="14:00:00" to="16:15:00" day="Tuesday, Saturday" delay="0.4" />
+    <traffic-delay from="16:15:00" to="17:00:00" day="Saturday" delay="0.4" />
+  </model>
+  <model node-from="322560463" node-to="322560437" way="25674879" freeflow="9.7" avg-delay="0.0">
+    <traffic-delay from="14:15:00" to="14:45:00" day="Tuesday" delay="0.2" />
+    <traffic-delay from="14:45:00" to="15:00:00" day="Tuesday, Saturday" delay="0.2" />
+  </model>
+  <model node-from="322560437" node-to="196079034" way="25674879" freeflow="2.7" avg-delay="0.1">
+    <traffic-delay from="13:45:00" to="14:00:00" day="Saturday" delay="0.2" />
+    <traffic-delay from="14:00:00" to="16:15:00" day="Tuesday, Saturday" delay="0.1" />
+  </model>
+  <model node-from="196079034" node-to="322560452" way="25674879" freeflow="8.1" avg-delay="0.0">
+    <traffic-delay from="09:45:00" to="11:45:00" day="Saturday" delay="0.2" />
+  </model>
+  <model node-from="322560452" node-to="322560435" way="25674879" freeflow="1.0" avg-delay="2.3">
+    <traffic-delay from="09:30:00" to="17:30:00" day="Any" delay="2.3" />
+  </model>
+  <model node-from="322560435" node-to="322560433" way="25674879" freeflow="14.6" avg-delay="44.0">
+    <traffic-delay from="13:30:00" to="16:45:00" day="Any" delay="45.9" />
+  </model>
+  <model node-from="322560433" node-to="196078987" way="25674879" freeflow="103.3" avg-delay="113.8">
+    <traffic-delay from="09:15:00" to="10:15:00" day="Any" delay="120.7" />
+    <traffic-delay from="10:15:00" to="13:45:00" day="Any" delay="6.2" />
+    <traffic-delay from="13:45:00" to="14:00:00" day="Workday" delay="129.7" />
+    <traffic-delay from="13:45:00" to="14:00:00" day="Weekend" delay="6.2" />
+    <traffic-delay from="14:00:00" to="16:30:00" day="Any" delay="129.7" />
+    <traffic-delay from="16:30:00" to="17:30:00" day="Any" delay="6.2" />
+  </model>
+  <model node-from="196079062" node-to="198489807" way="23485793" freeflow="79.9" avg-delay="0.0" />
+  <model node-from="198489807" node-to="254338713" way="23485792" freeflow="92.6" avg-delay="9.2" />
+  <model node-from="254338713" node-to="198522032" way="23485794" freeflow="75.0" avg-delay="5.0" />
+  <model node-from="198522032" node-to="322596171" way="32997755" freeflow="43.6" avg-delay="6.6" />
+  <model node-from="566667784" node-to="196039189" way="44641156" freeflow="1.1" avg-delay="0.0">
+    <traffic-delay from="09:30:00" to="20:15:00" day="Any" delay="4.2" />
+  </model>
+  <model node-from="196039189" node-to="196039186" way="30690837" freeflow="0.7" avg-delay="3.8">
+    <traffic-delay from="07:15:00" to="20:15:00" day="Any" delay="4.1" />
+  </model>
+  <model node-from="196039186" node-to="196039183" way="30690837" freeflow="7.5" avg-delay="0.7">
+    <traffic-delay from="13:00:00" to="14:30:00" day="Any" delay="2.5" />
+    <traffic-delay from="14:30:00" to="15:00:00" day="Workday" delay="0.2" />
+    <traffic-delay from="14:30:00" to="15:00:00" day="Weekend" delay="2.5" />
+    <traffic-delay from="15:00:00" to="18:30:00" day="Any" delay="0.2" />
+  </model>
+  <model node-from="196039183" node-to="254168454" way="41066333" freeflow="5.7" avg-delay="2.0">
+    <traffic-delay from="10:30:00" to="13:45:00" day="Any" delay="3.2" />
+    <traffic-delay from="13:45:00" to="14:15:00" day="Any" delay="5.3" />
+    <traffic-delay from="14:15:00" to="15:45:00" day="Any" delay="6.9" />
+    <traffic-delay from="15:45:00" to="17:30:00" day="Workday" delay="6.9" />
+    <traffic-delay from="15:45:00" to="17:30:00" day="Weekend" delay="3.9" />
+    <traffic-delay from="17:30:00" to="18:00:00" day="Any" delay="3.9" />
+    <traffic-delay from="18:00:00" to="18:30:00" day="Any" delay="5.3" />
+  </model>
+  <model node-from="254168454" node-to="323145572" way="41066333" freeflow="2.2" avg-delay="1.4">
+    <traffic-delay from="07:45:00" to="20:15:00" day="Any" delay="1.4" />
+  </model>
+  <model node-from="323145572" node-to="323145573" way="41066333" freeflow="1.7" avg-delay="1.5">
+    <traffic-delay from="06:45:00" to="20:15:00" day="Any" delay="1.6" />
+  </model>
+  <model node-from="323145573" node-to="322253732" way="41066333" freeflow="4.4" avg-delay="1.1">
+    <traffic-delay from="07:00:00" to="09:45:00" day="Weekend" delay="0.2" />
+    <traffic-delay from="09:45:00" to="11:45:00" day="Weekend" delay="1.0" />
+    <traffic-delay from="11:45:00" to="12:00:00" day="Weekend" delay="0.2" />
+    <traffic-delay from="12:00:00" to="16:15:00" day="Weekend" delay="1.4" />
+    <traffic-delay from="13:30:00" to="16:15:00" day="Workday" delay="0.3" />
+    <traffic-delay from="16:15:00" to="18:15:00" day="Any" delay="1.1" />
+    <traffic-delay from="18:15:00" to="20:00:00" day="Workday" delay="1.1" />
+  </model>
+  <model node-from="322253732" node-to="322253696" way="41066333" freeflow="4.9" avg-delay="0.7">
+    <traffic-delay from="11:45:00" to="13:30:00" day="Weekend" delay="0.9" />
+    <traffic-delay from="13:30:00" to="15:30:00" day="Workday" delay="0.4" />
+    <traffic-delay from="13:30:00" to="15:30:00" day="Weekend" delay="1.3" />
+    <traffic-delay from="15:30:00" to="18:15:00" day="Any" delay="0.2" />
+    <traffic-delay from="18:15:00" to="20:00:00" day="Workday" delay="0.4" />
+  </model>
+  <model node-from="322253696" node-to="196039179" way="41066333" freeflow="5.0" avg-delay="2.2">
+    <traffic-delay from="12:30:00" to="15:15:00" day="Any" delay="2.1" />
+    <traffic-delay from="15:15:00" to="15:30:00" day="Workday" delay="2.1" />
+    <traffic-delay from="15:15:00" to="15:30:00" day="Weekend" delay="1.2" />
+    <traffic-delay from="15:30:00" to="18:45:00" day="Any" delay="1.3" />
+    <traffic-delay from="18:45:00" to="20:15:00" day="Any" delay="2.1" />
+  </model>
+  <model node-from="196039179" node-to="324160509" way="41066333" freeflow="0.0" avg-delay="1.8">
+    <traffic-delay from="13:15:00" to="20:15:00" day="Any" delay="1.9" />
+  </model>
+  <model node-from="324160509" node-to="321981415" way="41066333" freeflow="0.4" avg-delay="0.8">
+    <traffic-delay from="13:15:00" to="19:15:00" day="Any" delay="0.9" />
+  </model>
+  <model node-from="321981415" node-to="196058897" way="35968025" freeflow="3.8" avg-delay="0.0" />
+  <model node-from="196058897" node-to="196038525" way="35968219" freeflow="9.4" avg-delay="0.0">
+    <traffic-delay from="13:45:00" to="19:15:00" day="Any" delay="0.1" />
+  </model>
+  <model node-from="196038525" node-to="322944612" way="35968219" freeflow="6.3" avg-delay="1.8">
+    <traffic-delay from="11:45:00" to="14:00:00" day="Any" delay="1.2" />
+    <traffic-delay from="14:00:00" to="14:15:00" day="Workday" delay="1.2" />
+    <traffic-delay from="14:00:00" to="14:15:00" day="Weekend" delay="0.3" />
+    <traffic-delay from="14:15:00" to="16:30:00" day="Any" delay="0.3" />
+    <traffic-delay from="16:30:00" to="16:45:00" day="Workday" delay="2.3" />
+    <traffic-delay from="16:30:00" to="16:45:00" day="Weekend" delay="0.3" />
+    <traffic-delay from="16:45:00" to="18:15:00" day="Any" delay="0.2" />
+    <traffic-delay from="18:15:00" to="18:30:00" day="Workday" delay="0.2" />
+    <traffic-delay from="18:15:00" to="18:30:00" day="Weekend" delay="2.7" />
+    <traffic-delay from="18:30:00" to="18:45:00" day="Any" delay="0.2" />
+    <traffic-delay from="18:45:00" to="19:15:00" day="Any" delay="1.2" />
+  </model>
+  <model node-from="322944612" node-to="196039174" way="35968219" freeflow="6.6" avg-delay="0.7">
+    <traffic-delay from="13:30:00" to="14:30:00" day="Weekend" delay="0.5" />
+    <traffic-delay from="14:30:00" to="16:45:00" day="Any" delay="1.3" />
+    <traffic-delay from="16:45:00" to="17:30:00" day="Workday" delay="1.3" />
+  </model>
+  <model node-from="196039174" node-to="196039167" way="35968219" freeflow="3.1" avg-delay="4.5">
+    <traffic-delay from="13:15:00" to="19:15:00" day="Any" delay="4.6" />
+  </model>
+  <model node-from="196039167" node-to="196039162" way="35968219" freeflow="3.6" avg-delay="3.8">
+    <traffic-delay from="11:45:00" to="18:30:00" day="Any" delay="3.8" />
+  </model>
+  <model node-from="196039162" node-to="324160539" way="35968219" freeflow="1.6" avg-delay="2.8">
+    <traffic-delay from="13:45:00" to="15:00:00" day="Any" delay="2.7" />
+    <traffic-delay from="15:00:00" to="16:45:00" day="Workday" delay="2.7" />
+    <traffic-delay from="15:00:00" to="16:45:00" day="Weekend" delay="3.5" />
+    <traffic-delay from="16:45:00" to="18:30:00" day="Any" delay="2.7" />
+  </model>
+  <model node-from="324160539" node-to="324160544" way="35968219" freeflow="5.6" avg-delay="2.4">
+    <traffic-delay from="11:45:00" to="19:15:00" day="Any" delay="2.1" />
+  </model>
+  <model node-from="196039138" node-to="322880561" way="35968219" freeflow="45.2" avg-delay="6.5">
+    <traffic-delay from="09:45:00" to="17:45:00" day="Any" delay="7.1" />
+  </model>
+  <model node-from="322880561" node-to="254161731" way="35968219" freeflow="19.6" avg-delay="2.9">
+    <traffic-delay from="11:45:00" to="13:15:00" day="Any" delay="7.1" />
+    <traffic-delay from="13:15:00" to="19:15:00" day="Any" delay="2.5" />
+  </model>
+  <model node-from="254161731" node-to="196038493" way="35968219" freeflow="20.5" avg-delay="4.2">
+    <traffic-delay from="13:00:00" to="14:15:00" day="Weekend" delay="5.4" />
+    <traffic-delay from="14:00:00" to="14:15:00" day="Workday" delay="1.1" />
+    <traffic-delay from="14:15:00" to="15:15:00" day="Any" delay="1.1" />
+    <traffic-delay from="15:15:00" to="17:45:00" day="Workday" delay="1.1" />
+    <traffic-delay from="15:15:00" to="16:45:00" day="Weekend" delay="5.4" />
+  </model>
+  <model node-from="196038493" node-to="196058867" way="23469946" freeflow="14.3" avg-delay="5.7">
+    <traffic-delay from="13:45:00" to="18:00:00" day="Any" delay="5.1" />
+  </model>
+  <model node-from="196058867" node-to="322532012" way="29316140" freeflow="21.7" avg-delay="3.3">
+    <traffic-delay from="13:45:00" to="16:45:00" day="Any" delay="2.5" />
+  </model>
+  <model node-from="322532012" node-to="323145615" way="29316142" freeflow="14.8" avg-delay="0.2">
+    <traffic-delay from="13:45:00" to="16:45:00" day="Any" delay="0.6" />
+  </model>
+  <model node-from="322532010" node-to="322531981" way="29316141" freeflow="23.1" avg-delay="3.2">
+    <traffic-delay from="13:45:00" to="16:45:00" day="Any" delay="0.8" />
+  </model>
+  <model node-from="322531981" node-to="196038509" way="29359854" freeflow="12.2" avg-delay="2.8" />
+  <model node-from="322531986" node-to="196038505" way="23469946" freeflow="36.7" avg-delay="0.0" />
+  <model node-from="196038505" node-to="196058867" way="23469946" freeflow="11.7" avg-delay="5.0">
+    <traffic-delay from="13:45:00" to="16:30:00" day="Weekend" delay="7.4" />
+    <traffic-delay from="14:15:00" to="17:15:00" day="Workday" delay="3.3" />
+  </model>
+  <model node-from="196058867" node-to="196058883" way="29359855" freeflow="37.6" avg-delay="2.0">
+    <traffic-delay from="14:00:00" to="14:15:00" day="Weekend" delay="1.6" />
+    <traffic-delay from="14:15:00" to="16:30:00" day="Any" delay="1.2" />
+    <traffic-delay from="16:30:00" to="16:45:00" day="Weekend" delay="1.6" />
+  </model>
+  <model node-from="196058883" node-to="322253749" way="29359855" freeflow="7.3" avg-delay="4.0">
+    <traffic-delay from="13:45:00" to="17:00:00" day="Any" delay="4.4" />
+  </model>
+  <model node-from="322253749" node-to="196058892" way="18944890" freeflow="31.7" avg-delay="13.3">
+    <traffic-delay from="13:45:00" to="17:00:00" day="Any" delay="6.3" />
+  </model>
+  <model node-from="196058892" node-to="196038485" way="35968219" freeflow="6.7" avg-delay="5.7">
+    <traffic-delay from="09:30:00" to="13:45:00" day="Any" delay="6.3" />
+    <traffic-delay from="13:45:00" to="14:00:00" day="Any" delay="0.4" />
+    <traffic-delay from="14:00:00" to="14:15:00" day="Workday" delay="4.0" />
+    <traffic-delay from="14:00:00" to="14:15:00" day="Weekend" delay="0.4" />
+    <traffic-delay from="14:15:00" to="16:00:00" day="Any" delay="4.0" />
+    <traffic-delay from="16:00:00" to="16:30:00" day="Workday" delay="0.6" />
+    <traffic-delay from="16:00:00" to="16:30:00" day="Weekend" delay="7.3" />
+    <traffic-delay from="16:30:00" to="19:15:00" day="Any" delay="0.6" />
+  </model>
+  <model node-from="196058897" node-to="321981414" way="18944891" freeflow="1.7" avg-delay="3.3">
+    <traffic-delay from="14:15:00" to="17:00:00" day="Any" delay="3.3" />
+  </model>
+  <model node-from="321981414" node-to="322880563" way="29301147" freeflow="10.5" avg-delay="0.9">
+    <traffic-delay from="10:30:00" to="14:00:00" day="Any" delay="1.8" />
+    <traffic-delay from="14:15:00" to="17:00:00" day="Any" delay="0.4" />
+  </model>
+  <model node-from="322880563" node-to="196058900" way="29301147" freeflow="3.6" avg-delay="0.4">
+    <traffic-delay from="14:00:00" to="17:00:00" day="Any" delay="0.5" />
+  </model>
+  <model node-from="196058900" node-to="384781008" way="29301147" freeflow="10.0" avg-delay="3.2">
+    <traffic-delay from="08:45:00" to="12:45:00" day="Any" delay="4.5" />
+    <traffic-delay from="13:30:00" to="16:30:00" day="Any" delay="0.1" />
+  </model>
+  <model node-from="384781008" node-to="196058901" way="29301147" freeflow="1.4" avg-delay="0.3">
+    <traffic-delay from="10:30:00" to="20:15:00" day="Any" delay="0.3" />
+  </model>
+  <model node-from="196058901" node-to="196058902" way="23470836" freeflow="12.3" avg-delay="0.0" />
+  <model node-from="196058902" node-to="196058957" way="29301179" freeflow="14.5" avg-delay="3.2">
+    <traffic-delay from="09:30:00" to="13:45:00" day="Any" delay="0.3" />
+  </model>
+  <model node-from="196058957" node-to="322531967" way="29301179" freeflow="19.4" avg-delay="0.6" />
+  <model node-from="322531967" node-to="322531965" way="29316133" freeflow="16.7" avg-delay="5.6">
+    <traffic-delay from="09:45:00" to="13:00:00" day="Any" delay="4.4" />
+    <traffic-delay from="13:00:00" to="13:15:00" day="Workday" delay="4.4" />
+    <traffic-delay from="13:00:00" to="13:15:00" day="Weekend" delay="7.4" />
+    <traffic-delay from="13:15:00" to="16:15:00" day="Any" delay="7.4" />
+    <traffic-delay from="16:15:00" to="16:30:00" day="Workday" delay="4.4" />
+    <traffic-delay from="16:15:00" to="16:30:00" day="Weekend" delay="7.4" />
+    <traffic-delay from="16:30:00" to="16:45:00" day="Any" delay="4.4" />
+  </model>
+  <model node-from="322531965" node-to="254168455" way="18944893" freeflow="3.6" avg-delay="6.4">
+    <traffic-delay from="08:45:00" to="16:45:00" day="Any" delay="6.5" />
+  </model>
+  <model node-from="254168455" node-to="324160553" way="29411910" freeflow="17.3" avg-delay="3.3">
+    <traffic-delay from="09:45:00" to="16:45:00" day="Any" delay="2.3" />
+  </model>
+  <model node-from="324160553" node-to="322253751" way="29411910" freeflow="7.2" avg-delay="10.3">
+    <traffic-delay from="08:45:00" to="12:45:00" day="Any" delay="10.8" />
+    <traffic-delay from="12:45:00" to="13:15:00" day="Any" delay="5.1" />
+    <traffic-delay from="13:15:00" to="16:45:00" day="Any" delay="10.8" />
+  </model>
+  <model node-from="196039174" node-to="322944612" way="35968219" freeflow="5.7" avg-delay="1.5">
+    <traffic-delay from="14:15:00" to="19:15:00" day="Any" delay="0.8" />
+  </model>
+  <model node-from="322944612" node-to="196038525" way="35968219" freeflow="4.7" avg-delay="2.1">
+    <traffic-delay from="09:15:00" to="11:45:00" day="Any" delay="0.9" />
+    <traffic-delay from="11:45:00" to="12:00:00" day="Any" delay="2.2" />
+    <traffic-delay from="12:00:00" to="12:15:00" day="Workday" delay="2.2" />
+    <traffic-delay from="12:00:00" to="12:15:00" day="Weekend" delay="3.7" />
+    <traffic-delay from="12:15:00" to="14:30:00" day="Any" delay="3.6" />
+    <traffic-delay from="14:30:00" to="15:45:00" day="Workday" delay="1.7" />
+    <traffic-delay from="14:30:00" to="15:45:00" day="Weekend" delay="3.6" />
+    <traffic-delay from="15:45:00" to="19:45:00" day="Any" delay="1.7" />
+  </model>
+  <model node-from="196038525" node-to="196058897" way="35968219" freeflow="7.8" avg-delay="1.6">
+    <traffic-delay from="09:15:00" to="19:45:00" day="Any" delay="1.2" />
+  </model>
+  <model node-from="324160509" node-to="196039179" way="41066333" freeflow="1.1" avg-delay="1.1">
+    <traffic-delay from="07:15:00" to="09:30:00" day="Any" delay="1.1" />
+    <traffic-delay from="09:30:00" to="12:45:00" day="Workday" delay="1.1" />
+    <traffic-delay from="09:30:00" to="12:45:00" day="Weekend" delay="0.9" />
+    <traffic-delay from="12:45:00" to="19:45:00" day="Any" delay="1.1" />
+  </model>
+  <model node-from="196039179" node-to="322253696" way="41066333" freeflow="5.1" avg-delay="2.3">
+    <traffic-delay from="09:45:00" to="13:45:00" day="Any" delay="2.1" />
+    <traffic-delay from="14:30:00" to="14:45:00" day="Workday" delay="2.5" />
+    <traffic-delay from="14:45:00" to="20:45:00" day="Any" delay="2.0" />
+  </model>
+  <model node-from="322253696" node-to="322253732" way="41066333" freeflow="3.1" avg-delay="2.2">
+    <traffic-delay from="11:45:00" to="14:15:00" day="Any" delay="2.4" />
+    <traffic-delay from="14:15:00" to="15:30:00" day="Workday" delay="2.4" />
+    <traffic-delay from="14:15:00" to="15:30:00" day="Weekend" delay="3.1" />
+    <traffic-delay from="15:30:00" to="20:45:00" day="Any" delay="2.4" />
+  </model>
+  <model node-from="322253732" node-to="323145573" way="41066333" freeflow="4.9" avg-delay="0.8">
+    <traffic-delay from="08:15:00" to="20:45:00" day="Any" delay="0.6" />
+  </model>
+  <model node-from="323145573" node-to="323145572" way="41066333" freeflow="2.9" avg-delay="0.4">
+    <traffic-delay from="13:15:00" to="20:15:00" day="Any" delay="0.4" />
+  </model>
+  <model node-from="323145572" node-to="254168454" way="41066333" freeflow="0.5" avg-delay="2.9">
+    <traffic-delay from="11:45:00" to="20:45:00" day="Any" delay="3.0" />
+  </model>
+  <model node-from="254168454" node-to="196039183" way="41066333" freeflow="9.5" avg-delay="3.2">
+    <traffic-delay from="08:15:00" to="11:45:00" day="Any" delay="3.8" />
+    <traffic-delay from="11:45:00" to="12:45:00" day="Workday" delay="2.2" />
+    <traffic-delay from="11:45:00" to="12:45:00" day="Weekend" delay="3.8" />
+    <traffic-delay from="12:45:00" to="14:30:00" day="Any" delay="2.2" />
+    <traffic-delay from="14:30:00" to="16:45:00" day="Workday" delay="9.1" />
+    <traffic-delay from="14:30:00" to="16:45:00" day="Weekend" delay="1.8" />
+    <traffic-delay from="16:45:00" to="17:30:00" day="Any" delay="1.8" />
+    <traffic-delay from="17:30:00" to="18:00:00" day="Workday" delay="0.2" />
+    <traffic-delay from="17:30:00" to="18:00:00" day="Weekend" delay="1.8" />
+    <traffic-delay from="18:00:00" to="20:15:00" day="Any" delay="0.2" />
+    <traffic-delay from="20:15:00" to="20:45:00" day="Any" delay="2.2" />
+  </model>
+  <model node-from="196039183" node-to="254161700" way="23469943" freeflow="11.4" avg-delay="2.7">
+    <traffic-delay from="09:30:00" to="17:15:00" day="Any" delay="2.1" />
+  </model>
+  <model node-from="254161700" node-to="254161702" way="23469943" freeflow="12.6" avg-delay="1.5">
+    <traffic-delay from="09:45:00" to="11:15:00" day="Weekend" delay="1.1" />
+    <traffic-delay from="11:15:00" to="16:00:00" day="Any" delay="0.8" />
+    <traffic-delay from="16:00:00" to="16:45:00" day="Any" delay="2.8" />
+    <traffic-delay from="16:45:00" to="17:00:00" day="Weekend" delay="1.1" />
+  </model>
+  <model node-from="254161702" node-to="254161697" way="23469943" freeflow="13.1" avg-delay="2.5">
+    <traffic-delay from="08:45:00" to="09:00:00" day="Weekend" delay="1.9" />
+    <traffic-delay from="09:00:00" to="14:00:00" day="Any" delay="2.0" />
+    <traffic-delay from="14:00:00" to="15:15:00" day="Weekend" delay="3.4" />
+    <traffic-delay from="14:15:00" to="15:15:00" day="Workday" delay="1.0" />
+    <traffic-delay from="15:15:00" to="16:00:00" day="Any" delay="1.0" />
+  </model>
+  <model node-from="254161697" node-to="254161705" way="23469943" freeflow="7.1" avg-delay="1.2">
+    <traffic-delay from="09:30:00" to="12:45:00" day="Any" delay="1.0" />
+    <traffic-delay from="12:45:00" to="13:00:00" day="Workday" delay="2.2" />
+    <traffic-delay from="12:45:00" to="13:00:00" day="Weekend" delay="0.8" />
+    <traffic-delay from="13:00:00" to="14:15:00" day="Any" delay="2.2" />
+  </model>
+  <model node-from="254161705" node-to="254649316" way="29359841" freeflow="30.8" avg-delay="2.4">
+    <traffic-delay from="09:45:00" to="10:00:00" day="Weekend" delay="1.5" />
+    <traffic-delay from="10:00:00" to="11:30:00" day="Any" delay="2.5" />
+    <traffic-delay from="11:30:00" to="12:15:00" day="Weekend" delay="1.5" />
+    <traffic-delay from="12:15:00" to="16:45:00" day="Any" delay="0.8" />
+    <traffic-delay from="16:45:00" to="17:00:00" day="Weekend" delay="1.5" />
+  </model>
+  <model node-from="254649316" node-to="254649320" way="29316147" freeflow="10.2" avg-delay="1.6">
+    <traffic-delay from="09:30:00" to="17:00:00" day="Any" delay="1.5" />
+  </model>
+  <model node-from="254649320" node-to="322532068" way="29359845" freeflow="2.7" avg-delay="4.3" />
+  <model node-from="322532068" node-to="196038472" way="18943724" freeflow="20.7" avg-delay="2.8">
+    <traffic-delay from="08:30:00" to="09:30:00" day="Any" delay="5.6" />
+    <traffic-delay from="09:30:00" to="09:45:00" day="Weekend" delay="7.6" />
+    <traffic-delay from="11:45:00" to="12:00:00" day="Weekend" delay="7.6" />
+    <traffic-delay from="12:00:00" to="12:30:00" day="Any" delay="5.6" />
+    <traffic-delay from="12:30:00" to="13:00:00" day="Workday" delay="0.7" />
+    <traffic-delay from="12:30:00" to="13:00:00" day="Weekend" delay="7.6" />
+    <traffic-delay from="13:00:00" to="16:45:00" day="Any" delay="0.7" />
+    <traffic-delay from="16:45:00" to="17:00:00" day="Any" delay="7.8" />
+  </model>
+  <model node-from="196038472" node-to="254649315" way="18943724" freeflow="9.9" avg-delay="0.0">
+    <traffic-delay from="08:45:00" to="11:45:00" day="Weekend" delay="0.5" />
+  </model>
+  <model node-from="254649315" node-to="196038481" way="18943724" freeflow="19.4" avg-delay="4.0">
+    <traffic-delay from="08:45:00" to="11:30:00" day="Weekend" delay="4.4" />
+    <traffic-delay from="11:30:00" to="16:30:00" day="Weekend" delay="0.7" />
+    <traffic-delay from="16:30:00" to="16:45:00" day="Weekend" delay="15.0" />
+  </model>
+  <model node-from="196038481" node-to="196038485" way="18943724" freeflow="10.3" avg-delay="2.7">
+    <traffic-delay from="09:15:00" to="16:45:00" day="Any" delay="1.2" />
+    <traffic-delay from="16:45:00" to="17:00:00" day="Any" delay="7.4" />
+  </model>
+  <model node-from="196038485" node-to="322531974" way="23470836" freeflow="7.2" avg-delay="2.0">
+    <traffic-delay from="13:30:00" to="17:00:00" day="Any" delay="0.8" />
+  </model>
+  <model node-from="322531974" node-to="196058902" way="23470836" freeflow="9.8" avg-delay="3.6">
+    <traffic-delay from="13:30:00" to="17:15:00" day="Any" delay="3.4" />
+  </model>
+  <model node-from="196058867" node-to="196038493" way="23469946" freeflow="19.5" avg-delay="7.2">
+    <traffic-delay from="13:00:00" to="14:30:00" day="Any" delay="1.0" />
+    <traffic-delay from="14:30:00" to="17:45:00" day="Workday" delay="9.8" />
+    <traffic-delay from="14:30:00" to="17:45:00" day="Weekend" delay="0.5" />
+    <traffic-delay from="17:45:00" to="18:00:00" day="Any" delay="9.8" />
+  </model>
+  <model node-from="196038493" node-to="322532028" way="35968219" freeflow="13.0" avg-delay="3.2">
+    <traffic-delay from="09:30:00" to="18:00:00" day="Any" delay="2.6" />
+  </model>
+  <model node-from="322532028" node-to="254168463" way="35968219" freeflow="10.3" avg-delay="1.8">
+    <traffic-delay from="11:45:00" to="20:45:00" day="Any" delay="1.4" />
+  </model>
+  <model node-from="254168463" node-to="196058892" way="35968219" freeflow="7.5" avg-delay="2.5">
+    <traffic-delay from="13:15:00" to="20:45:00" day="Any" delay="2.3" />
+  </model>
+  <model node-from="196058902" node-to="196058901" way="23470836" freeflow="12.8" avg-delay="2.8" />
+  <model node-from="196058901" node-to="384781008" way="29301147" freeflow="0.6" avg-delay="1.0">
+    <traffic-delay from="12:00:00" to="20:45:00" day="Any" delay="1.1" />
+  </model>
+  <model node-from="384781008" node-to="196058900" way="29301147" freeflow="12.7" avg-delay="0.2">
+    <traffic-delay from="11:00:00" to="20:45:00" day="Any" delay="1.2" />
+  </model>
+  <model node-from="196058900" node-to="322880563" way="29301147" freeflow="3.5" avg-delay="0.7">
+    <traffic-delay from="11:00:00" to="20:45:00" day="Any" delay="0.4" />
+  </model>
+  <model node-from="322880563" node-to="321981414" way="29301147" freeflow="11.6" avg-delay="2.6">
+    <traffic-delay from="13:00:00" to="13:15:00" day="Any" delay="2.1" />
+    <traffic-delay from="13:15:00" to="13:30:00" day="Workday" delay="2.1" />
+    <traffic-delay from="13:15:00" to="13:30:00" day="Weekend" delay="0.1" />
+    <traffic-delay from="13:30:00" to="14:30:00" day="Any" delay="0.3" />
+    <traffic-delay from="14:30:00" to="16:00:00" day="Workday" delay="2.8" />
+    <traffic-delay from="14:30:00" to="16:00:00" day="Weekend" delay="0.1" />
+    <traffic-delay from="16:00:00" to="20:45:00" day="Any" delay="2.8" />
+  </model>
+  <model node-from="321981414" node-to="321981415" way="29278926" freeflow="6.7" avg-delay="1.4">
+    <traffic-delay from="13:30:00" to="14:00:00" day="Any" delay="3.3" />
+  </model>
+  <model node-from="322596171" node-to="322596181" way="29322860" freeflow="67.7" avg-delay="8.4">
+    <traffic-delay from="12:30:00" to="22:15:00" day="Any" delay="10.3" />
+  </model>
+  <model node-from="322596181" node-to="322596183" way="29322860" freeflow="3.1" avg-delay="1.0">
+    <traffic-delay from="13:00:00" to="15:00:00" day="Weekend" delay="0.9" />
+    <traffic-delay from="15:00:00" to="20:15:00" day="Any" delay="1.0" />
+    <traffic-delay from="20:15:00" to="20:45:00" day="Workday" delay="1.4" />
+  </model>
+  <model node-from="322596183" node-to="322596188" way="29322860" freeflow="15.6" avg-delay="1.9">
+    <traffic-delay from="12:45:00" to="22:15:00" day="Any" delay="1.7" />
+  </model>
+  <model node-from="254196202" node-to="254196209" way="23473357" freeflow="15.4" avg-delay="0.4">
+    <traffic-delay from="13:30:00" to="18:45:00" day="Any" delay="0.3" />
+  </model>
+  <model node-from="254196209" node-to="322560539" way="23473357" freeflow="13.8" avg-delay="2.0">
+    <traffic-delay from="13:30:00" to="18:45:00" day="Any" delay="2.5" />
+  </model>
+  <model node-from="322560539" node-to="254196225" way="23473357" freeflow="10.2" avg-delay="0.7">
+    <traffic-delay from="14:30:00" to="18:45:00" day="Any" delay="0.5" />
+  </model>
+  <model node-from="254196225" node-to="322560559" way="23473357" freeflow="19.2" avg-delay="0.1" />
+  <model node-from="322560559" node-to="322560556" way="23473357" freeflow="6.8" avg-delay="2.3" />
+  <model node-from="322560556" node-to="322560559" way="23473357" freeflow="11.2" avg-delay="1.4">
+    <traffic-delay from="13:15:00" to="17:45:00" day="Any" delay="0.5" />
+  </model>
+  <model node-from="322560559" node-to="254196225" way="23473357" freeflow="21.7" avg-delay="1.6">
+    <traffic-delay from="13:15:00" to="16:30:00" day="Any" delay="0.8" />
+  </model>
+  <model node-from="254196225" node-to="322560539" way="23473357" freeflow="10.4" avg-delay="0.5">
+    <traffic-delay from="14:15:00" to="19:15:00" day="Any" delay="1.6" />
+  </model>
+  <model node-from="322560539" node-to="254196209" way="23473357" freeflow="16.7" avg-delay="1.1">
+    <traffic-delay from="13:15:00" to="19:15:00" day="Any" delay="0.9" />
+  </model>
+  <model node-from="254196209" node-to="254196202" way="23473357" freeflow="16.5" avg-delay="2.6">
+    <traffic-delay from="13:15:00" to="16:30:00" day="Any" delay="2.0" />
+  </model>
+  <model node-from="322253527" node-to="322253383" way="29301148" freeflow="6.4" avg-delay="2.3" />
+  <model node-from="322253383" node-to="322253373" way="29301148" freeflow="14.4" avg-delay="5.1">
+    <traffic-delay from="09:15:00" to="13:30:00" day="Any" delay="3.4" />
+    <traffic-delay from="13:30:00" to="16:45:00" day="Any" delay="1.1" />
+  </model>
+  <model node-from="196074233" node-to="196092355" way="35994468" freeflow="87.5" avg-delay="6.7">
+    <traffic-delay from="10:30:00" to="16:00:00" day="Any" delay="2.6" />
+  </model>
+  <model node-from="196092355" node-to="254633859" way="18945866" freeflow="8.3" avg-delay="0.5">
+    <traffic-delay from="10:15:00" to="16:00:00" day="Any" delay="0.2" />
+  </model>
+  <model node-from="254633859" node-to="254338672" way="18945866" freeflow="21.5" avg-delay="1.5">
+    <traffic-delay from="10:15:00" to="16:00:00" day="Any" delay="2.1" />
+  </model>
+  <model node-from="254338672" node-to="196092371" way="18945866" freeflow="10.5" avg-delay="2.2" />
+  <model node-from="196092371" node-to="330681001" way="18945866" freeflow="6.5" avg-delay="0.0" />
+  <model node-from="330681001" node-to="196092381" way="18945866" freeflow="15.8" avg-delay="2.8" />
+  <model node-from="196092381" node-to="330680446" way="29322850" freeflow="18.3" avg-delay="1.7" />
+  <model node-from="330680446" node-to="322560701" way="29322852" freeflow="23.3" avg-delay="1.7" />
+  <model node-from="322560701" node-to="322560703" way="30031135" freeflow="36.7" avg-delay="3.3" />
+  <model node-from="322560703" node-to="322560704" way="29322856" freeflow="7.6" avg-delay="0.0" />
+  <model node-from="322560704" node-to="322560707" way="29322856" freeflow="7.4" avg-delay="0.0" />
+  <model node-from="322560707" node-to="322596122" way="29322856" freeflow="4.0" avg-delay="0.0" />
+  <model node-from="322596122" node-to="196092431" way="29322856" freeflow="27.7" avg-delay="0.0" />
+  <model node-from="196092399" node-to="196092404" way="18947039" freeflow="8.7" avg-delay="0.0" />
+  <model node-from="196092404" node-to="330680531" way="18947039" freeflow="29.4" avg-delay="6.3" />
+  <model node-from="330680531" node-to="196092384" way="18947039" freeflow="5.2" avg-delay="0.8" />
+  <model node-from="196092384" node-to="196092381" way="18945866" freeflow="33.0" avg-delay="0.5" />
+  <model node-from="196092381" node-to="330681001" way="18945866" freeflow="13.7" avg-delay="0.1" />
+  <model node-from="330681001" node-to="196092371" way="18945866" freeflow="7.6" avg-delay="0.6" />
+  <model node-from="196092371" node-to="254338672" way="18945866" freeflow="10.3" avg-delay="0.4">
+    <traffic-delay from="10:15:00" to="16:00:00" day="Any" delay="0.4" />
+  </model>
+  <model node-from="254338672" node-to="254633859" way="18945866" freeflow="21.7" avg-delay="0.3">
+    <traffic-delay from="10:15:00" to="16:00:00" day="Any" delay="0.3" />
+  </model>
+  <model node-from="254633859" node-to="196092355" way="18945866" freeflow="7.8" avg-delay="0.3">
+    <traffic-delay from="10:15:00" to="16:00:00" day="Any" delay="0.2" />
+  </model>
+  <model node-from="196092355" node-to="196074233" way="35994468" freeflow="97.1" avg-delay="1.1" />
+  <model node-from="254161716" node-to="322532068" way="18943724" freeflow="4.6" avg-delay="1.8">
+    <traffic-delay from="12:30:00" to="16:45:00" day="Any" delay="3.2" />
+  </model>
+  <model node-from="196038485" node-to="196058892" way="35968219" freeflow="7.1" avg-delay="1.0">
+    <traffic-delay from="09:00:00" to="12:45:00" day="Any" delay="0.3" />
+    <traffic-delay from="12:45:00" to="13:45:00" day="Workday" delay="0.3" />
+    <traffic-delay from="12:45:00" to="13:45:00" day="Weekend" delay="2.9" />
+    <traffic-delay from="13:45:00" to="14:45:00" day="Any" delay="2.9" />
+    <traffic-delay from="14:45:00" to="15:45:00" day="Workday" delay="0.4" />
+    <traffic-delay from="14:45:00" to="15:45:00" day="Weekend" delay="2.9" />
+    <traffic-delay from="15:45:00" to="17:00:00" day="Any" delay="0.4" />
+  </model>
+  <model node-from="196058892" node-to="322531969" way="29359848" freeflow="22.5" avg-delay="25.1" />
+  <model node-from="322531969" node-to="196058957" way="29359847" freeflow="18.1" avg-delay="2.9" />
+  <model node-from="196058957" node-to="196058933" way="29359847" freeflow="21.8" avg-delay="3.2">
+    <traffic-delay from="11:45:00" to="16:30:00" day="Any" delay="3.2" />
+  </model>
+  <model node-from="196058907" node-to="322944613" way="18944892" freeflow="10.0" avg-delay="2.5" />
+  <model node-from="322944613" node-to="322253751" way="18944892" freeflow="7.1" avg-delay="0.4" />
+  <model node-from="322253751" node-to="196058930" way="18944892" freeflow="7.8" avg-delay="5.5" />
+  <model node-from="196058930" node-to="322253753" way="18944892" freeflow="11.6" avg-delay="8.9" />
+  <model node-from="322253753" node-to="196039138" way="23514156" freeflow="12.3" avg-delay="12.7" />
+  <model node-from="196038485" node-to="322532054" way="29316145" freeflow="30.0" avg-delay="5.0">
+    <traffic-delay from="09:30:00" to="12:15:00" day="Any" delay="1.7" />
+    <traffic-delay from="12:30:00" to="17:00:00" day="Any" delay="6.4" />
+  </model>
+  <model node-from="322532054" node-to="322532047" way="29359855" freeflow="13.4" avg-delay="4.0">
+    <traffic-delay from="13:45:00" to="16:45:00" day="Any" delay="1.2" />
+  </model>
+  <model node-from="322532047" node-to="196038481" way="29359846" freeflow="27.5" avg-delay="2.5">
+    <traffic-delay from="13:15:00" to="16:45:00" day="Any" delay="1.5" />
+  </model>
+  <model node-from="196038481" node-to="322253748" way="29301178" freeflow="25.0" avg-delay="0.0" />
+  <model node-from="322253748" node-to="322532062" way="29301179" freeflow="19.0" avg-delay="0.8" />
+  <model node-from="322532062" node-to="196058902" way="29301179" freeflow="7.6" avg-delay="4.9" />
+  <model node-from="322253696" node-to="322253699" way="25645221" freeflow="12.5" avg-delay="0.8" />
+  <model node-from="322253699" node-to="322253694" way="25645221" freeflow="5.6" avg-delay="2.1">
+    <traffic-delay from="10:15:00" to="14:15:00" day="Any" delay="1.9" />
+  </model>
+  <model node-from="322253694" node-to="322253688" way="25645221" freeflow="18.1" avg-delay="1.9">
+    <traffic-delay from="10:15:00" to="14:45:00" day="Any" delay="0.8" />
+  </model>
+  <model node-from="322253688" node-to="279554842" way="25645221" freeflow="5.7" avg-delay="0.9">
+    <traffic-delay from="09:15:00" to="14:45:00" day="Any" delay="0.6" />
+  </model>
+  <model node-from="196058892" node-to="254168463" way="35968219" freeflow="13.9" avg-delay="0.0" />
+  <model node-from="254168463" node-to="322532028" way="35968219" freeflow="10.0" avg-delay="0.7">
+    <traffic-delay from="09:15:00" to="17:00:00" day="Any" delay="0.4" />
+  </model>
+  <model node-from="322532028" node-to="196038493" way="35968219" freeflow="14.8" avg-delay="4.5">
+    <traffic-delay from="09:15:00" to="12:15:00" day="Any" delay="0.7" />
+    <traffic-delay from="12:15:00" to="17:00:00" day="Any" delay="4.7" />
+  </model>
+  <model node-from="196038493" node-to="254161731" way="35968219" freeflow="19.8" avg-delay="2.2">
+    <traffic-delay from="08:15:00" to="17:45:00" day="Any" delay="2.8" />
+  </model>
+  <model node-from="254161731" node-to="322880561" way="35968219" freeflow="23.9" avg-delay="1.4">
+    <traffic-delay from="13:00:00" to="17:45:00" day="Any" delay="0.8" />
+  </model>
+  <model node-from="322880561" node-to="196039138" way="35968219" freeflow="38.8" avg-delay="11.6">
+    <traffic-delay from="13:00:00" to="13:15:00" day="Any" delay="17.8" />
+    <traffic-delay from="13:15:00" to="17:00:00" day="Any" delay="1.4" />
+    <traffic-delay from="17:00:00" to="17:45:00" day="Any" delay="17.8" />
+  </model>
+  <model node-from="324160544" node-to="324160539" way="35968219" freeflow="3.6" avg-delay="3.5">
+    <traffic-delay from="08:30:00" to="17:45:00" day="Any" delay="3.2" />
+  </model>
+  <model node-from="324160539" node-to="196039162" way="35968219" freeflow="1.9" avg-delay="2.2">
+    <traffic-delay from="08:15:00" to="19:15:00" day="Any" delay="2.2" />
+  </model>
+  <model node-from="196039167" node-to="196039174" way="35968219" freeflow="3.6" avg-delay="2.3" />
+  <model node-from="254649320" node-to="322253631" way="29359844" freeflow="18.5" avg-delay="1.7">
+    <traffic-delay from="09:30:00" to="16:30:00" day="Any" delay="1.5" />
+  </model>
+  <model node-from="322253631" node-to="254649334" way="29359844" freeflow="15.7" avg-delay="4.0" />
+  <model node-from="254649334" node-to="322253614" way="23514153" freeflow="29.8" avg-delay="10.2" />
+  <model node-from="322253652" node-to="254649315" way="23470831" freeflow="16.9" avg-delay="3.1">
+    <traffic-delay from="09:15:00" to="13:45:00" day="Any" delay="3.1" />
+  </model>
+  <model node-from="254168463" node-to="322531953" way="29359849" freeflow="15.8" avg-delay="11.6" />
+  <model node-from="322531953" node-to="322531978" way="29316133" freeflow="0.3" avg-delay="0.8">
+    <traffic-delay from="12:45:00" to="15:45:00" day="Any" delay="1.1" />
+  </model>
+  <model node-from="322531978" node-to="322531967" way="29316133" freeflow="17.4" avg-delay="3.9">
+    <traffic-delay from="09:45:00" to="16:00:00" day="Any" delay="2.4" />
+  </model>
+  <model node-from="322253751" node-to="322944613" way="18944892" freeflow="6.8" avg-delay="6.0">
+    <traffic-delay from="08:45:00" to="13:00:00" day="Any" delay="6.4" />
+    <traffic-delay from="14:45:00" to="18:15:00" day="Any" delay="0.6" />
+  </model>
+  <model node-from="322944613" node-to="196058907" way="18944892" freeflow="6.5" avg-delay="1.1">
+    <traffic-delay from="07:15:00" to="13:00:00" day="Any" delay="0.4" />
+    <traffic-delay from="13:45:00" to="18:15:00" day="Any" delay="0.9" />
+  </model>
+  <model node-from="196058907" node-to="196058900" way="18944892" freeflow="12.4" avg-delay="5.1">
+    <traffic-delay from="13:30:00" to="18:15:00" day="Any" delay="4.4" />
+  </model>
+  <model node-from="322880562" node-to="384781009" way="29301178" freeflow="18.7" avg-delay="108.3">
+    <traffic-delay from="11:45:00" to="16:30:00" day="Any" delay="1.4" />
+  </model>
+  <model node-from="384781009" node-to="322253748" way="29301178" freeflow="16.3" avg-delay="5.0">
+    <traffic-delay from="11:45:00" to="14:30:00" day="Any" delay="2.4" />
+    <traffic-delay from="14:30:00" to="14:45:00" day="Workday" delay="9.4" />
+    <traffic-delay from="14:30:00" to="14:45:00" day="Weekend" delay="2.4" />
+    <traffic-delay from="14:45:00" to="16:30:00" day="Any" delay="9.4" />
+  </model>
+  <model node-from="322253748" node-to="196038481" way="29301178" freeflow="17.2" avg-delay="15.5" />
+  <model node-from="254649315" node-to="322253652" way="23470831" freeflow="14.9" avg-delay="1.0" />
+  <model node-from="322253652" node-to="254649311" way="23470831" freeflow="24.3" avg-delay="1.9" />
+  <model node-from="196058933" node-to="322531965" way="18944893" freeflow="7.5" avg-delay="1.8" />
+  <model node-from="254168455" node-to="322531953" way="29316132" freeflow="44.1" avg-delay="20.9" />
+  <model node-from="322531953" node-to="254168463" way="29359849" freeflow="18.4" avg-delay="16.6" />
+  <model node-from="322253614" node-to="322253592" way="23514153" freeflow="40.2" avg-delay="6.3" />
+  <model node-from="322253592" node-to="322253638" way="23514150" freeflow="8.7" avg-delay="3.0">
+    <traffic-delay from="11:30:00" to="16:15:00" day="Any" delay="1.1" />
+  </model>
+  <model node-from="322253638" node-to="322253654" way="23514150" freeflow="1.8" avg-delay="0.2">
+    <traffic-delay from="11:30:00" to="16:15:00" day="Any" delay="0.2" />
+  </model>
+  <model node-from="322253654" node-to="322253640" way="23514150" freeflow="13.1" avg-delay="0.0">
+    <traffic-delay from="09:45:00" to="10:00:00" day="Weekend" delay="0.1" />
+    <traffic-delay from="10:00:00" to="11:30:00" day="Any" delay="0.1" />
+    <traffic-delay from="11:30:00" to="11:45:00" day="Weekend" delay="0.1" />
+  </model>
+  <model node-from="322253640" node-to="322253663" way="23514150" freeflow="1.8" avg-delay="0.4" />
+  <model node-from="322253663" node-to="254649311" way="23514150" freeflow="11.2" avg-delay="2.1">
+    <traffic-delay from="11:30:00" to="13:15:00" day="Any" delay="4.1" />
+    <traffic-delay from="13:15:00" to="16:15:00" day="Any" delay="1.2" />
+  </model>
+  <model node-from="254649311" node-to="254168447" way="23470831" freeflow="26.3" avg-delay="4.2">
+    <traffic-delay from="09:30:00" to="11:45:00" day="Any" delay="0.6" />
+  </model>
+  <model node-from="254168447" node-to="322253740" way="23470831" freeflow="3.7" avg-delay="5.2">
+    <traffic-delay from="14:00:00" to="16:30:00" day="Any" delay="6.5" />
+  </model>
+  <model node-from="322253740" node-to="322253737" way="23470831" freeflow="8.2" avg-delay="0.1" />
+  <model node-from="322253737" node-to="254168453" way="23470831" freeflow="4.5" avg-delay="0.8" />
+  <model node-from="254168453" node-to="254168454" way="23470831" freeflow="8.8" avg-delay="37.5" />
+  <model node-from="196058902" node-to="322531974" way="23470836" freeflow="12.8" avg-delay="0.0">
+    <traffic-delay from="09:00:00" to="18:30:00" day="Any" delay="0.8" />
+  </model>
+  <model node-from="322531974" node-to="196038485" way="23470836" freeflow="10.5" avg-delay="23.7">
+    <traffic-delay from="09:00:00" to="13:15:00" day="Any" delay="81.2" />
+  </model>
+  <model node-from="322560435" node-to="322560452" way="25674879" freeflow="2.6" avg-delay="0.8" />
+  <model node-from="322560452" node-to="196079034" way="25674879" freeflow="6.8" avg-delay="1.2">
+    <traffic-delay from="09:30:00" to="14:30:00" day="Any" delay="0.9" />
+  </model>
+  <model node-from="196079034" node-to="322560437" way="25674879" freeflow="2.8" avg-delay="0.1">
+    <traffic-delay from="09:30:00" to="16:00:00" day="Any" delay="0.1" />
+  </model>
+  <model node-from="322560437" node-to="322560463" way="25674879" freeflow="9.0" avg-delay="0.7">
+    <traffic-delay from="12:30:00" to="12:45:00" day="Weekend" delay="0.5" />
+    <traffic-delay from="12:45:00" to="15:30:00" day="Any" delay="0.6" />
+    <traffic-delay from="15:30:00" to="15:45:00" day="Weekend" delay="0.5" />
+  </model>
+  <model node-from="322560463" node-to="322560469" way="25674879" freeflow="1.0" avg-delay="0.0" />
+  <model node-from="322560469" node-to="196079039" way="25674879" freeflow="6.4" avg-delay="0.1" />
+  <model node-from="196079039" node-to="322560480" way="25674879" freeflow="5.1" avg-delay="0.3">
+    <traffic-delay from="09:30:00" to="16:00:00" day="Any" delay="0.2" />
+  </model>
+  <model node-from="322560480" node-to="196079046" way="25674879" freeflow="4.7" avg-delay="0.2" />
+  <model node-from="196079046" node-to="322560521" way="25674879" freeflow="16.1" avg-delay="1.0">
+    <traffic-delay from="09:30:00" to="16:00:00" day="Any" delay="0.9" />
+  </model>
+  <model node-from="322560521" node-to="322560522" way="25674879" freeflow="8.0" avg-delay="0.5" />
+  <model node-from="322560522" node-to="196079048" way="25674879" freeflow="7.1" avg-delay="0.5" />
+  <model node-from="196079048" node-to="566667805" way="23473355" freeflow="2.7" avg-delay="2.3">
+    <traffic-delay from="12:30:00" to="12:45:00" day="Weekend" delay="2.3" />
+    <traffic-delay from="12:45:00" to="15:30:00" day="Any" delay="2.3" />
+    <traffic-delay from="15:30:00" to="15:45:00" day="Weekend" delay="2.3" />
+  </model>
+  <model node-from="196038505" node-to="322531986" way="23469946" freeflow="28.3" avg-delay="0.0" />
+  <model node-from="322531986" node-to="323145612" way="18943725" freeflow="13.5" avg-delay="1.3">
+    <traffic-delay from="13:00:00" to="18:00:00" day="Any" delay="1.8" />
+  </model>
+  <model node-from="323145612" node-to="322532003" way="18943725" freeflow="11.7" avg-delay="2.6">
+    <traffic-delay from="12:15:00" to="15:00:00" day="Weekend" delay="0.1" />
+    <traffic-delay from="15:00:00" to="16:45:00" day="Weekend" delay="3.5" />
+  </model>
+  <model node-from="322532003" node-to="322531991" way="18943725" freeflow="12.7" avg-delay="7.3">
+    <traffic-delay from="12:00:00" to="17:00:00" day="Any" delay="3.2" />
+  </model>
+  <model node-from="322531991" node-to="196038509" way="29359856" freeflow="38.9" avg-delay="26.1">
+    <traffic-delay from="14:45:00" to="18:00:00" day="Any" delay="1.0" />
+  </model>
+  <model node-from="196038509" node-to="322532010" way="29316138" freeflow="23.3" avg-delay="1.7">
+    <traffic-delay from="13:30:00" to="14:30:00" day="Weekend" delay="1.7" />
+    <traffic-delay from="14:15:00" to="14:30:00" day="Workday" delay="6.6" />
+    <traffic-delay from="14:30:00" to="15:15:00" day="Monday, Weekend" delay="2.0" />
+    <traffic-delay from="14:30:00" to="15:30:00" day="Tuesday, Wednesday, Thursday, Friday" delay="6.6" />
+    <traffic-delay from="15:15:00" to="15:30:00" day="Monday" delay="2.0" />
+    <traffic-delay from="15:30:00" to="16:15:00" day="Monday, Wednesday, Thursday, Friday" delay="2.0" />
+    <traffic-delay from="15:30:00" to="16:15:00" day="Tuesday" delay="6.6" />
+    <traffic-delay from="16:15:00" to="17:30:00" day="Workday" delay="2.0" />
+  </model>
+  <model node-from="322532010" node-to="323145615" way="29316142" freeflow="5.6" avg-delay="3.0">
+    <traffic-delay from="12:00:00" to="14:00:00" day="Any" delay="2.6" />
+    <traffic-delay from="14:00:00" to="16:45:00" day="Workday" delay="4.3" />
+    <traffic-delay from="14:00:00" to="16:45:00" day="Weekend" delay="2.6" />
+    <traffic-delay from="16:45:00" to="17:15:00" day="Any" delay="4.3" />
+    <traffic-delay from="17:15:00" to="17:30:00" day="Workday" delay="4.3" />
+    <traffic-delay from="17:15:00" to="17:30:00" day="Weekend" delay="2.6" />
+    <traffic-delay from="17:30:00" to="18:00:00" day="Any" delay="2.6" />
+  </model>
+  <model node-from="323145615" node-to="322532012" way="29316142" freeflow="8.0" avg-delay="1.9">
+    <traffic-delay from="12:15:00" to="14:00:00" day="Weekend" delay="0.7" />
+    <traffic-delay from="14:00:00" to="16:45:00" day="Any" delay="1.7" />
+    <traffic-delay from="16:45:00" to="17:45:00" day="Workday" delay="1.7" />
+  </model>
+  <model node-from="322532012" node-to="196038505" way="29316139" freeflow="16.2" avg-delay="6.8">
+    <traffic-delay from="12:00:00" to="13:15:00" day="Any" delay="6.1" />
+    <traffic-delay from="13:15:00" to="13:30:00" day="Workday" delay="6.1" />
+    <traffic-delay from="13:15:00" to="13:30:00" day="Weekend" delay="1.2" />
+    <traffic-delay from="13:30:00" to="14:15:00" day="Any" delay="1.2" />
+    <traffic-delay from="14:15:00" to="15:30:00" day="Workday" delay="9.6" />
+    <traffic-delay from="14:15:00" to="15:30:00" day="Weekend" delay="1.2" />
+    <traffic-delay from="15:30:00" to="16:30:00" day="Any" delay="9.6" />
+    <traffic-delay from="16:30:00" to="17:45:00" day="Any" delay="6.1" />
+  </model>
+  <model node-from="254161700" node-to="322253664" way="29301165" freeflow="15.0" avg-delay="15.0">
+    <traffic-delay from="13:30:00" to="17:00:00" day="Any" delay="5.0" />
+  </model>
+  <model node-from="322253664" node-to="254168446" way="23470830" freeflow="23.3" avg-delay="1.8">
+    <traffic-delay from="14:00:00" to="17:00:00" day="Any" delay="1.7" />
+  </model>
+  <model node-from="254168446" node-to="322253578" way="23470829" freeflow="13.3" avg-delay="1.7">
+    <traffic-delay from="13:30:00" to="17:00:00" day="Any" delay="0.5" />
+  </model>
+  <model node-from="322253578" node-to="254168447" way="23470829" freeflow="16.6" avg-delay="3.4">
+    <traffic-delay from="13:30:00" to="16:30:00" day="Any" delay="4.3" />
+  </model>
+  <model node-from="254168447" node-to="254649311" way="23470831" freeflow="31.8" avg-delay="3.2">
+    <traffic-delay from="13:30:00" to="17:00:00" day="Any" delay="1.4" />
+  </model>
+  <model node-from="254649311" node-to="322253652" way="23470831" freeflow="24.8" avg-delay="0.0">
+    <traffic-delay from="11:45:00" to="17:00:00" day="Any" delay="0.7" />
+  </model>
+  <model node-from="322253740" node-to="322253743" way="29301175" freeflow="40.0" avg-delay="10.0" />
+  <model node-from="322253743" node-to="322880562" way="29301178" freeflow="5.8" avg-delay="1.6">
+    <traffic-delay from="14:00:00" to="16:30:00" day="Any" delay="2.2" />
+  </model>
+  <model node-from="322253699" node-to="322253696" way="25645221" freeflow="18.5" avg-delay="3.0">
+    <traffic-delay from="11:45:00" to="16:30:00" day="Any" delay="1.0" />
+  </model>
+  <model node-from="322253749" node-to="196058883" way="29359855" freeflow="6.9" avg-delay="1.1" />
+  <model node-from="196058883" node-to="196058867" way="29359855" freeflow="35.9" avg-delay="6.9">
+    <traffic-delay from="12:00:00" to="16:30:00" day="Any" delay="3.6" />
+  </model>
+  <model node-from="196079048" node-to="566667815" way="23473355" freeflow="2.7" avg-delay="0.0" />
+  <model node-from="196078987" node-to="322560433" way="25674879" freeflow="103.8" avg-delay="6.2">
+    <traffic-delay from="09:15:00" to="15:45:00" day="Any" delay="3.8" />
+  </model>
+  <model node-from="322560433" node-to="322560435" way="25674879" freeflow="16.0" avg-delay="120.3" />
+  <model node-from="254649316" node-to="254161714" way="29359841" freeflow="15.6" avg-delay="2.4" />
+  <model node-from="322253407" node-to="322253441" way="29301149" freeflow="19.0" avg-delay="3.6">
+    <traffic-delay from="12:30:00" to="16:15:00" day="Any" delay="2.2" />
+  </model>
+  <model node-from="322253441" node-to="322560622" way="29301149" freeflow="23.1" avg-delay="1.6">
+    <traffic-delay from="12:30:00" to="16:15:00" day="Any" delay="1.2" />
+  </model>
+  <model node-from="322560622" node-to="322560625" way="29301149" freeflow="18.9" avg-delay="2.0" />
+  <model node-from="322560625" node-to="322560643" way="29301149" freeflow="18.4" avg-delay="19.4" />
+  <model node-from="322560643" node-to="322560631" way="29301149" freeflow="13.2" avg-delay="0.1" />
+  <model node-from="322560631" node-to="322560630" way="29301149" freeflow="20.0" avg-delay="5.0" />
+  <model node-from="196058933" node-to="196058901" way="18944893" freeflow="13.2" avg-delay="6.8" />
+  <model node-from="196058902" node-to="322532062" way="29301179" freeflow="0.8" avg-delay="0.0" />
+  <model node-from="322532062" node-to="322253748" way="29301179" freeflow="15.9" avg-delay="0.0" />
+  <model node-from="322253748" node-to="384781009" way="29301178" freeflow="21.2" avg-delay="0.0" />
+  <model node-from="384781009" node-to="322880562" way="29301178" freeflow="16.9" avg-delay="0.4" />
+  <model node-from="322253743" node-to="196039179" way="29301178" freeflow="16.1" avg-delay="1.6" />
+  <model node-from="196039186" node-to="322253673" way="29301168" freeflow="1.7" avg-delay="0.0" />
+  <model node-from="322253673" node-to="322253670" way="29301165" freeflow="13.2" avg-delay="0.1">
+    <traffic-delay from="14:00:00" to="17:15:00" day="Any" delay="0.5" />
+  </model>
+  <model node-from="322253753" node-to="196058930" way="18944892" freeflow="9.9" avg-delay="0.6" />
+  <model node-from="196058930" node-to="322253751" way="18944892" freeflow="8.0" avg-delay="1.0" />
+  <model node-from="322560630" node-to="322560660" way="32997750" freeflow="16.5" avg-delay="0.5">
+    <traffic-delay from="13:45:00" to="17:15:00" day="Any" delay="0.1" />
+  </model>
+  <model node-from="322560660" node-to="196038414" way="32997750" freeflow="9.8" avg-delay="1.3">
+    <traffic-delay from="13:45:00" to="17:15:00" day="Any" delay="0.7" />
+  </model>
+  <model node-from="196038414" node-to="196038408" way="23473359" freeflow="15.4" avg-delay="6.0">
+    <traffic-delay from="12:15:00" to="17:15:00" day="Any" delay="0.7" />
+  </model>
+  <model node-from="196038408" node-to="196038370" way="23473362" freeflow="77.8" avg-delay="16.8">
+    <traffic-delay from="12:15:00" to="16:15:00" day="Any" delay="1.8" />
+    <traffic-delay from="16:15:00" to="19:15:00" day="Any" delay="20.9" />
+  </model>
+  <model node-from="196038370" node-to="196074233" way="19143058" freeflow="128.3" avg-delay="21.7">
+    <traffic-delay from="10:15:00" to="19:15:00" day="Any" delay="17.4" />
+  </model>
+  <model node-from="196074233" node-to="322560665" way="23485789" freeflow="28.1" avg-delay="11.9" />
+  <model node-from="322560665" node-to="330680337" way="23485789" freeflow="48.6" avg-delay="8.5" />
+  <model node-from="330680337" node-to="330680319" way="23485789" freeflow="4.8" avg-delay="0.2">
+    <traffic-delay from="12:30:00" to="17:00:00" day="Any" delay="0.2" />
+  </model>
+  <model node-from="330680319" node-to="196079106" way="23485789" freeflow="39.0" avg-delay="1.9" />
+  <model node-from="322531969" node-to="322531978" way="29316134" freeflow="24.0" avg-delay="1.0" />
+  <model node-from="254161705" node-to="322253592" way="23514150" freeflow="9.4" avg-delay="1.4">
+    <traffic-delay from="12:15:00" to="16:15:00" day="Any" delay="1.2" />
+  </model>
+  <model node-from="279554830" node-to="566667797" way="44641157" freeflow="2.1" avg-delay="0.2" />
+  <model node-from="566667797" node-to="279554841" way="44641158" freeflow="1.9" avg-delay="3.1" />
+  <model node-from="279554841" node-to="566667780" way="44641155" freeflow="3.3" avg-delay="1.7">
+    <traffic-delay from="11:00:00" to="14:45:00" day="Any" delay="1.7" />
+  </model>
+  <model node-from="322596188" node-to="322596198" way="29322860" freeflow="24.7" avg-delay="1.5">
+    <traffic-delay from="13:00:00" to="20:15:00" day="Any" delay="0.8" />
+  </model>
+  <model node-from="198522041" node-to="198522032" way="32997755" freeflow="41.1" avg-delay="12.0" />
+  <model node-from="279554842" node-to="279554830" way="25645221" freeflow="5.1" avg-delay="1.6">
+    <traffic-delay from="11:00:00" to="14:45:00" day="Any" delay="1.2" />
+  </model>
+  <model node-from="566667780" node-to="566667784" way="44641155" freeflow="4.9" avg-delay="0.1" />
+  <model node-from="322596198" node-to="198522057" way="29322860" freeflow="344.2" avg-delay="0.0" />
+  <model node-from="198522057" node-to="198522041" way="32997755" freeflow="158.8" avg-delay="0.0" />
+  <model node-from="198489807" node-to="198489801" way="23485790" freeflow="40.4" avg-delay="5.6" />
+  <model node-from="254168446" node-to="469975520" way="23470830" freeflow="25.0" avg-delay="0.0" />
+  <model node-from="469975520" node-to="322253588" way="29301158" freeflow="13.3" avg-delay="1.7">
+    <traffic-delay from="13:15:00" to="16:15:00" day="Any" delay="1.3" />
+  </model>
+  <model node-from="322253588" node-to="322253592" way="29359839" freeflow="35.3" avg-delay="99.7">
+    <traffic-delay from="08:15:00" to="13:45:00" day="Any" delay="98.0" />
+  </model>
+  <model node-from="198489801" node-to="198489807" way="23485790" freeflow="53.3" avg-delay="1.7" />
+  <model node-from="322560522" node-to="322560529" way="29319003" freeflow="9.9" avg-delay="0.0">
+    <traffic-delay from="07:45:00" to="11:00:00" day="Any" delay="0.3" />
+  </model>
+  <model node-from="322560529" node-to="322560530" way="29319003" freeflow="2.7" avg-delay="1.2" />
+  <model node-from="322560529" node-to="322560522" way="29319003" freeflow="12.0" avg-delay="3.0" />
+  <model node-from="254649334" node-to="196038472" way="23514153" freeflow="7.4" avg-delay="0.0" />
+  <model node-from="279554842" node-to="322253688" way="25645221" freeflow="4.8" avg-delay="1.3" />
+  <model node-from="322253688" node-to="322253694" way="25645221" freeflow="22.2" avg-delay="0.6">
+    <traffic-delay from="11:45:00" to="16:30:00" day="Any" delay="0.7" />
+  </model>
+  <model node-from="322253694" node-to="322253699" way="25645221" freeflow="7.7" avg-delay="0.8">
+    <traffic-delay from="11:45:00" to="16:30:00" day="Any" delay="0.3" />
+  </model>
+  <model node-from="566667784" node-to="279554841" way="44641155" freeflow="5.0" avg-delay="0.0" />
+  <model node-from="322253708" node-to="322253702" way="29301170" freeflow="6.9" avg-delay="3.1" />
+</models-db>

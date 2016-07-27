@@ -1,0 +1,4 @@
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\GeoUtils.dll
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\GeoUtils.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\GeoUtils\obj\Debug\GeoUtils.dll
+C:\Users\isabel.lima\git\traveltimeanalysis\GeoUtils\obj\Debug\GeoUtils.pdb

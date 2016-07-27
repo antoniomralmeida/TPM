@@ -1,0 +1,15 @@
+C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\bin\x86\Debug\HotRoutes.exe.config
+C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\bin\x86\Debug\HotRoutes.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\bin\x86\Debug\HotRoutes.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\bin\x86\Debug\MatchGPX2OSM.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\bin\x86\Debug\OSMUtils.dll
+C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\bin\x86\Debug\Collections.dll
+C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\bin\x86\Debug\GeoUtils.dll
+C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\bin\x86\Debug\GPXUtils.dll
+C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\bin\x86\Debug\MatchGPX2OSM.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\bin\x86\Debug\OSMUtils.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\bin\x86\Debug\GeoUtils.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\bin\x86\Debug\GPXUtils.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\obj\x86\Debug\HotRoutes.csprojResolveAssemblyReference.cache
+C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\obj\x86\Debug\HotRoutes.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\obj\x86\Debug\HotRoutes.pdb

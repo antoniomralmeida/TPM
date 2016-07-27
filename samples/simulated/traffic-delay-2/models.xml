@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<models-db>
+  <model node-from="1" node-to="2" way="100" freeflow="59.7" avg-delay="10.8">
+    <traffic-delay from="01:45:00" to="07:15:00" day="Monday" delay="0.9" />
+    <traffic-delay from="07:15:00" to="08:30:00" day="Monday" delay="29.8" />
+    <traffic-delay from="08:30:00" to="14:00:00" day="Monday" delay="11.1" />
+    <traffic-delay from="14:00:00" to="16:30:00" day="Monday" delay="31.2" />
+    <traffic-delay from="16:30:00" to="19:30:00" day="Monday" delay="13.9" />
+    <traffic-delay from="19:30:00" to="22:15:00" day="Monday" delay="1.1" />
+  </model>
+</models-db>

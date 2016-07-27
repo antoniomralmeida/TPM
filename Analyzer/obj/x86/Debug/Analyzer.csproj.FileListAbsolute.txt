@@ -1,0 +1,6 @@
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\Analyzer.exe.config
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\Analyzer.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\Analyzer.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\Analyzer\obj\x86\Debug\Analyzer.csprojResolveAssemblyReference.cache
+C:\Users\isabel.lima\git\traveltimeanalysis\Analyzer\obj\x86\Debug\Analyzer.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\Analyzer\obj\x86\Debug\Analyzer.pdb
