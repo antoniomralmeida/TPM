@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NDesk.Options;
 using LK.OSMUtils.OSMDatabase;
-using LK.MatchGPX2OSM;
+using LK.TMatch;
 
 namespace LK.HotRoutes
 {

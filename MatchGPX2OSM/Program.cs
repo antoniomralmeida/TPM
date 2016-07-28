@@ -36,12 +36,12 @@ namespace LK.MatchGPX2OSM {
 			bool filter = false;
 
 			OptionSet parameters = new OptionSet() {
-				{ "osm=", "path to the routable map file",																				v => osmPath = v},
+				{ "osm=", "path to the routable map file",													v => osmPath = v},
 				{ "gpx=",	"path to the GPX file to process or to the directory to process",				v => gpxPath = v},
-				{ "o|output=", "path to the output directory",																		v => outputPath = v},
-				{ "p|period=", "sampling period of the GPX file",																	v => samplingPeriod = int.Parse(v)},
-				{ "f|filter", "enables output post processing",																		v => filter = v != null},
-				{ "h|?|help",																																			v => showHelp = v != null},
+				{ "o|output=", "path to the output directory",												v => outputPath = v},
+				{ "p|period=", "sampling period of the GPX file",											v => samplingPeriod = int.Parse(v)},
+				{ "f|filter", "enables output post processing",												v => filter = v != null},
+				{ "h|?|help",																				v => showHelp = v != null},
 			};
 
 			try {

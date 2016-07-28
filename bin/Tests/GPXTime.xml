@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<time-config>
+  <buckets>
+    <bucket name="A" start="00:01" end="01:12" />
+    <bucket name="B" start="01:12" end="02:24" />
+    <bucket name="C" start="02:24" end="03:36" />
+    <bucket name="D" start="03:36" end="04:48" />
+    <bucket name="E" start="04:48" end="06:00" />
+    <bucket name="F" start="06:00" end="07:12" />
+    <bucket name="G" start="07:12" end="08:24" />
+    <bucket name="H" start="08:24" end="09:36" />
+    <bucket name="I" start="09:36" end="10:48" />
+    <bucket name="J" start="10:48" end="14:23" />
+    <bucket name="K" start="14:23" end="15:35" />
+    <bucket name="L" start="15:35" end="17:59" />
+    <bucket name="M" start="17:59" end="19:11" />
+    <bucket name="N" start="19:11" end="20:23" />
+    <bucket name="O" start="20:23" end="21:35" />
+    <bucket name="P" start="21:35" end="22:47" />
+    <bucket name="Q" start="22:47" end="23:59" />
+  </buckets>
+</time-config>

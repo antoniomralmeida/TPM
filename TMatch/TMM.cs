@@ -24,7 +24,6 @@ using LK.GeoUtils.Geometry;
 using LK.GPXUtils;
 using LK.OSMUtils.OSMDatabase;
 using System.Collections;
-using LK.MatchGPX2OSM;
 
 namespace LK.TMatch
 {
@@ -62,12 +61,12 @@ namespace LK.TMatch
             foreach (var gpxPoint in gpx.Nodes)
             {
                 var candidates = FindCandidatePoints(gpxPoint);
-
-                _candidatesGraph.CreateLayer(gpxPoint, candidates.OrderByDescending(c => c.ObservationProbability).Take(Math.Min(candidates.Count(), STMatching.MaxCandidatesCount)));
+                _candidatesGraph.CreateLayer(gpxPoint, candidates.OrderByDescending(c => c.ObservationProbability).Take(Math.Min(candidates.Count(), TMM.MaxCandidatesCount)));
             }
 
             // Calculate transmission probability
             _candidatesGraph.ConnectLayers();
+
             AssignTransmissionProbability();
 
             //Evaluates paths in the graph

@@ -93,13 +93,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MatchGPX2OSM\MatchGPX2OSM.csproj">
-      <Project>{44cd514c-a652-4717-8138-41219838e87c}</Project>
-      <Name>MatchGPX2OSM</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OSMUtils\OSMUtils.csproj">
       <Project>{1dd2bdf4-8d35-42b6-9426-eed5cd098058}</Project>
       <Name>OSMUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMatch\TMatch.csproj">
+      <Project>{ea461709-3ac8-4fd2-85b4-fb1af7ddf8fe}</Project>
+      <Name>TMatch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{154ec14e-0896-4947-9d32-c70b18995483}</Project>
+      <Name>Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

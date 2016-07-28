@@ -1,6 +1,6 @@
+C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\obj\x86\Debug\HotRoutes.csprojResolveAssemblyReference.cache
 C:\Users\isabel.lima\git\traveltimeanalysis\bin\HotRoutes.exe.config
 C:\Users\isabel.lima\git\traveltimeanalysis\bin\HotRoutes.exe
 C:\Users\isabel.lima\git\traveltimeanalysis\bin\HotRoutes.pdb
-C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\obj\x86\Debug\HotRoutes.csprojResolveAssemblyReference.cache
 C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\obj\x86\Debug\HotRoutes.exe
 C:\Users\isabel.lima\git\traveltimeanalysis\HotRoutes\obj\x86\Debug\HotRoutes.pdb

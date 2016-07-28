@@ -21,10 +21,10 @@ namespace LK.CSV2GPX
             bool showHelp = false;
 
             OptionSet parameters = new OptionSet() {
-                { "csv=", "path to the CSV track file",         v => csvPath = v},
-                { "o|output=", "path to the output directory",  v => outputPath = v},
-                { "p|period=", "sampling period of the CSV file",   v => samplingPeriod = int.Parse(v)},
-                { "h|?|help",                                                                                                                                           v => showHelp = v != null},
+                { "csv=", "path to the CSV track file",                      v => csvPath = v},
+                { "o|output=", "path to the output directory",               v => outputPath = v},
+                { "p|period=", "sampling period of the CSV file",            v => samplingPeriod = int.Parse(v)},
+                { "h|?|help",                                                v => showHelp = v != null},
             };
 
             try

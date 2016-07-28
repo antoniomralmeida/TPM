@@ -24,7 +24,7 @@ using NDesk.Options;
 
 using LK.OSMUtils.OSMDatabase;
 using LK.GPXUtils;
-using LK.MatchGPX2OSM;
+using Utils.XMLUtils;
 
 namespace LK.TMatch
 {
@@ -37,6 +37,7 @@ namespace LK.TMatch
 
             string osmPath = "";
             string gpxPath = "";
+            string xmlPath = "";
             string outputPath = ".";
             int samplingPeriod = 0;
             bool showHelp = false;
@@ -45,7 +46,8 @@ namespace LK.TMatch
 
             OptionSet parameters = new OptionSet() {
                 { "osm=", "path to the routable map file",                                                  v => osmPath = v},
-                { "gpx=",   "path to the GPX file to process or to the directory to process",               v => gpxPath = v},
+                { "gpx=", "path to the GPX file to process or to the directory to process",                 v => gpxPath = v},
+                { "xml=", "path to the XML file with the time buckets",                                     v => xmlPath = v},
                 { "o|output=", "path to the output directory",                                              v => outputPath = v},
                 { "p|period=", "sampling period of the GPX file",                                           v => samplingPeriod = int.Parse(v)},
                 { "f|filter", "enables output post processing",                                             v => filter = v != null},
@@ -58,14 +60,14 @@ namespace LK.TMatch
             }
             catch (OptionException e)
             {
-                Console.Write("MatchGPX2OSM: ");
+                Console.Write("TMatch: ");
                 Console.WriteLine(e.Message);
-                Console.WriteLine("Try `matchgpx2osm --help' for more information.");
+                Console.WriteLine("Try `tmatch --help' for more information.");
                 return;
             }
 
 
-            if (showHelp || string.IsNullOrEmpty(osmPath) || string.IsNullOrEmpty(gpxPath) || string.IsNullOrEmpty(outputPath))
+            if (showHelp || string.IsNullOrEmpty(osmPath) || string.IsNullOrEmpty(gpxPath) || string.IsNullOrEmpty(xmlPath) || string.IsNullOrEmpty(outputPath))
             {
                 ShowHelp(parameters);
                 return;
@@ -92,7 +94,15 @@ namespace LK.TMatch
             TMM processor = new TMM(graph);
             PathReconstructer reconstructor = new PathReconstructer(graph);
 
-            // Process signle file
+            XMLDocument xml = new XMLDocument();
+            xml.Load(xmlPath);
+
+            /*foreach(var b in xml.Buckets)
+            {
+                Console.WriteLine(b.Name + " " + b.Start.TimeOfDay + " " + b.End.TimeOfDay);
+            }*/
+
+            // Process single file
             if (File.Exists(gpxPath))
             {
                 ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, samplingPeriod, filter, OSMList);
@@ -115,15 +125,15 @@ namespace LK.TMatch
             {
                 Console.WriteLine("No GPX files found");
             }
-            Console.WriteLine("\tDone.");
 
+            Console.WriteLine("\tDone.");
             Console.WriteLine("\tSpan=" + (DateTime.Now - span));
 
         }
 
         private static OSMDB ProcessFinalOSM(List<OSMDB> OSMList)
         {
-            OSMDB singleOSM = new OSMDB();
+            OSMDB finalOSM = new OSMDB();
             Dictionary<OSMWay, int> wayCount = new Dictionary<OSMWay, int>();
 
             if (OSMList.Any())
@@ -131,24 +141,24 @@ namespace LK.TMatch
                 foreach (var osm in OSMList)
                 {
                     foreach (var node in osm.Nodes)
-                        if (!singleOSM.Nodes.Contains(node))
-                            singleOSM.Nodes.Add(node);
+                        if (!finalOSM.Nodes.Contains(node))
+                            finalOSM.Nodes.Add(node);
 
                     foreach (var way in osm.Ways)
                     {
-                        if (!singleOSM.Ways.Contains(way))
+                        if (!finalOSM.Ways.Contains(way))
                         {
-                            singleOSM.Ways.Add(way);
+                            finalOSM.Ways.Add(way);
                             wayCount.Add(way, 1);
                         }
                         else wayCount[way]++;
                     }
                 }
 
-                foreach (var way in singleOSM.Ways)
+                foreach (var way in finalOSM.Ways)
                     way.Tags.Add(new OSMTag("traffic", Convert.ToString(wayCount[way])));
             }
-            return singleOSM;
+            return finalOSM;
         }
 
         static void ProcessGPXFile(string path, TMM processor, PathReconstructer reconstructor, string outputPath, int samplingPeriod, bool filterOutput, List<OSMDB> OSMList)
@@ -158,6 +168,8 @@ namespace LK.TMatch
             Console.Write("Loading {0} ...", Path.GetFileName(path));
             GPXDocument gpx = new GPXDocument();
             gpx.Load(path);
+
+            //Console.Write(gpx.Tracks.First().Segments.First().Nodes.First().Time.TimeOfDay);
 
             Console.WriteLine("[{0} track(s); {1} segment(s)]", gpx.Tracks.Count, gpx.Tracks.Sum(track => track.Segments.Count));
             for (int trackIndex = 0; trackIndex < gpx.Tracks.Count; trackIndex++)
@@ -170,34 +182,35 @@ namespace LK.TMatch
                     name += "_s" + segmentIndex.ToString();
                     Console.Write("\t" + name + " ");
 
-
                     try
                     {
                         GPXTrackSegment toProcess = gpx.Tracks[trackIndex].Segments[segmentIndex];
                         if (samplingPeriod > 0)
                             toProcess = filter.Filter(new TimeSpan(0, 0, samplingPeriod), toProcess);
 
-                        var result = processor.Match(toProcess);
-                        Console.Write(".");
-
-                        var reconstructedPath = reconstructor.Reconstruct(result);
-                        Console.Write(".");
-
-                        if (filterOutput)
+                        if (toProcess.NodesCount > 1)
                         {
-                            reconstructor.FilterUturns(reconstructedPath, 100);
+                            var result = processor.Match(toProcess);
+                            Console.Write(".");
+
+                            var reconstructedPath = reconstructor.Reconstruct(result);
+                            Console.Write(".");
+
+                            if (filterOutput)
+                            {
+                                reconstructor.FilterUturns(reconstructedPath, 100);
+                            }
+                            var pathOsm = reconstructor.SaveToOSM(reconstructedPath);
+
+                            //pathOsm.Save(Path.Combine(outputPath, Path.GetFileNameWithoutExtension(path) + "_" + name + ".osm"));
+                            Console.WriteLine(".");
+
+                            OSMList.Add(pathOsm);
                         }
-                        var pathOsm = reconstructor.SaveToOSM(reconstructedPath);
-
-                        String fileout = Path.Combine(outputPath, Path.GetFileNameWithoutExtension(path) + "_" + name + ".osm");
-
-                        //Console.WriteLine(Path.Combine(outputPath, Path.GetFileNameWithoutExtension(path) + "_" + name + ".osm"));
-                        //pathOsm.Save(fileout);
-                        Console.WriteLine(".");
-
-                        OSMList.Add(pathOsm);
-
-                        // Console.WriteLine(fileout);
+                        else
+                        {
+                            throw new Exception(string.Format("Track segment discarded because number of nodes is less than 2."));
+                        }
                     }
                     catch (Exception e)
                     {
@@ -213,7 +226,7 @@ namespace LK.TMatch
         /// <param name="p">The parameters accepted by this program</param>
         static void ShowHelp(OptionSet p)
         {
-            Console.WriteLine("Usage: matchgpx2osm [OPTIONS]+");
+            Console.WriteLine("Usage: tmatch [OPTIONS]+");
             Console.WriteLine("Matches GPX track to the OSM map");
             Console.WriteLine();
 

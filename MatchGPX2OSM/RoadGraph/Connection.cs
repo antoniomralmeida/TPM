@@ -58,10 +58,5 @@ namespace LK.MatchGPX2OSM {
 		/// Gets or sets maximal speed on this connection
 		/// </summary>
 		public double Speed { get; set; }
-
-        /// <summary>
-        /// Gets or sets traffic on this connection
-        /// </summary>
-        public int Traffic { get; set; }
     }
 }
