@@ -6,7 +6,7 @@ using System.IO;
 using NDesk.Options;
 
 using LK.GPXUtils;
-using System.Xml.Linq;
+using System.Xml;
 
 namespace LK.GPXTime
 {
@@ -74,29 +74,50 @@ namespace LK.GPXTime
             List<int> f;
 
 
-            List<Double> h = HistSample.CalculateOptimalBinWidth(tlist, out xMin, out optimalBinWidth, out f);
+            List<Double> buckets = HistSample.CalculateOptimalBinWidth(tlist, out xMin, out optimalBinWidth, out f);
 
-            XDocument doc = new XDocument();
-            XElement root = new XElement("GPXTime-config");
-            doc.Add(root);
-            root.Name = "GPXTime-config";
-            //root.Attribute("version").Value = "1.0";
+
+            System.Xml.XmlDocument doc = new XmlDocument();
+
+            //(1) the xml declaration is recommended, but not mandatory
+            XmlDeclaration xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+            XmlElement root = doc.DocumentElement;
+            doc.InsertBefore(xmlDeclaration, root);
+
+            //(2) string.Empty makes cleaner code
+            XmlElement element1 = doc.CreateElement(string.Empty, "time-config", string.Empty);
+            doc.AppendChild(element1);
+            XmlElement element2 = doc.CreateElement(string.Empty, "buckets", string.Empty);
+            element1.AppendChild(element2);
 
             char i = 'A';
 
-            Console.WriteLine(h.Capacity);
-            for (int j = 0; j < (h.Capacity - 1); j++)
+            for (int j = 0; j < (buckets.Count - 1); j++)
             {
-                XElement t = new XElement("time-class");
-                t.Name = i.ToString();
-                Console.WriteLine(j);
-                t.Add(new XAttribute("start", DateTime.FromOADate(h[j]).ToString()));
-                t.Add(new XAttribute("end", DateTime.FromOADate(h[j + 1]).ToString()));
-                i++;
-                root.Add(t);
-            }
-            doc.Save("GPXTime.xml");
 
+                XmlElement element3 = doc.CreateElement(string.Empty, "bucket", string.Empty);
+                element2.AppendChild(element3);
+
+                XmlAttribute attribute = doc.CreateAttribute("name");
+                attribute.Value = i.ToString();
+                element3.Attributes.Append(attribute);
+
+
+                XmlAttribute attribute2 = doc.CreateAttribute("start");
+                attribute2.Value = DateTime.FromOADate(buckets[j]).ToString("HH:mm");
+                element3.Attributes.Append(attribute2);
+
+                XmlAttribute attribute3 = doc.CreateAttribute("end");
+                attribute3.Value = DateTime.FromOADate(buckets[j + 1]).ToString("HH:mm");
+                element3.Attributes.Append(attribute3);
+
+                i++;
+
+            }
+
+            String fileout = Path.Combine(Path.GetDirectoryName(gpxPath), "GPXTime.xml");
+            doc.Save(fileout);
+            Console.WriteLine("\t\tDone.");
 
 
         }

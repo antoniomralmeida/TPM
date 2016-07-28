@@ -3,3 +3,8 @@ C:\Users\isabel.lima\git\traveltimeanalysis\bin\GPXUtils.pdb
 C:\Users\isabel.lima\git\traveltimeanalysis\GPXUtils\obj\Debug\GPXUtils.csprojResolveAssemblyReference.cache
 C:\Users\isabel.lima\git\traveltimeanalysis\GPXUtils\obj\Debug\GPXUtils.dll
 C:\Users\isabel.lima\git\traveltimeanalysis\GPXUtils\obj\Debug\GPXUtils.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\GPXUtils.dll
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\GPXUtils.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\GPXUtils\obj\Debug\GPXUtils.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\GPXUtils\obj\Debug\GPXUtils.dll
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\GPXUtils\obj\Debug\GPXUtils.pdb

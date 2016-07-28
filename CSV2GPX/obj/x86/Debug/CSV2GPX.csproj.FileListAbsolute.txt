@@ -4,3 +4,9 @@ C:\Users\isabel.lima\git\traveltimeanalysis\bin\CSV2GPX.pdb
 C:\Users\isabel.lima\git\traveltimeanalysis\CSV2GPX\obj\x86\Debug\CSV2GPX.csprojResolveAssemblyReference.cache
 C:\Users\isabel.lima\git\traveltimeanalysis\CSV2GPX\obj\x86\Debug\CSV2GPX.exe
 C:\Users\isabel.lima\git\traveltimeanalysis\CSV2GPX\obj\x86\Debug\CSV2GPX.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\CSV2GPX.exe.config
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\CSV2GPX.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\CSV2GPX.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\CSV2GPX\obj\x86\Debug\CSV2GPX.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\CSV2GPX\obj\x86\Debug\CSV2GPX.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\CSV2GPX\obj\x86\Debug\CSV2GPX.pdb
