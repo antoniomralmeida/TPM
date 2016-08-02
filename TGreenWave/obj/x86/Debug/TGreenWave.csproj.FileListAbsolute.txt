@@ -14,3 +14,8 @@ C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreenWave\bin\x86\Debug\Utils.pdb
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreenWave\obj\x86\Debug\TGreenWave.csprojResolveAssemblyReference.cache
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreenWave\obj\x86\Debug\TGreenWave.exe
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreenWave\obj\x86\Debug\TGreenWave.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreenWave\bin\x86\Debug\Microsoft.Solver.Foundation.dll
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreenWave\bin\x86\Debug\Microsoft.Solver.Foundation.xml
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TGreenWave.exe.config
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TGreenWave.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TGreenWave.pdb
