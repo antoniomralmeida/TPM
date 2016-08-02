@@ -7,7 +7,7 @@ using NDesk.Options;
 using LK.OSMUtils.OSMDatabase;
 using LK.TMatch;
 
-namespace LK.HotRoutes
+namespace LK.TRoute
 {
     class Program
     {
@@ -31,9 +31,9 @@ namespace LK.HotRoutes
             }
             catch (OptionException e)
             {
-                Console.Write("HotRoutes: ");
+                Console.Write("TRoute: ");
                 Console.WriteLine(e.Message);
-                Console.WriteLine("Try `hotroutes --help' for more information.");
+                Console.WriteLine("Try `TRoute --help' for more information.");
                 return;
             }
 
@@ -58,7 +58,7 @@ namespace LK.HotRoutes
         /// <param name="p">The parameters accepted by this program</param>
         static void ShowHelp(OptionSet p)
         {
-            Console.WriteLine("Usage: hotroutes [OPTIONS]+");
+            Console.WriteLine("Usage: TRoute [OPTIONS]+");
             Console.WriteLine("Outputs hot routes found");
             Console.WriteLine();
 

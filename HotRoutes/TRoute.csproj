@@ -7,8 +7,8 @@
     <ProjectGuid>{B6815CAC-68EF-4B2E-8758-2F74677769E0}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LK.HotRoutes</RootNamespace>
-    <AssemblyName>HotRoutes</AssemblyName>
+    <RootNamespace>LK.TRoute</RootNamespace>
+    <AssemblyName>TRoute</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
