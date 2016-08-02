@@ -4,7 +4,6 @@ namespace Utils.XMLUtils
 {
     public class Bucket
     {
-        private string _name;
         /// <summary>
         /// Gets bucket name
         /// </summary>
@@ -13,7 +12,6 @@ namespace Utils.XMLUtils
             get; set;
         }
 
-        private DateTime _start;
         /// <summary>
         /// Gets bucket start time
         /// </summary>
@@ -22,7 +20,6 @@ namespace Utils.XMLUtils
             get; set;
         }
 
-        private DateTime _end;
         /// <summary>
         /// Gets bucket end time
         /// </summary>

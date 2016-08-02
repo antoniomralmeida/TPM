@@ -1,0 +1,12 @@
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TrafficLightScheduler.exe.config
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TrafficLightScheduler.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TrafficLightScheduler.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TrafficLightScheduler\obj\Debug\TrafficLightScheduler.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TrafficLightScheduler\obj\Debug\TrafficLightScheduler.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TrafficLightScheduler\obj\Debug\TrafficLightScheduler.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\TrafficLightScheduler.exe.config
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\TrafficLightScheduler.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\bin\TrafficLightScheduler.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\TrafficLightScheduler\obj\Debug\TrafficLightScheduler.csprojResolveAssemblyReference.cache
+C:\Users\isabel.lima\git\traveltimeanalysis\TrafficLightScheduler\obj\Debug\TrafficLightScheduler.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\TrafficLightScheduler\obj\Debug\TrafficLightScheduler.pdb

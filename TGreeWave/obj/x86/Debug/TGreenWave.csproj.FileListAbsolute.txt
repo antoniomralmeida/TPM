@@ -1,0 +1,8 @@
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\obj\x86\Debug\TGreenWave.csprojResolveAssemblyReference.cache
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\bin\x86\Debug\TGreenWave.exe.config
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\bin\x86\Debug\TGreenWave.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\bin\x86\Debug\TGreenWave.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\bin\x86\Debug\Utils.dll
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\bin\x86\Debug\Utils.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\obj\x86\Debug\TGreenWave.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\obj\x86\Debug\TGreenWave.pdb

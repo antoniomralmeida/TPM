@@ -1,0 +1,2 @@
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TGreenWave.exe.config
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\obj\Debug\TGreenWave.csprojResolveAssemblyReference.cache

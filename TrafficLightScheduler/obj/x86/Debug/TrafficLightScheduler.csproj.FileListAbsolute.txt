@@ -1,0 +1,8 @@
+C:\Users\isabel.lima\git\traveltimeanalysis\TrafficLightScheduler\bin\x86\Debug\TrafficLightScheduler.exe.config
+C:\Users\isabel.lima\git\traveltimeanalysis\TrafficLightScheduler\bin\x86\Debug\TrafficLightScheduler.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\TrafficLightScheduler\bin\x86\Debug\TrafficLightScheduler.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\TrafficLightScheduler\bin\x86\Debug\Utils.dll
+C:\Users\isabel.lima\git\traveltimeanalysis\TrafficLightScheduler\bin\x86\Debug\Utils.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\TrafficLightScheduler\obj\x86\Debug\TrafficLightScheduler.csprojResolveAssemblyReference.cache
+C:\Users\isabel.lima\git\traveltimeanalysis\TrafficLightScheduler\obj\x86\Debug\TrafficLightScheduler.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\TrafficLightScheduler\obj\x86\Debug\TrafficLightScheduler.pdb

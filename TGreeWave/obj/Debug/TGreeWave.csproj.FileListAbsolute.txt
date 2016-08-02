@@ -1,0 +1,6 @@
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreeWave\obj\Debug\TGreeWave.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TGreeWave.exe.config
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TGreeWave.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TGreeWave.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreeWave\obj\Debug\TGreeWave.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreeWave\obj\Debug\TGreeWave.pdb

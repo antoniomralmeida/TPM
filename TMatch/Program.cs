@@ -212,7 +212,6 @@ namespace LK.TMatch
                             {
                                 bucketDict[b].Add(pathOsm);
                             }
-                            //OSMList.Add(pathOsm);
                         }
                         else
                         {
