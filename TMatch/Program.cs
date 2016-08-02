@@ -42,7 +42,8 @@ namespace LK.TMatch
             int samplingPeriod = 0;
             bool showHelp = false;
             bool filter = false;
-            List<OSMDB> OSMList = new List<OSMDB>();
+            //List<OSMDB> OSMList = new List<OSMDB>();
+            Dictionary<Bucket, List<OSMDB>> bucketDict = new Dictionary<Bucket, List<OSMDB>>();
 
             OptionSet parameters = new OptionSet() {
                 { "osm=", "path to the routable map file",                                                  v => osmPath = v},
@@ -96,17 +97,16 @@ namespace LK.TMatch
 
             XMLDocument xml = new XMLDocument();
             xml.Load(xmlPath);
-
-            /*foreach(var b in xml.Buckets)
+            foreach (var b in xml.Buckets)
             {
-                Console.WriteLine(b.Name + " " + b.Start.TimeOfDay + " " + b.End.TimeOfDay);
-            }*/
+                bucketDict.Add(b, new List<OSMDB>());
+            }
 
             // Process single file
             if (File.Exists(gpxPath))
             {
-                ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, samplingPeriod, filter, OSMList);
-                ProcessFinalOSM(OSMList).Save("output.osm");
+                ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, samplingPeriod, filter, bucketDict, xml.Buckets);
+                ProcessFinalOSM(bucketDict);
             }
             // Process all GPX in directory
             else if (Directory.Exists(gpxPath))
@@ -116,10 +116,10 @@ namespace LK.TMatch
 
                 foreach (var file in files)
                 {
-                    ProcessGPXFile(file, processor, reconstructor, outputPath, samplingPeriod, filter, OSMList);
+                    ProcessGPXFile(file, processor, reconstructor, outputPath, samplingPeriod, filter, bucketDict, xml.Buckets);
                     Console.WriteLine();
                 }
-                ProcessFinalOSM(OSMList).Save("output.osm");
+                ProcessFinalOSM(bucketDict);
             }
             else
             {
@@ -131,45 +131,47 @@ namespace LK.TMatch
 
         }
 
-        private static OSMDB ProcessFinalOSM(List<OSMDB> OSMList)
+        static void ProcessFinalOSM(Dictionary<Bucket, List<OSMDB>> bucketDict)
         {
-            OSMDB finalOSM = new OSMDB();
             Dictionary<OSMWay, int> wayCount = new Dictionary<OSMWay, int>();
 
-            if (OSMList.Any())
+            foreach (var b in bucketDict)
             {
-                foreach (var osm in OSMList)
+                if (b.Value.Any())
                 {
-                    foreach (var node in osm.Nodes)
-                        if (!finalOSM.Nodes.Contains(node))
-                            finalOSM.Nodes.Add(node);
-
-                    foreach (var way in osm.Ways)
+                    OSMDB finalOsm = new OSMDB();
+                    foreach (var osm in b.Value)
                     {
-                        if (!finalOSM.Ways.Contains(way))
-                        {
-                            finalOSM.Ways.Add(way);
-                            wayCount.Add(way, 1);
-                        }
-                        else wayCount[way]++;
-                    }
-                }
+                        foreach (var node in osm.Nodes)
+                            if (!finalOsm.Nodes.Contains(node))
+                                finalOsm.Nodes.Add(node);
 
-                foreach (var way in finalOSM.Ways)
-                    way.Tags.Add(new OSMTag("traffic", Convert.ToString(wayCount[way])));
+                        foreach (var way in osm.Ways)
+                        {
+                            if (!finalOsm.Ways.Contains(way))
+                            {
+                                finalOsm.Ways.Add(way);
+                                wayCount.Add(way, 1);
+                            }
+                            else wayCount[way]++;
+                        }
+                    }
+
+                    foreach (var way in finalOsm.Ways)
+                        way.Tags.Add(new OSMTag("traffic", Convert.ToString(wayCount[way])));
+                    finalOsm.Save("map" + b.Key.Name);
+                }
             }
-            return finalOSM;
         }
 
-        static void ProcessGPXFile(string path, TMM processor, PathReconstructer reconstructor, string outputPath, int samplingPeriod, bool filterOutput, List<OSMDB> OSMList)
+        static void ProcessGPXFile(string path, TMM processor, PathReconstructer reconstructor, string outputPath, int samplingPeriod, 
+            bool filterOutput, Dictionary<Bucket, List<OSMDB>> bucketDict, List<Bucket> buckets)
         {
             GPXUtils.Filters.FrequencyFilter filter = new GPXUtils.Filters.FrequencyFilter();
 
             Console.Write("Loading {0} ...", Path.GetFileName(path));
             GPXDocument gpx = new GPXDocument();
             gpx.Load(path);
-
-            //Console.Write(gpx.Tracks.First().Segments.First().Nodes.First().Time.TimeOfDay);
 
             Console.WriteLine("[{0} track(s); {1} segment(s)]", gpx.Tracks.Count, gpx.Tracks.Sum(track => track.Segments.Count));
             for (int trackIndex = 0; trackIndex < gpx.Tracks.Count; trackIndex++)
@@ -205,7 +207,12 @@ namespace LK.TMatch
                             //pathOsm.Save(Path.Combine(outputPath, Path.GetFileNameWithoutExtension(path) + "_" + name + ".osm"));
                             Console.WriteLine(".");
 
-                            OSMList.Add(pathOsm);
+                            var overlapping = getOverlappingBuckets(toProcess, buckets);
+                            foreach (var b in overlapping)
+                            {
+                                bucketDict[b].Add(pathOsm);
+                            }
+                            //OSMList.Add(pathOsm);
                         }
                         else
                         {
@@ -218,6 +225,22 @@ namespace LK.TMatch
                     }
                 }
             }
+        }
+
+        static List<Bucket> getOverlappingBuckets(GPXTrackSegment toProcess, List<Bucket> buckets)
+        {
+            List<Bucket> overlapping = new List<Bucket>();
+            var start = toProcess.Nodes.First().Time.TimeOfDay;
+            var end = toProcess.Nodes.Last().Time.TimeOfDay;
+
+            foreach (var b in buckets)
+            {
+                if (start < b.End.TimeOfDay && end >= b.Start.TimeOfDay)
+                {
+                    overlapping.Add(b);
+                }
+            }
+            return overlapping;
         }
 
         /// <summary>

@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<osm version="0.5" generator="OSMUtils">
+  <node id="-2" visible="true" lat="-3.73285598542543" lon="-38.5448648254938">
+    <tag k="time" v="14/11/2015 08:26:47" />
+  </node>
+  <node id="-3" visible="true" lat="-3.7328122" lon="-38.5446464">
+    <tag k="node-id" v="482988514" />
+    <tag k="time" v="14/11/2015 08:27:42" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-5" visible="true" lat="-3.7331809" lon="-38.5445692">
+    <tag k="node-id" v="2852933971" />
+  </node>
+  <node id="-6" visible="true" lat="-3.7336152148529" lon="-38.5444913358078">
+    <tag k="time" v="14/11/2015 08:28:06" />
+  </node>
+  <node id="-8" visible="true" lat="-3.73366826789482" lon="-38.5444818244309">
+    <tag k="time" v="14/11/2015 08:28:39" />
+  </node>
+  <node id="-10" visible="true" lat="-3.7336896" lon="-38.544478">
+    <tag k="node-id" v="626124934" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-12" visible="true" lat="-3.73481910344741" lon="-38.5442638477432">
+    <tag k="time" v="14/11/2015 08:29:33" />
+  </node>
+  <node id="-14" visible="true" lat="-3.7348779" lon="-38.5442527">
+    <tag k="node-id" v="2852933972" />
+  </node>
+  <node id="-15" visible="true" lat="-3.7350824" lon="-38.5442962">
+    <tag k="node-id" v="626124798" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-17" visible="true" lat="-3.73607175761159" lon="-38.5441365168529">
+    <tag k="time" v="14/11/2015 08:30:22" />
+  </node>
+  <node id="-19" visible="true" lat="-3.7350824" lon="-38.5442962">
+    <tag k="node-id" v="626124798" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-21" visible="true" lat="-3.7348779" lon="-38.5442527">
+    <tag k="node-id" v="2852933972" />
+  </node>
+  <node id="-22" visible="true" lat="-3.7336896" lon="-38.544478">
+    <tag k="node-id" v="626124934" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-24" visible="true" lat="-3.7331809" lon="-38.5445692">
+    <tag k="node-id" v="2852933971" />
+  </node>
+  <node id="-25" visible="true" lat="-3.73316426682" lon="-38.5445726827271">
+    <tag k="time" v="14/11/2015 08:32:54" />
+  </node>
+  <node id="-27" visible="true" lat="-3.7328122" lon="-38.5446464">
+    <tag k="node-id" v="482988514" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-29" visible="true" lat="-3.7325453" lon="-38.544696">
+    <tag k="node-id" v="2852928182" />
+    <tag k="time" v="14/11/2015 08:33:19" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-31" visible="true" lat="-3.73271646479329" lon="-38.5454565091623">
+    <tag k="time" v="14/11/2015 08:33:44" />
+  </node>
+  <node id="-33" visible="true" lat="-3.7327196561058" lon="-38.5454706886109">
+    <tag k="time" v="14/11/2015 08:34:10" />
+  </node>
+  <node id="-35" visible="true" lat="-3.7328179" lon="-38.5459072">
+    <tag k="node-id" v="2852928181" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-37" visible="true" lat="-3.7319865" lon="-38.5460647">
+    <tag k="node-id" v="264898984" />
+    <tag k="time" v="14/11/2015 08:34:54" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-39" visible="true" lat="-3.73187818440094" lon="-38.5455360198">
+    <tag k="time" v="14/11/2015 08:35:44" />
+  </node>
+  <node id="-41" visible="true" lat="-3.7317354" lon="-38.5448391">
+    <tag k="node-id" v="2852933970" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-43" visible="true" lat="-3.7317153" lon="-38.5447392">
+    <tag k="node-id" v="3667506737" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-45" visible="true" lat="-3.7317031" lon="-38.5446721">
+    <tag k="node-id" v="3667506742" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-47" visible="true" lat="-3.7316703" lon="-38.5445315">
+    <tag k="node-id" v="2852933988" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-49" visible="true" lat="-3.7315075" lon="-38.5437673">
+    <tag k="node-id" v="265639931" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-51" visible="true" lat="-3.731505264048" lon="-38.5437558625553">
+    <tag k="time" v="14/11/2015 08:37:16" />
+  </node>
+  <node id="-53" visible="true" lat="-3.73150546652213" lon="-38.5437568982603">
+    <tag k="time" v="14/11/2015 08:38:03" />
+  </node>
+  <node id="-55" visible="true" lat="-3.7313409" lon="-38.5429151">
+    <tag k="node-id" v="4068493950" />
+  </node>
+  <node id="-56" visible="true" lat="-3.7313194" lon="-38.5428049">
+    <tag k="node-id" v="264770618" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-58" visible="true" lat="-3.7312849" lon="-38.5426581">
+    <tag k="node-id" v="2852940745" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-60" visible="true" lat="-3.7312693" lon="-38.5425888">
+    <tag k="node-id" v="4068493943" />
+  </node>
+  <node id="-61" visible="true" lat="-3.7311308" lon="-38.5419746">
+    <tag k="node-id" v="264898985" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-63" visible="true" lat="-3.73105001983353" lon="-38.5415951286535">
+    <tag k="time" v="14/11/2015 08:38:56" />
+  </node>
+  <node id="-65" visible="true" lat="-3.73089209046661" lon="-38.5408532427161">
+    <tag k="time" v="14/11/2015 08:39:46" />
+  </node>
+  <node id="-67" visible="true" lat="-3.73079493419166" lon="-38.5403968432794">
+    <tag k="time" v="14/11/2015 08:40:29" />
+  </node>
+  <node id="-69" visible="true" lat="-3.73079488479195" lon="-38.5403966112203">
+    <tag k="time" v="14/11/2015 08:41:27" />
+  </node>
+  <node id="-71" visible="true" lat="-3.7307588" lon="-38.5402271">
+    <tag k="node-id" v="264898986" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-73" visible="true" lat="-3.73074801027375" lon="-38.5401802989933">
+    <tag k="time" v="14/11/2015 08:41:48" />
+  </node>
+  <node id="-75" visible="true" lat="-3.7307114" lon="-38.5400215">
+    <tag k="node-id" v="4068493959" />
+  </node>
+  <node id="-76" visible="true" lat="-3.7306875" lon="-38.539918">
+    <tag k="node-id" v="264898987" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-78" visible="true" lat="-3.7306844" lon="-38.5398061">
+    <tag k="node-id" v="264899105" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-80" visible="true" lat="-3.7307681" lon="-38.5395778">
+    <tag k="node-id" v="2852941724" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-82" visible="true" lat="-3.7309309" lon="-38.539104">
+    <tag k="node-id" v="1993226023" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-84" visible="true" lat="-3.7310223" lon="-38.5388182">
+    <tag k="node-id" v="264899104" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-86" visible="true" lat="-3.7312488" lon="-38.5380218">
+    <tag k="node-id" v="264899103" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-88" visible="true" lat="-3.7309413" lon="-38.5379224">
+    <tag k="node-id" v="2366160338" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-90" visible="true" lat="-3.7304571" lon="-38.5377815">
+    <tag k="node-id" v="2366160341" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-92" visible="true" lat="-3.7303343" lon="-38.5378128">
+    <tag k="node-id" v="2366160333" />
+  </node>
+  <node id="-93" visible="true" lat="-3.7302352" lon="-38.5378933">
+    <tag k="node-id" v="2366160344" />
+  </node>
+  <node id="-94" visible="true" lat="-3.7301815" lon="-38.5379819">
+    <tag k="node-id" v="2366160323" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-96" visible="true" lat="-3.7301333" lon="-38.5381156">
+    <tag k="node-id" v="2281478243" />
+  </node>
+  <node id="-97" visible="true" lat="-3.7300334" lon="-38.5384479">
+    <tag k="node-id" v="3856298171" />
+    <tag k="crossroad" v="yes" />
+  </node>
+  <node id="-99" visible="true" lat="-3.73000025449721" lon="-38.5385580690466">
+    <tag k="time" v="14/11/2015 08:44:06" />
+  </node>
+  <way id="-1" visible="true">
+    <nd ref="-2" />
+    <nd ref="-3" />
+    <tag k="way-id" v="40131221" />
+    <tag k="order" v="1" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-4" visible="true">
+    <nd ref="-3" />
+    <nd ref="-5" />
+    <nd ref="-6" />
+    <tag k="way-id" v="281326806" />
+    <tag k="order" v="2" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-7" visible="true">
+    <nd ref="-6" />
+    <nd ref="-8" />
+    <tag k="way-id" v="281326806" />
+    <tag k="order" v="3" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-9" visible="true">
+    <nd ref="-8" />
+    <nd ref="-10" />
+    <tag k="way-id" v="281326806" />
+    <tag k="order" v="4" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-11" visible="true">
+    <nd ref="-10" />
+    <nd ref="-12" />
+    <tag k="way-id" v="281326806" />
+    <tag k="order" v="5" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-13" visible="true">
+    <nd ref="-12" />
+    <nd ref="-14" />
+    <nd ref="-15" />
+    <tag k="way-id" v="281326806" />
+    <tag k="order" v="6" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-16" visible="true">
+    <nd ref="-15" />
+    <nd ref="-17" />
+    <tag k="way-id" v="281326806" />
+    <tag k="order" v="7" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-18" visible="true">
+    <nd ref="-17" />
+    <nd ref="-19" />
+    <tag k="way-id" v="281326806" />
+    <tag k="order" v="8" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-20" visible="true">
+    <nd ref="-19" />
+    <nd ref="-21" />
+    <nd ref="-22" />
+    <tag k="way-id" v="281326806" />
+    <tag k="order" v="9" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-23" visible="true">
+    <nd ref="-22" />
+    <nd ref="-24" />
+    <nd ref="-25" />
+    <tag k="way-id" v="281326806" />
+    <tag k="order" v="10" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-26" visible="true">
+    <nd ref="-25" />
+    <nd ref="-27" />
+    <tag k="way-id" v="281326806" />
+    <tag k="order" v="11" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-28" visible="true">
+    <nd ref="-27" />
+    <nd ref="-29" />
+    <tag k="way-id" v="281326806" />
+    <tag k="order" v="12" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-30" visible="true">
+    <nd ref="-29" />
+    <nd ref="-31" />
+    <tag k="way-id" v="281326208" />
+    <tag k="order" v="13" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-32" visible="true">
+    <nd ref="-31" />
+    <nd ref="-33" />
+    <tag k="way-id" v="281326208" />
+    <tag k="order" v="14" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-34" visible="true">
+    <nd ref="-33" />
+    <nd ref="-35" />
+    <tag k="way-id" v="281326208" />
+    <tag k="order" v="15" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-36" visible="true">
+    <nd ref="-35" />
+    <nd ref="-37" />
+    <tag k="way-id" v="49302781" />
+    <tag k="order" v="16" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-38" visible="true">
+    <nd ref="-37" />
+    <nd ref="-39" />
+    <tag k="way-id" v="380368357" />
+    <tag k="order" v="17" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-40" visible="true">
+    <nd ref="-39" />
+    <nd ref="-41" />
+    <tag k="way-id" v="380368357" />
+    <tag k="order" v="18" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-42" visible="true">
+    <nd ref="-41" />
+    <nd ref="-43" />
+    <tag k="way-id" v="380368357" />
+    <tag k="order" v="19" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-44" visible="true">
+    <nd ref="-43" />
+    <nd ref="-45" />
+    <tag k="way-id" v="379631539" />
+    <tag k="order" v="20" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-46" visible="true">
+    <nd ref="-45" />
+    <nd ref="-47" />
+    <tag k="way-id" v="379631533" />
+    <tag k="order" v="21" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-48" visible="true">
+    <nd ref="-47" />
+    <nd ref="-49" />
+    <tag k="way-id" v="379631533" />
+    <tag k="order" v="22" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-50" visible="true">
+    <nd ref="-49" />
+    <nd ref="-51" />
+    <tag k="way-id" v="379631533" />
+    <tag k="order" v="23" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-52" visible="true">
+    <nd ref="-51" />
+    <nd ref="-53" />
+    <tag k="way-id" v="379631533" />
+    <tag k="order" v="24" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-54" visible="true">
+    <nd ref="-53" />
+    <nd ref="-55" />
+    <nd ref="-56" />
+    <tag k="way-id" v="379631533" />
+    <tag k="order" v="25" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-57" visible="true">
+    <nd ref="-56" />
+    <nd ref="-58" />
+    <tag k="way-id" v="396597462" />
+    <tag k="order" v="26" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-59" visible="true">
+    <nd ref="-58" />
+    <nd ref="-60" />
+    <nd ref="-61" />
+    <tag k="way-id" v="396597462" />
+    <tag k="order" v="27" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-62" visible="true">
+    <nd ref="-61" />
+    <nd ref="-63" />
+    <tag k="way-id" v="396597462" />
+    <tag k="order" v="28" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-64" visible="true">
+    <nd ref="-63" />
+    <nd ref="-65" />
+    <tag k="way-id" v="396597462" />
+    <tag k="order" v="29" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-66" visible="true">
+    <nd ref="-65" />
+    <nd ref="-67" />
+    <tag k="way-id" v="396597462" />
+    <tag k="order" v="30" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-68" visible="true">
+    <nd ref="-67" />
+    <nd ref="-69" />
+    <tag k="way-id" v="396597462" />
+    <tag k="order" v="31" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-70" visible="true">
+    <nd ref="-69" />
+    <nd ref="-71" />
+    <tag k="way-id" v="396597462" />
+    <tag k="order" v="32" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-72" visible="true">
+    <nd ref="-71" />
+    <nd ref="-73" />
+    <tag k="way-id" v="396597462" />
+    <tag k="order" v="33" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-74" visible="true">
+    <nd ref="-73" />
+    <nd ref="-75" />
+    <nd ref="-76" />
+    <tag k="way-id" v="396597462" />
+    <tag k="order" v="34" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-77" visible="true">
+    <nd ref="-76" />
+    <nd ref="-78" />
+    <tag k="way-id" v="396597462" />
+    <tag k="order" v="35" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-79" visible="true">
+    <nd ref="-78" />
+    <nd ref="-80" />
+    <tag k="way-id" v="335475535" />
+    <tag k="order" v="36" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-81" visible="true">
+    <nd ref="-80" />
+    <nd ref="-82" />
+    <tag k="way-id" v="335475535" />
+    <tag k="order" v="37" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-83" visible="true">
+    <nd ref="-82" />
+    <nd ref="-84" />
+    <tag k="way-id" v="335475535" />
+    <tag k="order" v="38" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-85" visible="true">
+    <nd ref="-84" />
+    <nd ref="-86" />
+    <tag k="way-id" v="335475535" />
+    <tag k="order" v="39" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-87" visible="true">
+    <nd ref="-86" />
+    <nd ref="-88" />
+    <tag k="way-id" v="243212221" />
+    <tag k="order" v="40" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-89" visible="true">
+    <nd ref="-88" />
+    <nd ref="-90" />
+    <tag k="way-id" v="243212221" />
+    <tag k="order" v="41" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-91" visible="true">
+    <nd ref="-90" />
+    <nd ref="-92" />
+    <nd ref="-93" />
+    <nd ref="-94" />
+    <tag k="way-id" v="227992086" />
+    <tag k="order" v="42" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-95" visible="true">
+    <nd ref="-94" />
+    <nd ref="-96" />
+    <nd ref="-97" />
+    <tag k="way-id" v="276765822" />
+    <tag k="order" v="43" />
+    <tag k="traffic" v="1" />
+  </way>
+  <way id="-98" visible="true">
+    <nd ref="-97" />
+    <nd ref="-99" />
+    <tag k="way-id" v="276765822" />
+    <tag k="order" v="44" />
+    <tag k="traffic" v="1" />
+  </way>
+</osm>
