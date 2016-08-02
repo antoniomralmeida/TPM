@@ -1,0 +1,16 @@
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\obj\x86\Debug\TGreenWave.csprojResolveAssemblyReference.cache
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\bin\x86\Debug\TGreenWave.exe.config
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\bin\x86\Debug\TGreenWave.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\bin\x86\Debug\TGreenWave.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\bin\x86\Debug\Utils.dll
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\bin\x86\Debug\Utils.pdb
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\obj\x86\Debug\TGreenWave.exe
+C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\obj\x86\Debug\TGreenWave.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreenWave\bin\x86\Debug\TGreenWave.exe.config
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreenWave\bin\x86\Debug\TGreenWave.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreenWave\bin\x86\Debug\TGreenWave.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreenWave\bin\x86\Debug\Utils.dll
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreenWave\bin\x86\Debug\Utils.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreenWave\obj\x86\Debug\TGreenWave.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreenWave\obj\x86\Debug\TGreenWave.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreenWave\obj\x86\Debug\TGreenWave.pdb

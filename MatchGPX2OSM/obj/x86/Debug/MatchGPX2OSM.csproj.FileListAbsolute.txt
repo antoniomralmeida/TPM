@@ -5,8 +5,8 @@ C:\Users\isabel.lima\git\traveltimeanalysis\MatchGPX2OSM\obj\x86\Debug\MatchGPX2
 C:\Users\isabel.lima\git\traveltimeanalysis\MatchGPX2OSM\obj\x86\Debug\MatchGPX2OSM.exe
 C:\Users\isabel.lima\git\traveltimeanalysis\MatchGPX2OSM\obj\x86\Debug\MatchGPX2OSM.pdb
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\MatchGPX2OSM.exe.config
-C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\MatchGPX2OSM\obj\x86\Debug\MatchGPX2OSM.exe
-C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\MatchGPX2OSM\obj\x86\Debug\MatchGPX2OSM.pdb
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\MatchGPX2OSM.exe
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\MatchGPX2OSM.pdb
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\MatchGPX2OSM\obj\x86\Debug\MatchGPX2OSM.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\MatchGPX2OSM\obj\x86\Debug\MatchGPX2OSM.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\MatchGPX2OSM\obj\x86\Debug\MatchGPX2OSM.pdb
