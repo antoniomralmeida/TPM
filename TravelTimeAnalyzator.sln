@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TRoute", "HotRoutes\TRoute.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPXTime", "GPXTime\GPXTime.csproj", "{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TGreeWave", "TGreeWave\TGreeWave.csproj", "{7356E69A-38E2-494C-9CA6-936EBABE7EE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TGreenWave", "TGreeWave\TGreenWave.csproj", "{7356E69A-38E2-494C-9CA6-936EBABE7EE7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficLightScheduler", "TrafficLightScheduler\TrafficLightScheduler.csproj", "{FFA3493D-B3FE-4669-BF22-4FB8E922C6FA}"
 EndProject
