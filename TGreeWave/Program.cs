@@ -1,23 +1,29 @@
 ﻿using System;
-using NDesk.Options;
-//using Microsoft.SolverFoundation.Common;
-//using Microsoft.SolverFoundation.Solvers;
 
-namespace LK.TGreenWave
+
+namespace LK.TGreeNWave
 {
     class Program
     {
         static void Main(string[] args)
         {
-            /*SimplexSolver solver = new SimplexSolver();
+            var s = new Simplex(
+              new[] { 10.2, 422.3, 6.91, 853 },
+              new[,] {
+          {0.1, 0.5, 0.333333, 1},
+          {30, 15, 19, 12},
+          {1000, 6000, 4100, 9100},
+          {50, 20, 21, 10},
+          {4, 6, 19, 30}
+              },
+              new double[] { 2000, 1000, 1000000, 640, 432 }
+            );
 
-            int savid, vzvid;
-            solver.AddVariable("Saudi Arabia", out savid);
-            solver.SetBounds(savid, 0, 9000);
-            solver.AddVariable("Venezuela", out vzvid);
-            solver.SetBounds(vzvid, 0, 6000);*/
-
+            var answer = s.maximize();
+            Console.WriteLine(answer.Item1);
+            Console.WriteLine(string.Join(", ", answer.Item2));
         }
-        
+
+
     }
 }

@@ -1,2 +1,10 @@
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TGreenWave.exe.config
+<<<<<<< HEAD
 C:\Users\isabel.lima\git\traveltimeanalysis\TGreeWave\obj\Debug\TGreenWave.csprojResolveAssemblyReference.cache
+=======
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreeWave\obj\Debug\TGreenWave.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TGreenWave.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TGreenWave.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreeWave\obj\Debug\TGreenWave.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TGreeWave\obj\Debug\TGreenWave.pdb
+>>>>>>> 890e6f4d01ff6b87052931e51c770670fa754bac
