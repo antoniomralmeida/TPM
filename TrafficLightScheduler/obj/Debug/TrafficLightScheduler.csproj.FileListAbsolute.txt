@@ -1,0 +1,6 @@
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TrafficLightScheduler.exe.config
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TrafficLightScheduler.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TrafficLightScheduler.pdb
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TrafficLightScheduler\obj\Debug\TrafficLightScheduler.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TrafficLightScheduler\obj\Debug\TrafficLightScheduler.exe
+C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\TrafficLightScheduler\obj\Debug\TrafficLightScheduler.pdb
