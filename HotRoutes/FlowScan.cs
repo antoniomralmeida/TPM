@@ -14,14 +14,18 @@ namespace LK.TRoute
         HashSet<Connection> hotRouteStarts;
         int eps;
         int minTraffic;
+        RoadGraph roadGraph;
 
         public HashSet<HotRoute> Run(RoadGraph roadGraph, int eps, int minTraffic)
         {
             this.eps = eps;
             this.minTraffic = minTraffic;
+            this.roadGraph = roadGraph;
 
             hotRoutes = new HashSet<HotRoute>();
-            hotRouteStarts = FindHotRouteStarts(roadGraph);
+            hotRouteStarts = new HashSet<Connection>();
+
+            FindHotRouteStarts();
 
             foreach (var hrs in hotRouteStarts)
             {
@@ -35,73 +39,37 @@ namespace LK.TRoute
         public HotRoute ExtendHotRoutes(HotRoute r)
         {
             var p = r.Segments.Last();
-            var Q = GetDirectlyTrafficDensityReachableNeighbors(p);
-            if (Q.Any())
+            var q = p.GetDirectlyTrafficDensityReachableNeighbors(minTraffic);
+            if (q.Any())
             {
-                foreach (var split in Q)
+                //check if its a split
+                foreach (var split in q)
                 {
-                    var r_ = r;
-                    //append split edges to r_
-                    ExtendHotRoutes(r_);
+                    if (split.IsRouteTrafficDensityReachable(p))
+                    {
+                        var r_ = r;
+                        r_.Segments.Add(split);
+                        ExtendHotRoutes(r_);
+                    }
                 }
             }
             return r;
         }
 
-        private HashSet<Connection> FindHotRouteStarts(RoadGraph roadGraph)
+        private void FindHotRouteStarts()
         {
-            HashSet<Connection> hotRouteStarts = new HashSet<Connection>();
-            var x = roadGraph.Connections.Where(c => c.Traffic >= minTraffic);
+            var candidates = roadGraph.Connections.Where(c => c.Traffic.Count() >= minTraffic);
 
-            foreach (var px in x)
+            foreach (var ci in candidates)
             {
-                foreach (var c in px.To.Connections)
+                var incoming = ci.From.Connections.Where(c => c.Traffic.Count() >= minTraffic && c.To == ci.From);
+                var incomingAggreg = incoming.Select(c => c.Traffic.AsEnumerable()).Aggregate((a, b) => a.Union(b));
+
+                if (ci.Traffic.Except(incomingAggreg).Count() >= minTraffic)
                 {
-                    //hotRouteStarts.Add(c);
+                    hotRouteStarts.Add(ci);
                 }
             }
-
-            return hotRouteStarts;
-        }
-
-        public HashSet<Connection> GetDirectlyTrafficDensityReachableNeighbors(Connection r)
-        {
-            HashSet<Connection> directlyTrafficDensityReachableNeighbors = new HashSet<Connection>();
-
-            foreach (var s in GetEpsNeighborhood(r))
-            {
-                if (r.Traffic + s.Traffic >= minTraffic)
-                {
-                    directlyTrafficDensityReachableNeighbors.Add(s);
-                }
-            }
-            return directlyTrafficDensityReachableNeighbors;
-        }
-
-        public HashSet<Connection> GetEpsNeighborhood(Connection r)
-        {
-            HashSet<Connection> epsNeighborhood = new HashSet<Connection>();
-            Queue<Connection> q = new Queue<Connection>();
-
-            epsNeighborhood.Add(r);
-            q.Enqueue(r);
-
-            for (int i = 0; i < eps; i++)
-            {
-                var next = q.Dequeue();
-                foreach (var s in next.To.Connections)
-                {
-                    epsNeighborhood.Add(s);
-                    q.Enqueue(s);
-                }
-            }
-            return epsNeighborhood;
-        }
-
-        public bool IsRouteTrafficDensityReachable(Connection r, Connection s)
-        {
-
-            throw new NotImplementedException();
         }
     }
 }

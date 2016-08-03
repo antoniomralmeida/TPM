@@ -44,10 +44,10 @@ namespace LK.TRoute
                 return;
             }
 
-            var OSMFile = new OSMDB();
-            OSMFile.Load(osmPath);
+            var osmFile = new OSMDB();
+            osmFile.Load(osmPath);
             var roadGraph = new RoadGraph();
-            roadGraph.Build(OSMFile);
+            roadGraph.Build(osmFile);
 
             new FlowScan().Run(roadGraph, eps, minTraffic);
         }

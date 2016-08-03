@@ -62,6 +62,64 @@ namespace LK.TMatch {
         /// <summary>
         /// Gets or sets traffic on this connection
         /// </summary>
-        public int Traffic { get; set; }
+        public HashSet<long> Traffic { get; set; }
+
+        /// <summary>
+        /// Gets or sets eps-neighborhood of this connection
+        /// </summary>
+        public HashSet<Connection> epsNeighborhood { get; set; }
+
+        /// <summary>
+        /// Gets or sets directly traffic density-reachable neighbors of this connection
+        /// </summary>
+        public HashSet<Connection> directlyTrafficDensityReachableNeighbors { get; set; }
+
+        public HashSet<Connection> GetEpsNeighborhood(int eps)
+        {
+            if (epsNeighborhood == null)
+            {
+                HashSet<Connection> epsNeighborhood = new HashSet<Connection>();
+                Queue<Connection> q = new Queue<Connection>();
+
+                epsNeighborhood.Add(this);
+                q.Enqueue(this);
+
+                for (int i = 0; i < eps; i++)
+                {
+                    var next = q.Dequeue();
+                    foreach (var s in next.To.Connections.Where(c => c.From == next.To))
+                    {
+                        epsNeighborhood.Add(s);
+                        q.Enqueue(s);
+                    }
+                }
+                this.epsNeighborhood = epsNeighborhood;
+            }
+            return epsNeighborhood;
+        }
+
+        public HashSet<Connection> GetDirectlyTrafficDensityReachableNeighbors(int minTraffic)
+        {
+            if (directlyTrafficDensityReachableNeighbors == null)
+            {
+                HashSet<Connection> directlyTrafficDensityReachableNeighbors = new HashSet<Connection>();
+
+                foreach (var s in this.epsNeighborhood)
+                {
+                    if (this.Traffic.Intersect(s.Traffic).Count() >= minTraffic)
+                    {
+                        directlyTrafficDensityReachableNeighbors.Add(s);
+                    }
+                }
+                this.directlyTrafficDensityReachableNeighbors = directlyTrafficDensityReachableNeighbors;
+            }
+            return directlyTrafficDensityReachableNeighbors;
+        }
+
+        public bool IsRouteTrafficDensityReachable(Connection s)
+        {
+
+            throw new NotImplementedException();
+        }
     }
 }
