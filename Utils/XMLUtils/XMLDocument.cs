@@ -9,10 +9,6 @@ namespace Utils.XMLUtils
 {
     public class XMLDocument
     {
-        private List<Bucket> _buckets;
-        /// <summary>
-        /// Gets the list of buckets
-        /// </summary>
         public List<Bucket> Buckets
         {
             get; set;

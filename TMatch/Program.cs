@@ -106,7 +106,7 @@ namespace LK.TMatch
             if (File.Exists(gpxPath))
             {
                 ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, samplingPeriod, filter, bucketDict, xml.Buckets);
-                ProcessFinalOSM(bucketDict);
+                //ProcessFinalOSM(bucketDict);
             }
             // Process all GPX in directory
             else if (Directory.Exists(gpxPath))
@@ -119,7 +119,7 @@ namespace LK.TMatch
                     ProcessGPXFile(file, processor, reconstructor, outputPath, samplingPeriod, filter, bucketDict, xml.Buckets);
                     Console.WriteLine();
                 }
-                ProcessFinalOSM(bucketDict);
+                //ProcessFinalOSM(bucketDict);
             }
             else
             {
@@ -133,7 +133,7 @@ namespace LK.TMatch
 
         static void ProcessFinalOSM(Dictionary<Bucket, List<OSMDB>> bucketDict)
         {
-            Dictionary<OSMWay, int> wayCount = new Dictionary<OSMWay, int>();
+            Dictionary<OSMWay, HashSet<long>> wayCount = new Dictionary<OSMWay, HashSet<long>>();
 
             foreach (var b in bucketDict)
             {
@@ -151,9 +151,9 @@ namespace LK.TMatch
                             if (!finalOsm.Ways.Contains(way))
                             {
                                 finalOsm.Ways.Add(way);
-                                wayCount.Add(way, 1);
+                                //wayCount.Add(way, osm.);
                             }
-                            else wayCount[way]++;
+                            //else wayCount[way].Add();
                         }
                     }
 
@@ -190,11 +190,10 @@ namespace LK.TMatch
                         if (samplingPeriod > 0)
                             toProcess = filter.Filter(new TimeSpan(0, 0, samplingPeriod), toProcess);
 
-                        if (toProcess.NodesCount > 1)
-                        {
+                        if (toProcess.NodesCount > 1) {
                             var result = processor.Match(toProcess);
                             Console.Write(".");
-
+                            
                             var reconstructedPath = reconstructor.Reconstruct(result);
                             Console.Write(".");
 
@@ -203,18 +202,15 @@ namespace LK.TMatch
                                 reconstructor.FilterUturns(reconstructedPath, 100);
                             }
                             var pathOsm = reconstructor.SaveToOSM(reconstructedPath);
-
+                            
                             //pathOsm.Save(Path.Combine(outputPath, Path.GetFileNameWithoutExtension(path) + "_" + name + ".osm"));
                             Console.WriteLine(".");
 
                             var overlapping = getOverlappingBuckets(toProcess, buckets);
-                            foreach (var b in overlapping)
-                            {
+                            foreach (var b in overlapping) {
                                 bucketDict[b].Add(pathOsm);
                             }
-                        }
-                        else
-                        {
+                        } else {
                             throw new Exception(string.Format("Track segment discarded because number of nodes is less than 2."));
                         }
                     }

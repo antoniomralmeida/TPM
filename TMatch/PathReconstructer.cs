@@ -355,7 +355,7 @@ namespace LK.TMatch {
 
 				if (line.Nodes.Count == 1)
 					throw new Exception();
-
+                
 				OSMWay way = new OSMWay(_dbCounter--);
 				way.Tags.Add(new OSMTag("way-id", ((PolylineID)line).WayID.ToString()));
 				way.Tags.Add(new OSMTag("order", (_db.Ways.Count + 1).ToString()));

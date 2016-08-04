@@ -91,7 +91,6 @@ namespace LK.TMatch {
 
 				double speed = double.Parse(segment.Tags["speed"].Value, System.Globalization.CultureInfo.InvariantCulture);
 				int wayId = int.Parse(segment.Tags["way-id"].Value, System.Globalization.CultureInfo.InvariantCulture);
-                var traffic = new HashSet<long>(segment.Tags["traffic"].Value.Split(',').Select(x => long.Parse(x)));
 
 				ConnectionGeometry geometry = new ConnectionGeometry();
 				geometry.WayID = wayId;
@@ -108,13 +107,24 @@ namespace LK.TMatch {
 				_connectionGeometries.Add(geometry);
 
 				if (segment.Tags["accessible"].Value == "yes") {
-					Connection sc = new Connection(start, end) { Speed = speed, Geometry = geometry, Traffic = traffic };
-					geometry.Connections.Add(sc);
+                    Connection sc;
+                    if (segment.Tags.ContainsTag("traffic"))
+                    {
+                        var traffic = new HashSet<long>(segment.Tags["traffic"].Value.Split(',').Select(x => long.Parse(x)));
+                        sc = new Connection(start, end) { Speed = speed, Geometry = geometry, Traffic = traffic };
+                    } else sc = new Connection(start, end) { Speed = speed, Geometry = geometry };
+                    geometry.Connections.Add(sc);
 					_connections.Add(sc);
 				}
 
 				if (segment.Tags["accessible-reverse"].Value == "yes") {
-					Connection sc = new Connection(end, start) { Speed = speed, Geometry = geometry, Traffic = traffic };
+                    Connection sc;
+                    if (segment.Tags.ContainsTag("traffic"))
+                    {
+                        var traffic = new HashSet<long>(segment.Tags["traffic"].Value.Split(',').Select(x => long.Parse(x)));
+                        sc = new Connection(end, start) { Speed = speed, Geometry = geometry, Traffic = traffic };
+                    }
+                    else sc = new Connection(end, start) { Speed = speed, Geometry = geometry };
 					geometry.Connections.Add(sc);
 					_connections.Add(sc);
 				}
