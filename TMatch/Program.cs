@@ -42,7 +42,6 @@ namespace LK.TMatch
             int samplingPeriod = 0;
             bool showHelp = false;
             bool filter = false;
-            //List<OSMDB> OSMList = new List<OSMDB>();
             Dictionary<Bucket, List<OSMDB>> bucketDict = new Dictionary<Bucket, List<OSMDB>>();
 
             OptionSet parameters = new OptionSet() {
@@ -106,7 +105,7 @@ namespace LK.TMatch
             if (File.Exists(gpxPath))
             {
                 ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, samplingPeriod, filter, bucketDict, xml.Buckets);
-                //ProcessFinalOSM(bucketDict);
+                ProcessFinalOSM(bucketDict);
             }
             // Process all GPX in directory
             else if (Directory.Exists(gpxPath))
@@ -119,7 +118,7 @@ namespace LK.TMatch
                     ProcessGPXFile(file, processor, reconstructor, outputPath, samplingPeriod, filter, bucketDict, xml.Buckets);
                     Console.WriteLine();
                 }
-                //ProcessFinalOSM(bucketDict);
+                ProcessFinalOSM(bucketDict);
             }
             else
             {
@@ -133,13 +132,13 @@ namespace LK.TMatch
 
         static void ProcessFinalOSM(Dictionary<Bucket, List<OSMDB>> bucketDict)
         {
-            Dictionary<OSMWay, HashSet<long>> wayCount = new Dictionary<OSMWay, HashSet<long>>();
-
             foreach (var b in bucketDict)
             {
                 if (b.Value.Any())
                 {
                     OSMDB finalOsm = new OSMDB();
+                    Dictionary<OSMWay, HashSet<string>> traffic = new Dictionary<OSMWay, HashSet<string>>();
+
                     foreach (var osm in b.Value)
                     {
                         foreach (var node in osm.Nodes)
@@ -151,15 +150,16 @@ namespace LK.TMatch
                             if (!finalOsm.Ways.Contains(way))
                             {
                                 finalOsm.Ways.Add(way);
-                                //wayCount.Add(way, osm.);
+                                traffic.Add(way, new HashSet<string>());
                             }
-                            //else wayCount[way].Add();
+                            traffic[way].Add(Convert.ToString(osm.ID));
                         }
                     }
 
-                    foreach (var way in finalOsm.Ways)
-                        way.Tags.Add(new OSMTag("traffic", Convert.ToString(wayCount[way])));
-                    finalOsm.Save("map" + b.Key.Name);
+                    foreach (var way in finalOsm.Ways) 
+                        way.Tags.Add(new OSMTag("traffic", String.Join<string>(",", traffic[way])));
+
+                    finalOsm.Save("map" + b.Key.Name + ".osm");
                 }
             }
         }
@@ -193,16 +193,26 @@ namespace LK.TMatch
                         if (toProcess.NodesCount > 1) {
                             var result = processor.Match(toProcess);
                             Console.Write(".");
+
+                            HashSet<Connection> conSet = new HashSet<Connection>();
+                            var reconstructedPath = reconstructor.Reconstruct(result, conSet);
                             
-                            var reconstructedPath = reconstructor.Reconstruct(result);
                             Console.Write(".");
 
                             if (filterOutput)
                             {
                                 reconstructor.FilterUturns(reconstructedPath, 100);
                             }
+
                             var pathOsm = reconstructor.SaveToOSM(reconstructedPath);
+                            pathOsm.ID = Convert.ToInt64(gpx.Tracks[trackIndex].Name.Replace("trk_", ""));
                             
+                            /*foreach (var c in conSet)
+                            {
+                                Console.WriteLine("FROM (lat: " + c.From.MapPoint.Latitude + ", lng: " + c.From.MapPoint.Longitude + ")");
+                                Console.WriteLine("TO (lat: " + c.To.MapPoint.Latitude + ", lng: " + c.To.MapPoint.Longitude + ")");
+                            }*/
+
                             //pathOsm.Save(Path.Combine(outputPath, Path.GetFileNameWithoutExtension(path) + "_" + name + ".osm"));
                             Console.WriteLine(".");
 

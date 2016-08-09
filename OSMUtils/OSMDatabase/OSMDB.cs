@@ -141,5 +141,6 @@ namespace LK.OSMUtils.OSMDatabase
             }
         }
 
+        public long ID { get; set; }
     }
 }

@@ -121,7 +121,7 @@ namespace LK.TMatch {
 
 			PointEx toAdd = GetOrCreatePointEx(from, fromTime);
 			line.Nodes.Add(toAdd);
-
+            
 			var points = Topology.GetNodesBetweenPoints(from, to, road);
 			foreach (var point in points) {
 				line.Nodes.Add(GetOrCreatePointEx(point, DateTime.MinValue));
@@ -138,7 +138,7 @@ namespace LK.TMatch {
 		/// </summary>
 		/// <param name="matched">List of the candidate points</param>
 		/// <returns>List of Polylines that represents matched path</returns>
-		public List<Polyline<IPointGeo>> Reconstruct(IList<CandidatePoint> matched) {
+		public List<Polyline<IPointGeo>> Reconstruct(IList<CandidatePoint> matched, HashSet<Connection> conSet) {
 			_points = new Dictionary<IPointGeo, PointEx>();
 			List<Polyline<IPointGeo>> result = new List<Polyline<IPointGeo>>();
 
@@ -152,13 +152,17 @@ namespace LK.TMatch {
 				// both points are on the same road segment
 				if (wayGeometry != null) {
 					result.Add(CreateLine(matched[i].MapPoint, matched[i + 1].MapPoint, matched[i].Layer.TrackPoint.Time, matched[i + 1].Layer.TrackPoint.Time, wayGeometry));
+                    foreach (var c in wayGeometry.Connections)
+                            conSet.Add(c);
+                    
 				}
 				else {
-					double lenght = double.PositiveInfinity;
+					double length = double.PositiveInfinity;
 
 					// find path between matched[i] and matched[i+1]
-					var pathSegments = _pathfinder.FindPath(matched[i], matched[i + 1], ref lenght);
-					if (pathSegments == null) {
+					var pathSegments = _pathfinder.FindPath(matched[i], matched[i + 1], ref length);
+
+                    if (pathSegments == null) {
 						throw new ArgumentException(string.Format("Can not find path between points {0} and {1}", matched[i].MapPoint, matched[i + 1].MapPoint));
 					}
 					if (pathSegments.Count > 1) {
@@ -166,14 +170,18 @@ namespace LK.TMatch {
 
 						for (int j = 1; j < pathSegments.Count - 1; j++) {
 							result.Add(CreateLine(pathSegments[j].From.MapPoint, pathSegments[j].To.MapPoint, pathSegments[j].Road));
-						}
+                        }
 
 						result.Add(CreateLine(pathSegments[pathSegments.Count - 1].From.MapPoint, pathSegments[pathSegments.Count - 1].To.MapPoint, DateTime.MinValue, matched[i + 1].Layer.TrackPoint.Time, pathSegments[pathSegments.Count - 1].Road));
 					}
 					else {
 						result.Add(CreateLine(pathSegments[0].From.MapPoint, pathSegments[0].To.MapPoint, matched[i].Layer.TrackPoint.Time, matched[i + 1].Layer.TrackPoint.Time, pathSegments[0].Road));
 					}
-				}
+
+                    foreach (var s in pathSegments)
+                        foreach (var c in s.Road.Connections)
+                            conSet.Add(c);
+                }
 			}
 			return result;
 		}
