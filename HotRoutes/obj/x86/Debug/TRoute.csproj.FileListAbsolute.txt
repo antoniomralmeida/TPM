@@ -10,3 +10,9 @@ C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\TRoute.pdb
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\HotRoutes\obj\x86\Debug\TRoute.csprojResolveAssemblyReference.cache
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\HotRoutes\obj\x86\Debug\TRoute.exe
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\HotRoutes\obj\x86\Debug\TRoute.pdb
+C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\TRoute.exe.config
+C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\TRoute.exe
+C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\TRoute.pdb
+C:\Users\manoel.ribeiro\Source\Repos\TPM\HotRoutes\obj\x86\Debug\TRoute.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro\Source\Repos\TPM\HotRoutes\obj\x86\Debug\TRoute.exe
+C:\Users\manoel.ribeiro\Source\Repos\TPM\HotRoutes\obj\x86\Debug\TRoute.pdb

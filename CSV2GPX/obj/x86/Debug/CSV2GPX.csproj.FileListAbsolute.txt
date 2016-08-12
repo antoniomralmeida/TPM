@@ -10,3 +10,9 @@ C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\CSV2GPX.pdb
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\CSV2GPX\obj\x86\Debug\CSV2GPX.csprojResolveAssemblyReference.cache
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\CSV2GPX\obj\x86\Debug\CSV2GPX.exe
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\CSV2GPX\obj\x86\Debug\CSV2GPX.pdb
+C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\CSV2GPX.exe.config
+C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\CSV2GPX.exe
+C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\CSV2GPX.pdb
+C:\Users\manoel.ribeiro\Source\Repos\TPM\CSV2GPX\obj\x86\Debug\CSV2GPX.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro\Source\Repos\TPM\CSV2GPX\obj\x86\Debug\CSV2GPX.exe
+C:\Users\manoel.ribeiro\Source\Repos\TPM\CSV2GPX\obj\x86\Debug\CSV2GPX.pdb

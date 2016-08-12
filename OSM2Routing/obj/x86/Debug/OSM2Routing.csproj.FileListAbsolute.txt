@@ -12,3 +12,10 @@ C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\bin\OSM2Routing.pdb
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\OSM2Routing\obj\x86\Debug\OSM2Routing.csprojResolveAssemblyReference.cache
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\OSM2Routing\obj\x86\Debug\OSM2Routing.exe
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\OSM2Routing\obj\x86\Debug\OSM2Routing.pdb
+C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\sample.config
+C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\OSM2Routing.exe.config
+C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\OSM2Routing.exe
+C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\OSM2Routing.pdb
+C:\Users\manoel.ribeiro\Source\Repos\TPM\OSM2Routing\obj\x86\Debug\OSM2Routing.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro\Source\Repos\TPM\OSM2Routing\obj\x86\Debug\OSM2Routing.exe
+C:\Users\manoel.ribeiro\Source\Repos\TPM\OSM2Routing\obj\x86\Debug\OSM2Routing.pdb

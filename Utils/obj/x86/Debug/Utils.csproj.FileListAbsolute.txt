@@ -10,3 +10,9 @@ C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\Utils\obj\x86\Debug\Utils.csprojRe
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\Utils\obj\x86\Debug\Utils.dll
 C:\Users\manoel.ribeiro.LSBD\Source\Repos\TPM\Utils\obj\x86\Debug\Utils.pdb
 C:\Users\isabel.lima\git\traveltimeanalysis\Utils\obj\x86\Debug\Utils.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\Utils.dll.config
+C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\Utils.dll
+C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\Utils.pdb
+C:\Users\manoel.ribeiro\Source\Repos\TPM\Utils\obj\x86\Debug\Utils.csprojResolveAssemblyReference.cache
+C:\Users\manoel.ribeiro\Source\Repos\TPM\Utils\obj\x86\Debug\Utils.dll
+C:\Users\manoel.ribeiro\Source\Repos\TPM\Utils\obj\x86\Debug\Utils.pdb
