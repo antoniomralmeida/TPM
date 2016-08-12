@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Text;
+
 
 // K-means clustering demo. ('Lloyd's algorithm')
 // Coded using static methods. Normal error-checking removed for clarity.
@@ -9,16 +12,17 @@ namespace LK.GPXTime
 {
   class KMeans
   {
-    
-    // ============================================================================
-
-    public static int[] Cluster(double[][] rawData, int numClusters)
+        
+      public static int[] Cluster(double[][] rawData, int numClusters)
     {
       // k-means clustering
       // index of return is tuple ID, cell is cluster ID
       // ex: [2 1 0 0 2 2] means tuple 0 is cluster 2, tuple 1 is cluster 1, tuple 2 is cluster 0, tuple 3 is cluster 0, etc.
       // an alternative clustering DS to save space is to use the .NET BitArray class
       double[][] data = Normalized(rawData); // so large values don't dominate
+      ShowData(data, 6, true, true);
+            
+
 
       bool changed = true; // was there a change in at least one cluster assignment?
       bool success = true; // were all means able to be computed? (no zero-count clusters)
@@ -64,20 +68,36 @@ namespace LK.GPXTime
       {
         result[i] = new double[rawData[i].Length];
         Array.Copy(rawData[i], result[i], rawData[i].Length);
+
       }
 
-      for (int j = 0; j < result[0].Length; ++j) // each col
-      {
-        double colSum = 0.0;
+
+
+
+            for (int j = 0; j < result[0].Length; ++j) // each col
+            {
+
+                double min = double.MaxValue;
+                double max = double.MinValue;
+                for (int i = 0; i < result.Length; ++i) { 
+                    if (result[i][j] < min) min = result[i][j];
+                    if (result[i][j] > max) max = result[i][j];
+                }
+                double factor = max - min;
+                /*
+                double colSum = 0.0;
         for (int i = 0; i < result.Length; ++i)
           colSum += result[i][j];
         double mean = colSum / result.Length;
-        double sum = 0.0;
+        double sum_2 = 0.0;
         for (int i = 0; i < result.Length; ++i)
-          sum += (result[i][j] - mean) * (result[i][j] - mean);
-        double sd = sum / result.Length;
+          sum_2 += (result[i][j] - mean) * (result[i][j] - mean);
+        double sd = sum_2 / result.Length;
+                Console.WriteLine("colSum=" + colSum+ " mean=" + mean+" sum_2= "+ sum_2+ " sd="+sd);
+                */
         for (int i = 0; i < result.Length; ++i)
-          result[i][j] = (result[i][j] - mean) / sd;
+          if (factor != 0) 
+            result[i][j] = (result[i][j] - min) / factor;
       }
       return result;
     }
@@ -218,7 +238,7 @@ namespace LK.GPXTime
       }
       return indexOfMin;
     }
-
+        
     // ============================================================================
 
     // misc display helpers for demo
@@ -245,25 +265,25 @@ namespace LK.GPXTime
       if (newLine) Console.WriteLine("\n");
     }
 
-    public static void ShowClustered(double[][] data, int[] clustering, int numClusters, int decimals)
+    public static void ShowClustered(double[][] data, int[] clustering, int numClusters, int decimals, System.IO.StreamWriter toout)
     {
       for (int k = 0; k < numClusters; ++k)
       {
-        Console.WriteLine("===================");
+        
         for (int i = 0; i < data.Length; ++i)
         {
           int clusterID = clustering[i];
           if (clusterID != k) continue;
-          Console.Write(i.ToString().PadLeft(3) + " ");
           for (int j = 0; j < data[i].Length; ++j)
           {
-            if (data[i][j] >= 0.0) Console.Write(" ");
-            Console.Write(data[i][j].ToString("F" + decimals) + " ");
+            toout.Write(data[i][j].ToString("F" + decimals) + ";");
           }
-          Console.WriteLine("");
+                    toout.WriteLine( k);
         }
-        Console.WriteLine("===================");
+           
       } // k
     }
+
+    
   } // Program
 } // ns

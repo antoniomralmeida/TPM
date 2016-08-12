@@ -12,7 +12,7 @@ namespace LK.GPXTime
 {
     class Program
     {
-
+        /*
         static void Main(string[] args)
         {
             Console.WriteLine("\nBegin k-means clustering demo\n");
@@ -62,9 +62,9 @@ namespace LK.GPXTime
             Console.ReadLine();
 
         } // Main
+        */
 
-
-/*        static void Main(string[] args)
+       static void Main(string[] args)
         {
             string gpxPath = "";
             int samplingPeriod = 0;
@@ -121,13 +121,58 @@ namespace LK.GPXTime
             {
                 Console.WriteLine("No GPX files found");
             }
+           
+            
+            double[][] rawData = new double[20][];
+            rawData[0] = new double[] { 65.0, 220.0 };
+            rawData[1] = new double[] { 73.0, 160.0 };
+            rawData[2] = new double[] { 59.0, 110.0 };
+            rawData[3] = new double[] { 61.0, 120.0 };
+            rawData[4] = new double[] { 75.0, 150.0 };
+            rawData[5] = new double[] { 67.0, 240.0 };
+            rawData[6] = new double[] { 68.0, 230.0 };
+            rawData[7] = new double[] { 70.0, 220.0 };
+            rawData[8] = new double[] { 62.0, 130.0 };
+            rawData[9] = new double[] { 66.0, 210.0 };
+            rawData[10] = new double[] { 77.0, 190.0 };
+            rawData[11] = new double[] { 75.0, 180.0 };
+            rawData[12] = new double[] { 74.0, 170.0 };
+            rawData[13] = new double[] { 70.0, 210.0 };
+            rawData[14] = new double[] { 61.0, 110.0 };
+            rawData[15] = new double[] { 58.0, 100.0 };
+            rawData[16] = new double[] { 66.0, 230.0 };
+            rawData[17] = new double[] { 59.0, 120.0 };
+            rawData[18] = new double[] { 68.0, 210.0 };
+            rawData[19] = new double[] { 61.0, 130.0 };
+            
+          
+            /*
+            //int n = tlist.Count();
+            int n = 20;
 
+            double[][] rawData = new double[n][];
+            for(int i=0; i< n;i++)
+                rawData[i] = new double[] { 0, tlist[i]};
+            
+            */
+
+            int numClusters = 3;
+            int[] clustering = KMeans.Cluster(rawData, numClusters); // this is it
+            
+            Console.WriteLine("Raw data by cluster:\n");
+
+            System.IO.StreamWriter tofile = new System.IO.StreamWriter("out.csv");
+                       
+            KMeans.ShowClustered(rawData, clustering, numClusters, 4, tofile);
+            tofile.Close();
+
+            /*
             Double xMin, optimalBinWidth;
             List<int> f;
 
 
             List<Double> buckets = HistSample.CalculateOptimalBinWidth(tlist, out xMin, out optimalBinWidth, out f);
-
+            
 
             System.Xml.XmlDocument doc = new XmlDocument();
 
@@ -169,12 +214,13 @@ namespace LK.GPXTime
 
             String fileout = Path.Combine(Path.GetDirectoryName(gpxPath), "GPXTime.xml");
             doc.Save(fileout);
+            */
             Console.WriteLine("\t\tDone.");
 
 
         }
 
-    */
+    
         static void ProcessGPXFile(string path, List<Double> tlist, int samplingPeriod, bool filterOutput)
         {
             LK.GPXUtils.Filters.FrequencyFilter filter = new LK.GPXUtils.Filters.FrequencyFilter();
