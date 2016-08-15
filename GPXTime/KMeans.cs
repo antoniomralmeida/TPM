@@ -20,22 +20,17 @@ namespace LK.GPXTime
             // ex: [2 1 0 0 2 2] means tuple 0 is cluster 2, tuple 1 is cluster 1, tuple 2 is cluster 0, tuple 3 is cluster 0, etc.
             // an alternative clustering DS to save space is to use the .NET BitArray class
             double[][] data = Normalized(rawData); // so large values don't dominate
+            double minWithinss = double.MaxValue;
 
             bool changed = true; // was there a change in at least one cluster assignment?
             bool success = true; // were all means able to be computed? (no zero-count clusters)
             int seed = 7;
             int nstart = 5;
-            // init clustering[] to get things started
-            // an alternative is to initialize means to randomly selected tuples
-            // then the processing loop is
-            // loop
-            //    update clustering
-            //    update means
-            // end loop
+            
             int maxCount = data.Length * 10; // sanity check
             int ct = 0;
-            int[] clustering;
-            clustering = new int[data.Length]; // InitClustering(data.Length, numClusters, seed++); 
+            int[] clustering = new int[data.Length]; // InitClustering(data.Length, numClusters, seed++); 
+            int[] bestClustering = new int[data.Length]; 
             means = Allocate(numClusters, data[0].Length);
 
             do
@@ -48,16 +43,18 @@ namespace LK.GPXTime
                     changed = UpdateClustering(data, clustering, means); // (re)assign tuples to clusters. no effect if fail
                     success = UpdateMeans(data, clustering, means); // compute new cluster means if possible. no effect if fail
                 } while (changed && success && ct < maxCount);
-                if (!changed && success)
+                withinss = sumSquaresError(data, clustering, means);
+                if (!changed && success && withinss< minWithinss)
                 {
-                    withinss = sumSquaresError(data, clustering, means);
-                    return clustering;
+                    Array.Copy(clustering, bestClustering, data.Length);
+                    minWithinss = withinss; 
                 }
             }
             while (nstart-- > 0);
-            throw new Exception("Bad clustering!");
-            
-            
+            if (minWithinss == Double.MaxValue)
+                throw new Exception("Bad clustering!");
+            withinss = minWithinss;
+            return bestClustering;
         }
 
         private static double[][] Normalized(double[][] rawData)
