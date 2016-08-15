@@ -121,100 +121,99 @@ namespace LK.GPXTime
             {
                 Console.WriteLine("No GPX files found");
             }
-           
             
-            double[][] rawData = new double[20][];
-            rawData[0] = new double[] { 65.0, 220.0 };
-            rawData[1] = new double[] { 73.0, 160.0 };
-            rawData[2] = new double[] { 59.0, 110.0 };
-            rawData[3] = new double[] { 61.0, 120.0 };
-            rawData[4] = new double[] { 75.0, 150.0 };
-            rawData[5] = new double[] { 67.0, 240.0 };
-            rawData[6] = new double[] { 68.0, 230.0 };
-            rawData[7] = new double[] { 70.0, 220.0 };
-            rawData[8] = new double[] { 62.0, 130.0 };
-            rawData[9] = new double[] { 66.0, 210.0 };
-            rawData[10] = new double[] { 77.0, 190.0 };
-            rawData[11] = new double[] { 75.0, 180.0 };
-            rawData[12] = new double[] { 74.0, 170.0 };
-            rawData[13] = new double[] { 70.0, 210.0 };
-            rawData[14] = new double[] { 61.0, 110.0 };
-            rawData[15] = new double[] { 58.0, 100.0 };
-            rawData[16] = new double[] { 66.0, 230.0 };
-            rawData[17] = new double[] { 59.0, 120.0 };
-            rawData[18] = new double[] { 68.0, 210.0 };
-            rawData[19] = new double[] { 61.0, 130.0 };
-            
-          
-            /*
-            //int n = tlist.Count();
-            int n = 20;
+            int n = tlist.Count();
+            tlist.Sort();
 
             double[][] rawData = new double[n][];
-            for(int i=0; i< n;i++)
-                rawData[i] = new double[] { 0, tlist[i]};
+            for(int l=0; l< n;l++)
+                rawData[l] = new double[] { tlist[l]};
             
-            */
+            int numClusters=2;
+            double oldWithinss;
+            double withinss;
+            double[][] means;
 
-            int numClusters = 3;
-            int[] clustering = KMeans.Cluster(rawData, numClusters); // this is it
+
+            Console.Write("Testing numClusters=" + numClusters);
+            int[] clustering = KMeans.Cluster(rawData, numClusters, out means, out oldWithinss); // this is it
+            Console.WriteLine(", withinss=" + oldWithinss);
             
-            Console.WriteLine("Raw data by cluster:\n");
-
-            System.IO.StreamWriter tofile = new System.IO.StreamWriter("out.csv");
-                       
-            KMeans.ShowClustered(rawData, clustering, numClusters, 4, tofile);
-            tofile.Close();
-
-            /*
-            Double xMin, optimalBinWidth;
-            List<int> f;
-
-
-            List<Double> buckets = HistSample.CalculateOptimalBinWidth(tlist, out xMin, out optimalBinWidth, out f);
-            
-
-            System.Xml.XmlDocument doc = new XmlDocument();
-
-            //(1) the xml declaration is recommended, but not mandatory
-            XmlDeclaration xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
-            XmlElement root = doc.DocumentElement;
-            doc.InsertBefore(xmlDeclaration, root);
-
-            //(2) string.Empty makes cleaner code
-            XmlElement element1 = doc.CreateElement(string.Empty, "time-config", string.Empty);
-            doc.AppendChild(element1);
-            XmlElement element2 = doc.CreateElement(string.Empty, "buckets", string.Empty);
-            element1.AppendChild(element2);
-
-            char i = 'A';
-
-            for (int j = 0; j < (buckets.Count - 1); j++)
+            for (int c = 3; c <= 10; c++)
             {
+                Console.Write("Testing numClusters=" + c);
+                clustering = KMeans.Cluster(rawData, c, out means, out withinss); // this is it
+                double tax = (withinss - oldWithinss ) / oldWithinss;
+                Console.WriteLine(", withinss=" + withinss);
 
-                XmlElement element3 = doc.CreateElement(string.Empty, "bucket", string.Empty);
-                element2.AppendChild(element3);
-
-                XmlAttribute attribute = doc.CreateAttribute("name");
-                attribute.Value = i.ToString();
-                element3.Attributes.Append(attribute);
-
-
-                XmlAttribute attribute2 = doc.CreateAttribute("start");
-                attribute2.Value = DateTime.FromOADate(buckets[j]).ToString("HH:mm");
-                element3.Attributes.Append(attribute2);
-
-                XmlAttribute attribute3 = doc.CreateAttribute("end");
-                attribute3.Value = DateTime.FromOADate(buckets[j + 1]).ToString("HH:mm");
-                element3.Attributes.Append(attribute3);
-
-                i++;
-
+                if (tax>0 || tax > -0.01)
+                {
+                    numClusters = c - 1;
+                    break;
+                }
+                oldWithinss = withinss;
             }
+            Console.WriteLine("numClusters=" + numClusters);
+            clustering = KMeans.Cluster(rawData, numClusters, out means, out withinss); // this is it
+            
 
-            String fileout = Path.Combine(Path.GetDirectoryName(gpxPath), "GPXTime.xml");
-            doc.Save(fileout);
-            */
+            List<Double> buckets = new List<double>();
+            buckets.Add(0);
+            int k = clustering[0];
+            for (int j=1;j< clustering.Length;j++)
+                if (clustering[j] != k)
+                {
+                    buckets.Add(rawData[j-1][0]);
+                    k = clustering[j];
+                }
+            buckets.Add(0.99999);
+
+            //System.IO.StreamWriter tofile = new System.IO.StreamWriter("out.csv");
+            //KMeans.ShowClustered(rawData, clustering, means, numClusters, 4, tofile);
+            //tofile.Close();
+            
+            
+             System.Xml.XmlDocument doc = new XmlDocument();
+
+             //(1) the xml declaration is recommended, but not mandatory
+             XmlDeclaration xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+             XmlElement root = doc.DocumentElement;
+             doc.InsertBefore(xmlDeclaration, root);
+
+             //(2) string.Empty makes cleaner code
+             XmlElement element1 = doc.CreateElement(string.Empty, "time-config", string.Empty);
+             doc.AppendChild(element1);
+             XmlElement element2 = doc.CreateElement(string.Empty, "buckets", string.Empty);
+             element1.AppendChild(element2);
+
+             char i = 'A';
+
+             for (int j = 0; j < (buckets.Count - 1); j++)
+             {
+
+                 XmlElement element3 = doc.CreateElement(string.Empty, "bucket", string.Empty);
+                 element2.AppendChild(element3);
+
+                 XmlAttribute attribute = doc.CreateAttribute("name");
+                 attribute.Value = i.ToString();
+                 element3.Attributes.Append(attribute);
+
+
+                 XmlAttribute attribute2 = doc.CreateAttribute("start");
+                 attribute2.Value = DateTime.FromOADate(buckets[j]).ToString("HH:mm");
+                 element3.Attributes.Append(attribute2);
+
+                 XmlAttribute attribute3 = doc.CreateAttribute("end");
+                 attribute3.Value = DateTime.FromOADate(buckets[j + 1]).ToString("HH:mm");
+                 element3.Attributes.Append(attribute3);
+
+                 i++;
+
+             }
+
+             String fileout = Path.Combine(Path.GetDirectoryName(gpxPath), "GPXTime.xml");
+             doc.Save(fileout);
+             
             Console.WriteLine("\t\tDone.");
 
 

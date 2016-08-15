@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataPoint.cs" />
     <Compile Include="HistSample.cs" />
     <Compile Include="KMeans.cs" />
     <Compile Include="Program.cs" />
