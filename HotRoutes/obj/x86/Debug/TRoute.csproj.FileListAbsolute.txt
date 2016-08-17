@@ -1,6 +1,0 @@
-C:\Users\isabellima\git\TPM\bin\TRoute.exe.config
-C:\Users\isabellima\git\TPM\bin\TRoute.exe
-C:\Users\isabellima\git\TPM\bin\TRoute.pdb
-C:\Users\isabellima\git\TPM\HotRoutes\obj\x86\Debug\TRoute.csprojResolveAssemblyReference.cache
-C:\Users\isabellima\git\TPM\HotRoutes\obj\x86\Debug\TRoute.exe
-C:\Users\isabellima\git\TPM\HotRoutes\obj\x86\Debug\TRoute.pdb

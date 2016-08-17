@@ -1,6 +1,0 @@
-C:\Users\isabellima\git\TPM\bin\TMatch.exe.config
-C:\Users\isabellima\git\TPM\bin\TMatch.exe
-C:\Users\isabellima\git\TPM\bin\TMatch.pdb
-C:\Users\isabellima\git\TPM\TMatch\obj\x86\Debug\TMatch.csprojResolveAssemblyReference.cache
-C:\Users\isabellima\git\TPM\TMatch\obj\x86\Debug\TMatch.exe
-C:\Users\isabellima\git\TPM\TMatch\obj\x86\Debug\TMatch.pdb
