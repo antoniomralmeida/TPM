@@ -31,3 +31,9 @@ C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\TGreenWave.pdb
 C:\Users\manoel.ribeiro\Source\Repos\TPM\TGreenWave\obj\x86\Debug\TGreenWave.csprojResolveAssemblyReference.cache
 C:\Users\manoel.ribeiro\Source\Repos\TPM\TGreenWave\obj\x86\Debug\TGreenWave.exe
 C:\Users\manoel.ribeiro\Source\Repos\TPM\TGreenWave\obj\x86\Debug\TGreenWave.pdb
+C:\Users\isabellima\git\TPM\bin\TGreenWave.exe.config
+C:\Users\isabellima\git\TPM\bin\TGreenWave.exe
+C:\Users\isabellima\git\TPM\bin\TGreenWave.pdb
+C:\Users\isabellima\git\TPM\TGreenWave\obj\x86\Debug\TGreenWave.csprojResolveAssemblyReference.cache
+C:\Users\isabellima\git\TPM\TGreenWave\obj\x86\Debug\TGreenWave.exe
+C:\Users\isabellima\git\TPM\TGreenWave\obj\x86\Debug\TGreenWave.pdb

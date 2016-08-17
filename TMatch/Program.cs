@@ -24,7 +24,8 @@ using NDesk.Options;
 
 using LK.OSMUtils.OSMDatabase;
 using LK.GPXUtils;
-using Utils.XMLUtils;
+using LK.TMatch.XMLUtils;
+using LK.GeoUtils.Geometry;
 
 namespace LK.TMatch
 {
@@ -42,7 +43,6 @@ namespace LK.TMatch
             int samplingPeriod = 0;
             bool showHelp = false;
             bool filter = false;
-            Dictionary<Bucket, List<OSMDB>> bucketDict = new Dictionary<Bucket, List<OSMDB>>();
 
             OptionSet parameters = new OptionSet() {
                 { "osm=", "path to the routable map file",                                                  v => osmPath = v},
@@ -90,22 +90,17 @@ namespace LK.TMatch
             graph.Build(map);
             Console.WriteLine("\tDone.");
 
-
             TMM processor = new TMM(graph);
             PathReconstructer reconstructor = new PathReconstructer(graph);
 
             XMLDocument xml = new XMLDocument();
             xml.Load(xmlPath);
-            foreach (var b in xml.Buckets)
-            {
-                bucketDict.Add(b, new List<OSMDB>());
-            }
 
             // Process single file
             if (File.Exists(gpxPath))
             {
-                ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, samplingPeriod, filter, bucketDict, xml.Buckets);
-                ProcessFinalOSM(bucketDict);
+                ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, samplingPeriod, filter, xml.Buckets);
+                GenerateOsmFiles(xml.Buckets, reconstructor);
             }
             // Process all GPX in directory
             else if (Directory.Exists(gpxPath))
@@ -115,10 +110,10 @@ namespace LK.TMatch
 
                 foreach (var file in files)
                 {
-                    ProcessGPXFile(file, processor, reconstructor, outputPath, samplingPeriod, filter, bucketDict, xml.Buckets);
+                    ProcessGPXFile(file, processor, reconstructor, outputPath, samplingPeriod, filter, xml.Buckets);
                     Console.WriteLine();
                 }
-                ProcessFinalOSM(bucketDict);
+                GenerateOsmFiles(xml.Buckets, reconstructor);
             }
             else
             {
@@ -130,42 +125,8 @@ namespace LK.TMatch
 
         }
 
-        static void ProcessFinalOSM(Dictionary<Bucket, List<OSMDB>> bucketDict)
-        {
-            foreach (var b in bucketDict)
-            {
-                if (b.Value.Any())
-                {
-                    OSMDB finalOsm = new OSMDB();
-                    Dictionary<OSMWay, HashSet<string>> traffic = new Dictionary<OSMWay, HashSet<string>>();
-
-                    foreach (var osm in b.Value)
-                    {
-                        foreach (var node in osm.Nodes)
-                            if (!finalOsm.Nodes.Contains(node))
-                                finalOsm.Nodes.Add(node);
-
-                        foreach (var way in osm.Ways)
-                        {
-                            if (!finalOsm.Ways.Contains(way))
-                            {
-                                finalOsm.Ways.Add(way);
-                                traffic.Add(way, new HashSet<string>());
-                            }
-                            traffic[way].Add(Convert.ToString(osm.ID));
-                        }
-                    }
-
-                    foreach (var way in finalOsm.Ways) 
-                        way.Tags.Add(new OSMTag("traffic", String.Join<string>(",", traffic[way])));
-
-                    finalOsm.Save("map" + b.Key.Name + ".osm");
-                }
-            }
-        }
-
         static void ProcessGPXFile(string path, TMM processor, PathReconstructer reconstructor, string outputPath, int samplingPeriod, 
-            bool filterOutput, Dictionary<Bucket, List<OSMDB>> bucketDict, List<Bucket> buckets)
+            bool filterOutput, List<Bucket> buckets)
         {
             GPXUtils.Filters.FrequencyFilter filter = new GPXUtils.Filters.FrequencyFilter();
 
@@ -196,7 +157,7 @@ namespace LK.TMatch
 
                             HashSet<Connection> conSet = new HashSet<Connection>();
                             var reconstructedPath = reconstructor.Reconstruct(result, conSet);
-                            
+
                             Console.Write(".");
 
                             if (filterOutput)
@@ -204,22 +165,10 @@ namespace LK.TMatch
                                 reconstructor.FilterUturns(reconstructedPath, 100);
                             }
 
-                            var pathOsm = reconstructor.SaveToOSM(reconstructedPath);
-                            pathOsm.ID = Convert.ToInt64(gpx.Tracks[trackIndex].Name.Replace("trk_", ""));
-                            
-                            /*foreach (var c in conSet)
-                            {
-                                Console.WriteLine("FROM (lat: " + c.From.MapPoint.Latitude + ", lng: " + c.From.MapPoint.Longitude + ")");
-                                Console.WriteLine("TO (lat: " + c.To.MapPoint.Latitude + ", lng: " + c.To.MapPoint.Longitude + ")");
-                            }*/
-
-                            //pathOsm.Save(Path.Combine(outputPath, Path.GetFileNameWithoutExtension(path) + "_" + name + ".osm"));
                             Console.WriteLine(".");
 
-                            var overlapping = getOverlappingBuckets(toProcess, buckets);
-                            foreach (var b in overlapping) {
-                                bucketDict[b].Add(pathOsm);
-                            }
+                            buckets = GetUpdatedBuckets(toProcess, reconstructedPath, conSet, buckets);
+
                         } else {
                             throw new Exception(string.Format("Track segment discarded because number of nodes is less than 2."));
                         }
@@ -232,20 +181,33 @@ namespace LK.TMatch
             }
         }
 
-        static List<Bucket> getOverlappingBuckets(GPXTrackSegment toProcess, List<Bucket> buckets)
+        static List<Bucket> GetUpdatedBuckets(GPXTrackSegment toProcess, List<Polyline<IPointGeo>> path, 
+            HashSet<Connection> conSet, List<Bucket> buckets)
         {
-            List<Bucket> overlapping = new List<Bucket>();
             var start = toProcess.Nodes.First().Time.TimeOfDay;
             var end = toProcess.Nodes.Last().Time.TimeOfDay;
-
+            
             foreach (var b in buckets)
             {
                 if (start < b.End.TimeOfDay && end >= b.Start.TimeOfDay)
                 {
-                    overlapping.Add(b);
+                    //b.Trajectories.Add(path, conSet);
+                    b.Paths.AddRange(path);
                 }
             }
-            return overlapping;
+            return buckets;
+        }
+
+        static void GenerateOsmFiles(List<Bucket> buckets, PathReconstructer reconstructor)
+        {
+            foreach (var b in buckets)
+            {
+                if (b.Paths.Any())
+                {
+                    OSMDB map = reconstructor.SaveToOSM(b.Paths);
+                    map.Save("map" + b.Name + ".osm");
+                }
+            }
         }
 
         /// <summary>

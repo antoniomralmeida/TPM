@@ -13,3 +13,8 @@ C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\GPXUtils.pdb
 C:\Users\manoel.ribeiro\Source\Repos\TPM\GPXUtils\obj\Debug\GPXUtils.csprojResolveAssemblyReference.cache
 C:\Users\manoel.ribeiro\Source\Repos\TPM\GPXUtils\obj\Debug\GPXUtils.dll
 C:\Users\manoel.ribeiro\Source\Repos\TPM\GPXUtils\obj\Debug\GPXUtils.pdb
+C:\Users\isabellima\git\TPM\bin\GPXUtils.dll
+C:\Users\isabellima\git\TPM\bin\GPXUtils.pdb
+C:\Users\isabellima\git\TPM\GPXUtils\obj\Debug\GPXUtils.csprojResolveAssemblyReference.cache
+C:\Users\isabellima\git\TPM\GPXUtils\obj\Debug\GPXUtils.dll
+C:\Users\isabellima\git\TPM\GPXUtils\obj\Debug\GPXUtils.pdb

@@ -13,3 +13,7 @@ C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\GeoUtils.pdb
 C:\Users\manoel.ribeiro\Source\Repos\TPM\GeoUtils\obj\Debug\GeoUtils.csprojResolveAssemblyReference.cache
 C:\Users\manoel.ribeiro\Source\Repos\TPM\GeoUtils\obj\Debug\GeoUtils.dll
 C:\Users\manoel.ribeiro\Source\Repos\TPM\GeoUtils\obj\Debug\GeoUtils.pdb
+C:\Users\isabellima\git\TPM\bin\GeoUtils.dll
+C:\Users\isabellima\git\TPM\bin\GeoUtils.pdb
+C:\Users\isabellima\git\TPM\GeoUtils\obj\Debug\GeoUtils.dll
+C:\Users\isabellima\git\TPM\GeoUtils\obj\Debug\GeoUtils.pdb

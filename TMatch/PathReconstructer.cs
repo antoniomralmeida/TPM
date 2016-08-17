@@ -154,7 +154,6 @@ namespace LK.TMatch {
 					result.Add(CreateLine(matched[i].MapPoint, matched[i + 1].MapPoint, matched[i].Layer.TrackPoint.Time, matched[i + 1].Layer.TrackPoint.Time, wayGeometry));
                     foreach (var c in wayGeometry.Connections)
                             conSet.Add(c);
-                    
 				}
 				else {
 					double length = double.PositiveInfinity;

@@ -16,3 +16,9 @@ C:\Users\manoel.ribeiro\Source\Repos\TPM\bin\Analyzer.pdb
 C:\Users\manoel.ribeiro\Source\Repos\TPM\Analyzer\obj\x86\Debug\Analyzer.csprojResolveAssemblyReference.cache
 C:\Users\manoel.ribeiro\Source\Repos\TPM\Analyzer\obj\x86\Debug\Analyzer.exe
 C:\Users\manoel.ribeiro\Source\Repos\TPM\Analyzer\obj\x86\Debug\Analyzer.pdb
+C:\Users\isabellima\git\TPM\bin\Analyzer.exe.config
+C:\Users\isabellima\git\TPM\bin\Analyzer.exe
+C:\Users\isabellima\git\TPM\bin\Analyzer.pdb
+C:\Users\isabellima\git\TPM\Analyzer\obj\x86\Debug\Analyzer.csprojResolveAssemblyReference.cache
+C:\Users\isabellima\git\TPM\Analyzer\obj\x86\Debug\Analyzer.exe
+C:\Users\isabellima\git\TPM\Analyzer\obj\x86\Debug\Analyzer.pdb

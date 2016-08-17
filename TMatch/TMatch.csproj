@@ -71,6 +71,7 @@
     <Compile Include="AStar\PartialPath.cs" />
     <Compile Include="AStar\PartialPathList.cs" />
     <Compile Include="AStar\PathSegment.cs" />
+    <Compile Include="Bucket.cs" />
     <Compile Include="CandidateGraphLayer.cs" />
     <Compile Include="CandidatePoint.cs" />
     <Compile Include="CandidatesConnection.cs" />
@@ -83,6 +84,9 @@
     <Compile Include="RoadGraph\Node.cs" />
     <Compile Include="RoadGraph\RoadGraph.cs" />
     <Compile Include="TMM.cs" />
+    <Compile Include="XMLUtils\IXMLDataReader.cs" />
+    <Compile Include="XMLUtils\XMLDataReader.cs" />
+    <Compile Include="XMLUtils\XMLDocument.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
