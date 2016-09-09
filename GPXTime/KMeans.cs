@@ -13,7 +13,7 @@ namespace LK.GPXTime
     class KMeans
     {
 
-        public static int[] Cluster(double[][] rawData, int numClusters,  out double[][] means,  out double withinss)
+        public static int[] Cluster(double[][] rawData, int numClusters,  out double[][] means,  out int[] clusterCounts, out double withinss)
         {
             // k-means clustering
             // index of return is tuple ID, cell is cluster ID
@@ -54,6 +54,13 @@ namespace LK.GPXTime
             if (minWithinss == Double.MaxValue)
                 throw new Exception("Bad clustering!");
             withinss = minWithinss;
+            clusterCounts = new int[numClusters];
+            for (int i = 0; i < data.Length; ++i)
+            {
+                int cluster = clustering[i];
+                ++clusterCounts[cluster];
+            }
+
             return bestClustering;
         }
 

@@ -46,7 +46,6 @@ namespace LK.CSV2GPX
                 return;
             }
 
-
             // Process signle file
             if (File.Exists(csvPath))
             {
@@ -56,6 +55,7 @@ namespace LK.CSV2GPX
             else if (Directory.Exists(csvPath))
             {
                 var files = Directory.GetFiles(csvPath, "*.CSV");
+                
                 Console.WriteLine("Found {0} CSV file(s).", files.Length);
 
                 foreach (var file in files)
@@ -85,21 +85,22 @@ namespace LK.CSV2GPX
             char[] seps = { ';', ',', '\t' };
             char sep = '.';
             String[] fields = { };
+            
             long last_id = -1;
 
             int id_field = 0;
-            int lat_field = 0;
-            int lon_field = 0;
-            int time_field = 0;
-            int uf1_field = 0;
-            int uf2_field = 0;
-            int uf3_field = 0;
-            int uf4_field = 0;
+            int lat_field = 1;
+            int lon_field = 2;
+            int time_field = 7;
+            int uf1_field = 3;
+            int uf2_field = 4;
+            int uf3_field = 5;
+            int uf4_field = 6;
+            Boolean header = true;
             GPXTrack trk = null;
 
             List<long> ids = new List<long>();
-            Dictionary<String, long> tlist = new Dictionary<String, long>();
-
+   
             if (samplingPeriod > 0)
             {
 
@@ -132,25 +133,40 @@ namespace LK.CSV2GPX
                 {
                     if (fields[i] == "id")
                         id_field = i;
+                    else
                     if (fields[i] == "lat")
                         lat_field = i;
+                    else
                     if (fields[i] == "lon")
                         lon_field = i;
+                    else
                     if (fields[i] == "time")
                         time_field = i;
+                    else
                     if (fields[i] == "uf1")
                         uf1_field = i;
+                    else
                     if (fields[i] == "uf2")
                         uf2_field = i;
+                    else
                     if (fields[i] == "uf3")
                         uf3_field = i;
+                    else
                     if (fields[i] == "uf4")
                         uf4_field = i;
-                }
-                if ((lat_field + lon_field) == 0)
-                    throw new Exception(string.Format("Can not find header line.(id, lat, lon, time)"));
+                    else
+                    {
+                        header = false;
+                        Console.WriteLine(string.Format("Can not find header line.(id, lat, lon, time)"));
+                        csv.Close();
+                        csv = new System.IO.StreamReader(path);
+                        break;
+                    }
 
+                } 
             }
+            if (!header)
+                line = csv.ReadLine();
             while ((line = csv.ReadLine()) != null)
             {
                 fields = line.Split(sep);
@@ -163,21 +179,10 @@ namespace LK.CSV2GPX
                     //break;
                 }
 
-                String key = fields[time_field].Substring(16, 5);
-
-                if (tlist.ContainsKey(key))
-                    tlist[key]++;
-                else
-                    tlist.Add(key, 1);
             }
             csv.Close();
 
-            System.IO.StreamWriter log = new System.IO.StreamWriter(path + ".log");
-
-            foreach (var pair in tlist)
-                log.WriteLine(pair);
-            log.Close();
-
+   
             foreach (long next_id in ids)
             {
                 Console.Write(next_id);

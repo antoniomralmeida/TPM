@@ -13,7 +13,7 @@ namespace LK.GPXTime
     class Program
     {
 
-       static void Main(string[] args)
+        static void Main(string[] args)
         {
             string gpxPath = "";
             int samplingPeriod = 0;
@@ -70,41 +70,80 @@ namespace LK.GPXTime
             {
                 Console.WriteLine("No GPX files found");
             }
-            
-            int n = tlist.Count();
-            tlist.Sort();
 
-            double[][] rawData = new double[n][];
-            for(int l=0; l< n;l++)
-                rawData[l] = new double[] { tlist[l]};
-            
-            int numClusters=2;
-            double oldWithinss;
+            int DataSetSize = tlist.Count();
+            int numClusters = 2;
+            double oldWithinss = double.MaxValue;
             double withinss;
             double[][] means;
+            int[] count;
+            int[] clustering;
+            Dictionary< String, long> hist = new Dictionary<String, long>();
+
+            Console.WriteLine("Sorting DataSetSize=" + DataSetSize);
+            tlist.Sort();
+
+            double[][] rawData = new double[DataSetSize][];
+            StreamWriter txtfile = new System.IO.StreamWriter("GPXTime.txt");
+            for (int l = 0; l < DataSetSize; l++) { 
+                 rawData[l] = new double[] { tlist[l] };
+                 txtfile.WriteLine(tlist[l]);
+                String key = String.Format("{0:00}:{1:00}", (int)(tlist[l] * 24) , (int)(tlist[l] * 24 * 60) % 24) ;
+               // Console.WriteLine(key);
 
 
-            Console.Write("Testing numClusters=" + numClusters);
-            int[] clustering = KMeans.Cluster(rawData, numClusters, out means, out oldWithinss); // this is it
-            Console.WriteLine(", withinss=" + oldWithinss);
+                if (hist.ContainsKey(key))
+                    hist[key]++;
+                else
+                    hist.Add(key, 1);
+            }
+            txtfile.Close();
+
+            System.IO.StreamWriter log = new System.IO.StreamWriter("GPXTime.log");
+            foreach (var pair in hist)
+                log.WriteLine(pair);
+            log.Close();
+
+
+            //Sturges' formula
+            int min_cluster = 2;
+            int max_cluster = Math.Max(3, 2 * (int)(Math.Log(DataSetSize) / Math.Log(2) + 1));
             
-            for (int c = 3; c <= 10; c++)
+            Console.WriteLine("Testing maxClusters=" + max_cluster);
+            
+            int c = min_cluster;
+            do
             {
                 Console.Write("Testing numClusters=" + c);
-                clustering = KMeans.Cluster(rawData, c, out means, out withinss); // this is it
-                double tax = (withinss - oldWithinss ) / oldWithinss;
+                clustering = KMeans.Cluster(rawData, c, out means, out count, out withinss); // this is it
+                double tax = (withinss - oldWithinss) / oldWithinss;
                 Console.WriteLine(", withinss=" + withinss);
-
-                if (tax>0 || tax > -0.01)
-                {
-                    numClusters = c - 1;
+                numClusters = c - 1;
+                if (c> max_cluster && (tax > 0 || tax > -0.1))  //10%               
                     break;
-                }
+
                 oldWithinss = withinss;
-            }
+
+            } while (c++ <= max_cluster);
             Console.WriteLine("numClusters=" + numClusters);
-            clustering = KMeans.Cluster(rawData, numClusters, out means, out withinss); // this is it
+            clustering = KMeans.Cluster(rawData, numClusters, out means, out count, out withinss); // this is it
             
+            Dictionary<String, long> b = new Dictionary<String, long>();
+
+            for (int j=0;j<count.Count();j++)
+            {
+                Console.WriteLine(j);
+                String key = String.Format("{0:00}:{1:00}", (int)(means[j][0] * 24), (int)(means[j][0] * 24 * 60) % 24);
+                b.Add(key, count[j]);
+
+            }
+
+            System.IO.StreamWriter log2 = new System.IO.StreamWriter("GPXTime2.log");
+            foreach (var pair in b)
+                log2.WriteLine(pair);
+            log2.Close();
+
+
 
             List<Double> buckets = new List<double>();
             buckets.Add(0);
