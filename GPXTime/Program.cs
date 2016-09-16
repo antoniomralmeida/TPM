@@ -17,9 +17,11 @@ namespace LK.GPXTime
         {
             string gpxPath = "";
             int samplingPeriod = 0;
+            DateTime span = DateTime.Now;
             bool showHelp = false;
             bool filter = false;
             List<Double> tlist = new List<Double>();
+            List<Double> rre = new List<Double>();
 
 
             OptionSet parameters = new OptionSet() {
@@ -78,70 +80,90 @@ namespace LK.GPXTime
             double[][] means;
             int[] count;
             int[] clustering;
-            Dictionary< String, long> hist = new Dictionary<String, long>();
+            System.IO.StreamWriter csv;
+
+            System.IO.StreamWriter log = new System.IO.StreamWriter("GPXTime.log");
 
             Console.WriteLine("Sorting DataSetSize=" + DataSetSize);
             tlist.Sort();
-
             double[][] rawData = new double[DataSetSize][];
-            StreamWriter txtfile = new System.IO.StreamWriter("GPXTime.txt");
-            for (int l = 0; l < DataSetSize; l++) { 
-                 rawData[l] = new double[] { tlist[l] };
-                 txtfile.WriteLine(tlist[l]);
-                String key = String.Format("{0:00}:{1:00}", (int)(tlist[l] * 24) , (int)(tlist[l] * 24 * 60) % 24) ;
-               // Console.WriteLine(key);
+            for (int l = 0; l < DataSetSize; l++)
+                rawData[l] = new double[] { tlist[l] };
+
+            csv = new System.IO.StreamWriter("GPXTime.csv");
+            for (int n = 0; n < rawData.Length; n++)
+                csv.WriteLine(rawData[n][0] );
+            csv.Close();
 
 
-                if (hist.ContainsKey(key))
-                    hist[key]++;
-                else
-                    hist.Add(key, 1);
-            }
-            txtfile.Close();
+            //Discretization Round Time
+            
+            Console.Write("Testing Discretization Round Time");
+            clustering = DiscTime.DiscretizationRoundTime(rawData, out numClusters, out means, out count, out withinss);
+            Console.WriteLine(",numClusters= "+ numClusters + ", withinss=" + withinss);
+            rre.Add(withinss);
+            log.WriteLine(numClusters + ";" + withinss);
 
-            System.IO.StreamWriter log = new System.IO.StreamWriter("GPXTime.log");
-            foreach (var pair in hist)
-                log.WriteLine(pair);
-            log.Close();
+            csv = new System.IO.StreamWriter("GPXTime1.csv");
+            for (int n=0;n<numClusters;n++)
+                csv.WriteLine(means[n][0] + ";" + count[n]);
+            csv.Close();
 
+            //Discretization Histogram
+
+            Console.Write("Testing Discretization Histogram");
+            clustering = HistSample.Histogram(rawData, out numClusters, out means, out count, out withinss);
+            Console.WriteLine(",numClusters= " + numClusters + ", withinss=" + withinss);
+            rre.Add( withinss);
+            log.WriteLine(numClusters + ";" + withinss);
+
+            csv = new System.IO.StreamWriter("GPXTime2.csv");
+            for (int n = 0; n < numClusters; n++)
+                csv.WriteLine(means[n][0] + ";" + count[n]);
+            csv.Close();
+
+            Console.Write("Testing Discretization KMeans");
 
             //Sturges' formula
-            int min_cluster = 2;
-            int max_cluster = Math.Max(3, 2 * (int)(Math.Log(DataSetSize) / Math.Log(2) + 1));
-            
-            Console.WriteLine("Testing maxClusters=" + max_cluster);
-            
+            int max_cluster;
+            int min_cluster;
+
+            Utils.Sturges(rawData.Length, out min_cluster, out max_cluster);
+       
+            double limWithinss = (2 * rre[0] + rre[1])/ 3;
+            rre.Add(double.MaxValue);
             int c = min_cluster;
             do
             {
-                Console.Write("Testing numClusters=" + c);
-                clustering = KMeans.Cluster(rawData, c, out means, out count, out withinss); // this is it
-                double tax = (withinss - oldWithinss) / oldWithinss;
-                Console.WriteLine(", withinss=" + withinss);
-                numClusters = c - 1;
-                if (c> max_cluster && (tax > 0 || tax > -0.1))  //10%               
+                Console.Write(".");
+                clustering = KMeans.Cluster(rawData, c, out means, out count, out withinss,2); // this is it
+                //Console.WriteLine(", withinss=" + withinss);
+                rre.Add(withinss);
+                double tax = (rre[rre.Count-1]- rre[rre.Count - 2]) / rre[rre.Count - 2];
+                log.WriteLine(c + ";" + withinss);    
+                if ((c > min_cluster && (tax > 0 || tax > -0.1))) // 10%   
+                {             
+                    numClusters = c - 1;
                     break;
-
+                }
+                if (withinss < limWithinss)
+                {
+                    numClusters = c;
+                    break;
+                }
                 oldWithinss = withinss;
-
             } while (c++ <= max_cluster);
-            Console.WriteLine("numClusters=" + numClusters);
-            clustering = KMeans.Cluster(rawData, numClusters, out means, out count, out withinss); // this is it
-            
-            Dictionary<String, long> b = new Dictionary<String, long>();
+            log.Close();
 
-            for (int j=0;j<count.Count();j++)
-            {
-                Console.WriteLine(j);
-                String key = String.Format("{0:00}:{1:00}", (int)(means[j][0] * 24), (int)(means[j][0] * 24 * 60) % 24);
-                b.Add(key, count[j]);
+            clustering = KMeans.Cluster(rawData, numClusters, out means, out count, out withinss, 3); // this is it
+            Console.WriteLine(",numClusters= " + numClusters + ", withinss=" + withinss);
 
-            }
 
-            System.IO.StreamWriter log2 = new System.IO.StreamWriter("GPXTime2.log");
-            foreach (var pair in b)
-                log2.WriteLine(pair);
-            log2.Close();
+            csv = new System.IO.StreamWriter("GPXTime3.csv");
+            for (int n = 0; n < numClusters; n++)
+                csv.WriteLine(means[n][0] + ";" + count[n]);
+            csv.Close();
+
 
 
 
@@ -199,6 +221,7 @@ namespace LK.GPXTime
              doc.Save(fileout);
              
             Console.WriteLine("\t\tDone.");
+            Console.WriteLine("\tSpan=" + (DateTime.Now - span));
 
         }
 
@@ -218,7 +241,7 @@ namespace LK.GPXTime
                 {
                     string name = string.IsNullOrEmpty(gpx.Tracks[trackIndex].Name) ? "t" + trackIndex.ToString() : gpx.Tracks[trackIndex].Name.Replace('\\', '-').Replace(":", "");
                     name += "_s" + segmentIndex.ToString();
-                    Console.Write("\t" + name + " ");
+                    //Console.Write("\t" + name + " ");
 
                     try
                     {
@@ -228,11 +251,8 @@ namespace LK.GPXTime
 
 
                         foreach (var t in toProcess.Nodes)
-                        {
-                            //    Console.WriteLine(t.Time);
-                            tlist.Add((t.Time.Hour + t.Time.Minute / 60.0) / 24.0);
-                        }
-                        Console.WriteLine(".");
+                            tlist.Add(Utils.Time2Double(t.Time));
+                        //Console.WriteLine(".");
                     }
                     catch (Exception e)
                     {

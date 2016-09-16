@@ -10,10 +10,12 @@ using System.Text;
 
 namespace LK.GPXTime
 {
+
     class KMeans
     {
 
-        public static int[] Cluster(double[][] rawData, int numClusters,  out double[][] means,  out int[] clusterCounts, out double withinss)
+
+        public static int[] Cluster(double[][] rawData, int numClusters,  out double[][] means,  out int[] clusterCounts, out double withinss, int nstart)
         {
             // k-means clustering
             // index of return is tuple ID, cell is cluster ID
@@ -25,26 +27,28 @@ namespace LK.GPXTime
             bool changed = true; // was there a change in at least one cluster assignment?
             bool success = true; // were all means able to be computed? (no zero-count clusters)
             int seed = 7;
-            int nstart = 5;
-            
-            int maxCount = data.Length * 10; // sanity check
+           
             int ct = 0;
+            int maxCount = rawData.Length; // sanity check
+
             int[] clustering = new int[data.Length]; // InitClustering(data.Length, numClusters, seed++); 
             int[] bestClustering = new int[data.Length]; 
             means = Allocate(numClusters, data[0].Length);
+            
 
             do
             {
-                initMeans(data, means, nstart, seed++); 
-
+                initMeans(data, means, nstart, seed++);
                 do
                 {
                     ++ct; // k-means typically converges very quickly
-                    changed = UpdateClustering(data, clustering, means); // (re)assign tuples to clusters. no effect if fail
+                    changed = UpdateClustering(data, clustering, means); // (re)assign tuples to clusters. no effect if fail     
                     success = UpdateMeans(data, clustering, means); // compute new cluster means if possible. no effect if fail
+                     
                 } while (changed && success && ct < maxCount);
-                withinss = sumSquaresError(data, clustering, means);
-                if (!changed && success && withinss< minWithinss)
+                
+                withinss = Utils.sumSquaresError(data, clustering, means);
+                if (success && withinss< minWithinss)
                 {
                     Array.Copy(clustering, bestClustering, data.Length);
                     minWithinss = withinss; 
@@ -110,29 +114,6 @@ namespace LK.GPXTime
         private static void initMeans(double[][] data, double[][] means, int nstart, int randomSeed)
         {
             Random random = new Random(randomSeed);
-            switch (nstart)
-            {
-                case 5:
-                    for (int k = 0; k < means.Length; ++k)
-                        for (int j = 0; j < means[k].Length; ++j)
-                            if (j == 0)
-                                means[k][j] = 0.0;
-                            else if (j == means[k].Length - 1)
-                                means[k][j] = 1;
-                            else
-                                means[k][j] = j * 1 / means[k].Length;
-                    break;
-                case 4:
-                    for (int k = 0; k < means.Length; ++k)
-                        for (int j = 0; j < means[k].Length; ++j)
-                            if (j == 0)
-                                means[k][j] = 0.0;
-                            else if (j == means[k].Length - 1)
-                                means[k][j] = random.Next(0, 1);
-                            else
-                                means[k][j] = j * 1 / means[k].Length;
-                    break;
-                default:
                     for (int k = 0; k < means.Length; ++k)
                     {
                         int i = random.Next(0, data.Length);
@@ -141,8 +122,6 @@ namespace LK.GPXTime
                             means[k][j] = data[i][j];
                         }
                     }
-                    break;
-            }
            }
 
         private static bool UpdateMeans(double[][] data, int[] clustering, double[][] means)
@@ -210,7 +189,7 @@ namespace LK.GPXTime
                     newClustering[i] = newClusterID; // update
                 }
             }
-
+           
             if (changed == false)
                 return false; // no change so bail and don't update clustering[][]
             
@@ -218,19 +197,6 @@ namespace LK.GPXTime
             return true; // good clustering and at least one change
         }
 
-        private static double sumSquaresError(double[][] data, int[] clustering, double[][] means)
-        {
-            double result = 0;
-            for (int i = 0; i < data.Length; ++i)
-            {
-                int c = clustering[i];
-                for (int j = 0; j < data[i].Length; ++j)
-                {
-                    result += Math.Pow(data[i][j] - means[c][j], 2);
-                }
-            }
-            return result;
-        }
 
 
         private static double Distance(double[] tuple, double[] mean)
