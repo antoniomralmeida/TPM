@@ -93,14 +93,14 @@ namespace LK.TMatch
             TMM processor = new TMM(graph);
             PathReconstructer reconstructor = new PathReconstructer(graph);
 
-            /*XMLDocument xml = new XMLDocument();
+            XMLDocument xml = new XMLDocument();
             xml.Load(xmlPath);
-            var buckets = xml.Buckets;*/
+            var buckets = xml.Buckets;
 
-            var buckets = new List<Bucket>();
+            /*var buckets = new List<Bucket>();
             var start = new TimeSpan(0,1,0);
             var end = new TimeSpan(23,59,0);
-            buckets.Add(new Bucket("single", start, end));
+            buckets.Add(new Bucket("single", start, end));*/
 
             // Process single file
             if (File.Exists(gpxPath))
@@ -227,7 +227,7 @@ namespace LK.TMatch
                                 if (way.Tags.ContainsTag("traffic"))
                                 {
                                     way.Tags["traffic"].Value += "," + cp.TrackId;
-                                    Console.WriteLine(way.Tags["traffic"].Value);
+                                    //Console.WriteLine(way.Tags["traffic"].Value);
                                 }
                                 else
                                     way.Tags.Add(new OSMTag("traffic", cp.TrackId));
