@@ -23,6 +23,7 @@ using LK.GeoUtils;
 using LK.GeoUtils.Geometry;
 
 namespace LK.TMatch {
+    [Serializable]
 	/// <summary>
 	/// Represents a node in the routable road graph
 	/// </summary>

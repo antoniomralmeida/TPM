@@ -21,6 +21,7 @@ using System.Text;
 using System.IO;
 
 using NDesk.Options;
+using Utils;
 
 using LK.OSMUtils.OSMDatabase;
 using LK.GPXUtils;
@@ -33,9 +34,8 @@ namespace LK.TMatch
     {
         static void Main(string[] args)
         {
-
             DateTime span = DateTime.Now;
-
+            
             string osmPath = "";
             string gpxPath = "";
             string xmlPath = "";
@@ -84,7 +84,7 @@ namespace LK.TMatch
             OSMDB map = new OSMDB();
             map.Load(osmPath);
             Console.WriteLine("\t\t\tDone.");
-
+            
             Console.Write("Building routable road graph ...");
             RoadGraph graph = new RoadGraph();
             graph.Build(map);
@@ -93,14 +93,20 @@ namespace LK.TMatch
             TMM processor = new TMM(graph);
             PathReconstructer reconstructor = new PathReconstructer(graph);
 
-            XMLDocument xml = new XMLDocument();
+            /*XMLDocument xml = new XMLDocument();
             xml.Load(xmlPath);
+            var buckets = xml.Buckets;*/
+
+            var buckets = new List<Bucket>();
+            var start = new TimeSpan(0,1,0);
+            var end = new TimeSpan(23,59,0);
+            buckets.Add(new Bucket("single", start, end));
 
             // Process single file
             if (File.Exists(gpxPath))
             {
-                ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, samplingPeriod, filter, xml.Buckets);
-                GenerateOsmFiles(xml.Buckets, reconstructor);
+                ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, samplingPeriod, filter, buckets);
+                GenerateOsmFiles(buckets, reconstructor, map);
             }
             // Process all GPX in directory
             else if (Directory.Exists(gpxPath))
@@ -110,10 +116,10 @@ namespace LK.TMatch
 
                 foreach (var file in files)
                 {
-                    ProcessGPXFile(file, processor, reconstructor, outputPath, samplingPeriod, filter, xml.Buckets);
+                    ProcessGPXFile(file, processor, reconstructor, outputPath, samplingPeriod, filter, buckets);
                     Console.WriteLine();
                 }
-                GenerateOsmFiles(xml.Buckets, reconstructor);
+                GenerateOsmFiles(buckets, reconstructor, map);
             }
             else
             {
@@ -154,9 +160,8 @@ namespace LK.TMatch
                         if (toProcess.NodesCount > 1) {
                             var result = processor.Match(toProcess);
                             Console.Write(".");
-
-                            HashSet<Connection> conSet = new HashSet<Connection>();
-                            var reconstructedPath = reconstructor.Reconstruct(result, conSet);
+                            
+                            var reconstructedPath = reconstructor.Reconstruct(result);
 
                             Console.Write(".");
 
@@ -166,8 +171,12 @@ namespace LK.TMatch
                             }
 
                             Console.WriteLine(".");
+                            
+                            foreach (var v in result) {
+                                v.TrackId = gpx.Tracks[trackIndex].Name.Replace("trk_", "");
+                            }
 
-                            buckets = GetUpdatedBuckets(toProcess, reconstructedPath, conSet, buckets);
+                            buckets = GetUpdatedBuckets(toProcess, reconstructedPath, buckets, result);
 
                         } else {
                             throw new Exception(string.Format("Track segment discarded because number of nodes is less than 2."));
@@ -182,30 +191,52 @@ namespace LK.TMatch
         }
 
         static List<Bucket> GetUpdatedBuckets(GPXTrackSegment toProcess, List<Polyline<IPointGeo>> path, 
-            HashSet<Connection> conSet, List<Bucket> buckets)
+            List<Bucket> buckets, IList<CandidatePoint> result)
         {
             var start = toProcess.Nodes.First().Time.TimeOfDay;
             var end = toProcess.Nodes.Last().Time.TimeOfDay;
             
             foreach (var b in buckets)
             {
-                if (start < b.End.TimeOfDay && end >= b.Start.TimeOfDay)
+                if (start < b.End && end >= b.Start)
                 {
-                    //b.Trajectories.Add(path, conSet);
                     b.Paths.AddRange(path);
+                    b.CandidatePoints.AddRange(result);
                 }
             }
             return buckets;
         }
 
-        static void GenerateOsmFiles(List<Bucket> buckets, PathReconstructer reconstructor)
+        static void GenerateOsmFiles(List<Bucket> buckets, PathReconstructer reconstructor, OSMDB map)
         {
             foreach (var b in buckets)
             {
                 if (b.Paths.Any())
                 {
-                    OSMDB map = reconstructor.SaveToOSM(b.Paths);
-                    map.Save("map" + b.Name + ".osm");
+                    var mapCopy = ObjectCopier.Clone<OSMDB>(map);
+                    
+                    var uniqueCp = b.CandidatePoints.GroupBy(x => new { x.Road.WayID, x.TrackId }).Select(x => x.First()); //works as a distinctBy
+                    
+                    foreach (var cp in uniqueCp)
+                    {
+                        var matchingWays = mapCopy.Ways.Where(x => Convert.ToInt32(x.Tags["way-id"].Value) == cp.Road.WayID);
+
+                        if (matchingWays.Any())
+                            foreach (var way in matchingWays)
+                            {
+                                if (way.Tags.ContainsTag("traffic"))
+                                {
+                                    way.Tags["traffic"].Value += "," + cp.TrackId;
+                                    Console.WriteLine(way.Tags["traffic"].Value);
+                                }
+                                else
+                                    way.Tags.Add(new OSMTag("traffic", cp.TrackId));
+                            }
+                    }
+                    mapCopy.Save("map" + b.Name + "withTraffic.osm");
+
+                    OSMDB resultMap = reconstructor.SaveToOSM(b.Paths);
+                    resultMap.Save("map" + b.Name + ".osm");
                 }
             }
         }

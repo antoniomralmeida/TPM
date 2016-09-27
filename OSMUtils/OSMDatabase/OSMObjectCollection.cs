@@ -19,7 +19,9 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace LK.OSMUtils.OSMDatabase {
-	public class OSMObjectCollection<T> : IEnumerable<T>  where T : OSMObject {
+    [Serializable]
+
+    public class OSMObjectCollection<T> : IEnumerable<T>  where T : OSMObject {
 		protected Dictionary<long, T> _storage;
 
 		public OSMObjectCollection() {

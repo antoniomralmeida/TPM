@@ -138,7 +138,7 @@ namespace LK.TMatch {
 		/// </summary>
 		/// <param name="matched">List of the candidate points</param>
 		/// <returns>List of Polylines that represents matched path</returns>
-		public List<Polyline<IPointGeo>> Reconstruct(IList<CandidatePoint> matched, HashSet<Connection> conSet) {
+		public List<Polyline<IPointGeo>> Reconstruct(IList<CandidatePoint> matched) {
 			_points = new Dictionary<IPointGeo, PointEx>();
 			List<Polyline<IPointGeo>> result = new List<Polyline<IPointGeo>>();
 
@@ -152,8 +152,6 @@ namespace LK.TMatch {
 				// both points are on the same road segment
 				if (wayGeometry != null) {
 					result.Add(CreateLine(matched[i].MapPoint, matched[i + 1].MapPoint, matched[i].Layer.TrackPoint.Time, matched[i + 1].Layer.TrackPoint.Time, wayGeometry));
-                    foreach (var c in wayGeometry.Connections)
-                            conSet.Add(c);
 				}
 				else {
 					double length = double.PositiveInfinity;
@@ -176,10 +174,6 @@ namespace LK.TMatch {
 					else {
 						result.Add(CreateLine(pathSegments[0].From.MapPoint, pathSegments[0].To.MapPoint, matched[i].Layer.TrackPoint.Time, matched[i + 1].Layer.TrackPoint.Time, pathSegments[0].Road));
 					}
-
-                    foreach (var s in pathSegments)
-                        foreach (var c in s.Road.Connections)
-                            conSet.Add(c);
                 }
 			}
 			return result;
@@ -352,8 +346,9 @@ namespace LK.TMatch {
 		public OSMDB SaveToOSM(IList<Polyline<IPointGeo>> path) {
 			_db = new OSMDB();
 			_dbCounter = -1;
+            //Dictionary<IPointGeo, IPointGeo> knownSegs = new Dictionary<IPointGeo, IPointGeo>();
 
-			IPointGeo lastPoint = null;
+            IPointGeo lastPoint = null;
 			OSMNode node = null;
 
 			foreach (var line in path) {
@@ -366,7 +361,17 @@ namespace LK.TMatch {
 				OSMWay way = new OSMWay(_dbCounter--);
 				way.Tags.Add(new OSMTag("way-id", ((PolylineID)line).WayID.ToString()));
 				way.Tags.Add(new OSMTag("order", (_db.Ways.Count + 1).ToString()));
-				_db.Ways.Add(way);
+
+                /*var traffic = new HashSet<long>();
+                foreach (var seg in line.Segments) {
+                    //if (knownSegs.Contains(seg.StartPoint, seg.EndPoint)) ;
+                    //traffic.Add(seg.);
+                    knownSegs.Add(seg.StartPoint, seg.EndPoint)
+                }
+                way.Tags.Add(new OSMTag("traffic", String.Join(",", traffic)));*/
+
+                _db.Ways.Add(way);
+                
 				foreach (var point in line.Nodes) {
 					if (point != lastPoint) {
 						lastPoint = point;

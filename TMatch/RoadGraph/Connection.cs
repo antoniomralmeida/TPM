@@ -22,6 +22,7 @@ using System.Text;
 using LK.GeoUtils.Geometry;
 
 namespace LK.TMatch {
+    [Serializable]
 	/// <summary>
 	/// Represents a directed connection (an edge in the roadgraph) between two nodes.
 	/// </summary>
@@ -36,13 +37,22 @@ namespace LK.TMatch {
 			from.Connections.Add(this);
 
 			this.To = to;
-			to.Connections.Add(this);
+            to.Connections.Add(this);
+
+            this.Traffic = new HashSet<long>();
+
+            this.Id = Guid.NewGuid();
 		}
 
-		/// <summary>
-		/// Gets or sets node, where this connection starts
-		/// </summary>
-		public Node From { get; set; }
+        /// <summary>
+        /// Gets or sets connection Id
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets node, where this connection starts
+        /// </summary>
+        public Node From { get; set; }
 
 		/// <summary>
 		/// Gets or set node wher this connection ends
@@ -81,7 +91,7 @@ namespace LK.TMatch {
                 HashSet<Connection> epsNeighborhood = new HashSet<Connection>();
                 Queue<Connection> q = new Queue<Connection>();
 
-                epsNeighborhood.Add(this);
+                //epsNeighborhood.Add(this);
                 q.Enqueue(this);
 
                 for (int i = 0; i < eps; i++)
@@ -98,13 +108,20 @@ namespace LK.TMatch {
             return epsNeighborhood;
         }
 
-        public HashSet<Connection> GetDirectlyTrafficDensityReachableNeighbors(int minTraffic)
+        public HashSet<Connection> GetDirectlyTrafficDensityReachableNeighbors(int minTraffic, int eps)
         {
             if (directlyTrafficDensityReachableNeighbors == null)
             {
                 HashSet<Connection> directlyTrafficDensityReachableNeighbors = new HashSet<Connection>();
 
-                foreach (var s in this.epsNeighborhood)
+                var epsN = this.GetEpsNeighborhood(eps);
+
+                /*Console.WriteLine("this: " + this.From.MapPoint.Latitude + " " + this.From.MapPoint.Longitude + " " + this.To.MapPoint.Latitude + " " + this.To.MapPoint.Longitude);
+                foreach(var s in epsN)
+                    Console.WriteLine("others: " + s.From.MapPoint.Latitude + " " + s.From.MapPoint.Longitude + " " + s.To.MapPoint.Latitude + " " + s.To.MapPoint.Longitude);
+                Console.WriteLine("----");*/
+
+                foreach (var s in epsN)
                 {
                     if (this.Traffic.Intersect(s.Traffic).Count() >= minTraffic)
                     {
@@ -114,12 +131,6 @@ namespace LK.TMatch {
                 this.directlyTrafficDensityReachableNeighbors = directlyTrafficDensityReachableNeighbors;
             }
             return directlyTrafficDensityReachableNeighbors;
-        }
-
-        public bool IsRouteTrafficDensityReachable(Connection s)
-        {
-
-            throw new NotImplementedException();
         }
     }
 }

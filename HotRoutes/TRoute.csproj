@@ -93,6 +93,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GeoUtils\GeoUtils.csproj">
+      <Project>{BD5FFBEC-D5F0-4168-9976-258ADDB39AE9}</Project>
+      <Name>GeoUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GPXUtils\GPXUtils.csproj">
+      <Project>{2065B4FE-57A1-444E-8712-08C4F8E3240C}</Project>
+      <Name>GPXUtils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OSMUtils\OSMUtils.csproj">
       <Project>{1dd2bdf4-8d35-42b6-9426-eed5cd098058}</Project>
       <Name>OSMUtils</Name>

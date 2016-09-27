@@ -22,6 +22,7 @@ using System.Text;
 using LK.GeoUtils.Geometry;
 
 namespace LK.TMatch {
+    [Serializable]
 	//Represents a shape of the connection
 	public class ConnectionGeometry : Polyline<IPointGeo> {
 		/// <summary>

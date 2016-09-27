@@ -112,7 +112,7 @@ namespace LK.TMatch {
                     {
                         var traffic = new HashSet<long>(segment.Tags["traffic"].Value.Split(',').Select(x => long.Parse(x)));
                         sc = new Connection(start, end) { Speed = speed, Geometry = geometry, Traffic = traffic };
-                    } else sc = new Connection(start, end) { Speed = speed, Geometry = geometry };
+                    } else sc = new Connection(start, end) { Speed = speed, Geometry = geometry, Traffic = new HashSet<long>() };
                     geometry.Connections.Add(sc);
 					_connections.Add(sc);
 				}
@@ -124,7 +124,7 @@ namespace LK.TMatch {
                         var traffic = new HashSet<long>(segment.Tags["traffic"].Value.Split(',').Select(x => long.Parse(x)));
                         sc = new Connection(end, start) { Speed = speed, Geometry = geometry, Traffic = traffic };
                     }
-                    else sc = new Connection(end, start) { Speed = speed, Geometry = geometry };
+                    else sc = new Connection(end, start) { Speed = speed, Geometry = geometry, Traffic = new HashSet<long>() };
 					geometry.Connections.Add(sc);
 					_connections.Add(sc);
 				}

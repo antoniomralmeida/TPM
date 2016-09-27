@@ -10,19 +10,16 @@ namespace LK.TRoute
 {
     public class HotRoute
     {
-        protected List<Connection> _segments;
 
         public List<Connection> Segments
         {
-            get
-            {
-                return _segments;
-            }
+            get; set;
         }
 
         public HotRoute(Connection start)
         {
-            _segments.Add(start);
+            Segments = new List<Connection>();
+            Segments.Add(start);
         }
     }
 }

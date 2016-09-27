@@ -23,6 +23,7 @@ using System.IO;
 
 namespace LK.OSMUtils.OSMDatabase
 {
+    [Serializable]
     /// <summary>
     /// Represents an OSM database
     /// </summary>
@@ -140,7 +141,6 @@ namespace LK.OSMUtils.OSMDatabase
                 return _relations;
             }
         }
-
-        public long ID { get; set; }
+        
     }
 }

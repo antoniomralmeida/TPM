@@ -19,7 +19,8 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace LK.OSMUtils.OSMDatabase {
-	public class OSMTag {
+    [Serializable]
+    public class OSMTag {
 		private string _key;
 		/// <summary>
 		/// Gets the key of the tag

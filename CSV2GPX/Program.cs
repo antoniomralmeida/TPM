@@ -126,7 +126,7 @@ namespace LK.CSV2GPX
                     }
                 }
                 if (sep == '.')
-                    throw new Exception(string.Format("Can not find any know separetors.{';',',','TAB'}"));
+                    throw new Exception(string.Format("Can not find any known separators.{';',',','TAB'}"));
 
                 for (int i = 0; i < fields.Length; i++)
                 {

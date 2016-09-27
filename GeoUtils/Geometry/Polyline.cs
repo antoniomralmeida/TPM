@@ -21,6 +21,7 @@ using System.Text;
 using LK.CommonLib.Collections;
 
 namespace LK.GeoUtils.Geometry {
+    [Serializable]
 	/// <summary>
 	/// Represents a polyline defined by IPointGeo objects
 	/// </summary>

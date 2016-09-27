@@ -111,7 +111,7 @@ namespace LK.TMatch.XMLUtils
             {
                 throw new XmlException("Attribute 'start' is missing.");
             }
-            DateTime startTime = DateTime.ParseExact(start, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+            var startTime = DateTime.ParseExact(start, "HH:mm", System.Globalization.CultureInfo.InvariantCulture).TimeOfDay;
 
             // end attribute
             string end = _xmlReader.GetAttribute("end");
@@ -120,7 +120,7 @@ namespace LK.TMatch.XMLUtils
             {
                 throw new XmlException("Attribute 'end' is missing.");
             }
-            DateTime endTime = DateTime.ParseExact(end, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+            var endTime = DateTime.ParseExact(end, "HH:mm", System.Globalization.CultureInfo.InvariantCulture).TimeOfDay;
 
             Bucket parsedBucket = new Bucket(name, startTime, endTime);
 

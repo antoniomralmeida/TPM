@@ -26,6 +26,11 @@ namespace LK.TMatch {
 	/// Represents candidate point during map-matching
 	/// </summary>
 	public class CandidatePoint {
+        /// <summary>
+        /// Gets or sets ID of track associated with this candidate point
+        /// </summary>
+        public string TrackId { get; set;  }
+        
 		public IPointGeo MapPoint { get; set; }
 		///// <summary>
 		///// Gets or sets latitude of this point (north - positive value, south - negative value)

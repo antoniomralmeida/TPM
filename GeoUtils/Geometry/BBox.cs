@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace LK.GeoUtils.Geometry {
+    [Serializable]
 	/// <summary>
 	/// Represents the bounding box of the group of points
 	/// </summary>

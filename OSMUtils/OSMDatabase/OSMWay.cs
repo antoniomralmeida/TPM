@@ -22,10 +22,11 @@ using System.Text;
 using LK.GeoUtils.Geometry;
 
 namespace LK.OSMUtils.OSMDatabase {
-	/// <summary>
-	/// Represents way in the OSM database.
-	/// </summary>
-	public class OSMWay : OSMObject {
+    [Serializable]
+    /// <summary>
+    /// Represents way in the OSM database.
+    /// </summary>
+    public class OSMWay : OSMObject {
 		/// <summary>
 		/// Creates a new OSMWay with the scpecific ID.
 		/// </summary>

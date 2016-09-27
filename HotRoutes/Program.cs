@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using NDesk.Options;
 using LK.OSMUtils.OSMDatabase;
 using LK.TMatch;
+using LK.GPXUtils;
+using System.IO;
 
 namespace LK.TRoute
 {
@@ -43,13 +45,28 @@ namespace LK.TRoute
                 ShowHelp(parameters);
                 return;
             }
-
+            
             var osmFile = new OSMDB();
             osmFile.Load(osmPath);
             var roadGraph = new RoadGraph();
             roadGraph.Build(osmFile);
+            
+            var hotRoutes = new FlowScan().Run(roadGraph, eps, minTraffic);
+            
+            var csv = new StringBuilder();
 
-            new FlowScan().Run(roadGraph, eps, minTraffic);
+            foreach (var hr in hotRoutes)
+            {
+                foreach (var seg in hr.Segments)
+                {
+                    string line = seg.From.MapPoint.Latitude + "," + seg.From.MapPoint.Longitude + " " + seg.To.MapPoint.Latitude
+                        + "," + seg.To.MapPoint.Longitude;
+                    csv.AppendLine(line);
+                }
+                csv.AppendLine("");
+            }
+            
+            File.WriteAllText("./Tests/output.csv", csv.ToString());
         }
 
         /// <summary>

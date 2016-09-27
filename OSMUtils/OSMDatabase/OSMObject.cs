@@ -19,7 +19,8 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace LK.OSMUtils.OSMDatabase {
-	public abstract class OSMObject {
+    [Serializable]
+    public abstract class OSMObject {
 		private long _id;
 		/// <summary>
 		/// Gets or sets object ID

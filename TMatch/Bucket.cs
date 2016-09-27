@@ -18,7 +18,7 @@ namespace LK.TMatch
         /// <summary>
         /// Gets bucket start time
         /// </summary>
-        public DateTime Start
+        public TimeSpan Start
         {
             get; set;
         }
@@ -26,7 +26,7 @@ namespace LK.TMatch
         /// <summary>
         /// Gets bucket end time
         /// </summary>
-        public DateTime End
+        public TimeSpan End
         {
             get; set;
         }
@@ -41,12 +41,18 @@ namespace LK.TMatch
             get; set;
         }
 
-        public Bucket(string name, DateTime start, DateTime end)
+        public List<CandidatePoint> CandidatePoints
+        {
+            get; set;
+        }
+
+        public Bucket(string name, TimeSpan start, TimeSpan end)
         {
             Name = name;
             Start = start;
             End = end;
             Paths = new List<Polyline<IPointGeo>>();
+            CandidatePoints = new List<CandidatePoint>();
             //Trajectories = new Dictionary<OSMDB, HashSet<Connection>>();
         }
 

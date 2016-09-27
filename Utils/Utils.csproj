@@ -84,11 +84,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NDesk.Options.cs" />
+    <Compile Include="ObjectCopier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XMLUtils\Bucket.cs" />
-    <Compile Include="XMLUtils\IXMLDataReader.cs" />
-    <Compile Include="XMLUtils\XMLDataReader.cs" />
-    <Compile Include="XMLUtils\XMLDocument.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

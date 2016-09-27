@@ -21,10 +21,11 @@ using System.Text;
 using LK.GeoUtils.Geometry;
 
 namespace LK.OSMUtils.OSMDatabase {
-	/// <summary>
-	/// Represents node in the OSM database.
-	/// </summary>
-	public class OSMNode : OSMObject, IPointGeo {
+    [Serializable]
+    /// <summary>
+    /// Represents node in the OSM database.
+    /// </summary>
+    public class OSMNode : OSMObject, IPointGeo {
 		private double _latitude;
 		/// <summary>
 		/// Gets or sets the latitude of the node
