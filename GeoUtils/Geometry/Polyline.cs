@@ -35,10 +35,15 @@ namespace LK.GeoUtils.Geometry {
 			get { return _nodes; }
 		}
 
-		/// <summary>
-		/// Gets the list of segment of this polyline
-		/// </summary>
-		List<Segment<T>> _segments;
+        /// <summary>
+        /// Gets or sets way ID of this polyline
+        /// </summary>
+        public int WayID { get; set; }
+
+        /// <summary>
+        /// Gets the list of segment of this polyline
+        /// </summary>
+        List<Segment<T>> _segments;
 		public IList<Segment<T>> Segments {
 			get {
 				if (_segments == null) {
@@ -69,10 +74,12 @@ namespace LK.GeoUtils.Geometry {
 		}
 
 		private double _length;
-		/// <summary>
-		/// Gets the length of the Polyline in meters
-		/// </summary>
-		public double Length {
+        public string TrackId;
+
+        /// <summary>
+        /// Gets the length of the Polyline in meters
+        /// </summary>
+        public double Length {
 			get {
 				if (double.IsNaN(_length)) {
 					_length = Calculations.GetLength((IPolyline<IPointGeo>)this);
@@ -82,7 +89,9 @@ namespace LK.GeoUtils.Geometry {
 			}
 		}
 
-		protected void InvalidateComputedProperties(object sender) {
+        public long Id { get; set; }
+
+        protected void InvalidateComputedProperties(object sender) {
 			_length = double.NaN;
 			_segments = null;
 		}

@@ -30,12 +30,14 @@ namespace LK.TMatch {
 		public double Length;
 		public double EstimationToEnd;
 
-		/// <summary>
-		/// Determines whether Obj equals this PartialPath
-		/// </summary>
-		/// <param name="obj">The object to compare</param>
-		/// <returns>true if Obj is PartialPath and CurrentPosition are the same, otherwise false</returns>
-		public override bool Equals(object obj) {
+        public long Id { get; internal set; }
+
+        /// <summary>
+        /// Determines whether Obj equals this PartialPath
+        /// </summary>
+        /// <param name="obj">The object to compare</param>
+        /// <returns>true if Obj is PartialPath and CurrentPosition are the same, otherwise false</returns>
+        public override bool Equals(object obj) {
 			PartialPath other = obj as PartialPath;
 			if (other != null) {
 				return this.End.Equals(other.End);

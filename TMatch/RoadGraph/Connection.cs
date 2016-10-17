@@ -40,14 +40,12 @@ namespace LK.TMatch {
             to.Connections.Add(this);
 
             this.Traffic = new HashSet<long>();
-
-            this.Id = Guid.NewGuid();
 		}
 
         /// <summary>
         /// Gets or sets connection Id
         /// </summary>
-        public Guid Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
         /// Gets or sets node, where this connection starts

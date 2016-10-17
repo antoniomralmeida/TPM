@@ -172,11 +172,11 @@ namespace LK.TMatch
 
                             Console.WriteLine(".");
                             
-                            foreach (var v in result) {
+                            foreach (var v in reconstructedPath) {
                                 v.TrackId = gpx.Tracks[trackIndex].Name.Replace("trk_", "");
                             }
 
-                            buckets = GetUpdatedBuckets(toProcess, reconstructedPath, buckets, result);
+                            buckets = GetUpdatedBuckets(toProcess, reconstructedPath, buckets);
 
                         } else {
                             throw new Exception(string.Format("Track segment discarded because number of nodes is less than 2."));
@@ -191,7 +191,7 @@ namespace LK.TMatch
         }
 
         static List<Bucket> GetUpdatedBuckets(GPXTrackSegment toProcess, List<Polyline<IPointGeo>> path, 
-            List<Bucket> buckets, IList<CandidatePoint> result)
+            List<Bucket> buckets)
         {
             var start = toProcess.Nodes.First().Time.TimeOfDay;
             var end = toProcess.Nodes.Last().Time.TimeOfDay;
@@ -201,7 +201,6 @@ namespace LK.TMatch
                 if (start < b.End && end >= b.Start)
                 {
                     b.Paths.AddRange(path);
-                    b.CandidatePoints.AddRange(result);
                 }
             }
             return buckets;
@@ -213,24 +212,24 @@ namespace LK.TMatch
             {
                 if (b.Paths.Any())
                 {
-                    var mapCopy = ObjectCopier.Clone<OSMDB>(map);
+                    var mapCopy = ObjectCopier.Clone<OSMDB>(map);                 
+                    //var uniqueCp = b.CandidatePoints.GroupBy(x => new { x.Road.WayID, x.TrackId }).Select(x => x.First()); //works as a distinctBy
                     
-                    var uniqueCp = b.CandidatePoints.GroupBy(x => new { x.Road.WayID, x.TrackId }).Select(x => x.First()); //works as a distinctBy
-                    
-                    foreach (var cp in uniqueCp)
+                    foreach (var p in b.Paths)
                     {
-                        var matchingWays = mapCopy.Ways.Where(x => Convert.ToInt32(x.Tags["way-id"].Value) == cp.Road.WayID);
+                        //var matchingWays = mapCopy.Ways.Where(x => Convert.ToInt32(x.Tags["way-id"].Value) == cp.Road.WayID);
+                        Console.WriteLine("pid: " + p.Id);
+                        var matchingWays = mapCopy.Ways.Where(x => x.ID == p.Id);
 
                         if (matchingWays.Any())
                             foreach (var way in matchingWays)
                             {
                                 if (way.Tags.ContainsTag("traffic"))
                                 {
-                                    way.Tags["traffic"].Value += "," + cp.TrackId;
-                                    //Console.WriteLine(way.Tags["traffic"].Value);
+                                    way.Tags["traffic"].Value += "," + p.TrackId;
                                 }
                                 else
-                                    way.Tags.Add(new OSMTag("traffic", cp.TrackId));
+                                    way.Tags.Add(new OSMTag("traffic", p.TrackId));
                             }
                     }
                     mapCopy.Save("map" + b.Name + "withTraffic.osm");

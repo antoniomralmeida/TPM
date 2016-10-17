@@ -33,12 +33,12 @@ namespace LK.GeoUtils.Geometry {
 		/// </summary>
 		public T EndPoint { get; private set; }
 
-		/// <summary>
-		/// Creates a new segment with the specific start and end points
-		/// </summary>
-		/// <param name="start">The point, where segment starts</param>
-		/// <param name="end">The point, where segment ends</param>
-		public Segment(T start, T end)  {
+        /// <summary>
+        /// Creates a new segment with the specific start and end points
+        /// </summary>
+        /// <param name="start">The point, where segment starts</param>
+        /// <param name="end">The point, where segment ends</param>
+        public Segment(T start, T end)  {
 			StartPoint = start;
 			EndPoint = end;
 

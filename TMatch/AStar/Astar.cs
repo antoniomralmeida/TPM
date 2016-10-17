@@ -57,7 +57,8 @@ namespace LK.TMatch {
 			foreach (var connection in from.Road.Connections) {
 				PartialPath path = new PartialPath() {End = connection.To, PathFromPrevious = connection.Geometry,
 																							Length = Calculations.GetPathLength(from.MapPoint, connection.To.MapPoint, connection.Geometry),
-																							EstimationToEnd = Calculations.GetDistance2D(connection.To.MapPoint, to.MapPoint)
+																							EstimationToEnd = Calculations.GetDistance2D(connection.To.MapPoint, to.MapPoint),
+                                                                                            Id = connection.Id
 				};
 
 				if (_open.Contains(path)) {
@@ -104,11 +105,11 @@ namespace LK.TMatch {
 			List<PathSegment> result = new List<PathSegment>();
 
 			while (lastPathPart.PreviousNode != null) {
-				result.Add(new PathSegment() { From = lastPathPart.PreviousNode, To = lastPathPart.End, Road = lastPathPart.PathFromPrevious });
+				result.Add(new PathSegment() { From = lastPathPart.PreviousNode, To = lastPathPart.End, Road = lastPathPart.PathFromPrevious, Id = lastPathPart.Id });
 				lastPathPart = _close[lastPathPart.PreviousNode];
 			}
 
-			result.Add(new PathSegment() { From = new Node(from.MapPoint), To = lastPathPart.End, Road = lastPathPart.PathFromPrevious });
+			result.Add(new PathSegment() { From = new Node(from.MapPoint), To = lastPathPart.End, Road = lastPathPart.PathFromPrevious, Id = lastPathPart.Id });
 			result.Reverse();
 
 			return result;
@@ -152,7 +153,8 @@ namespace LK.TMatch {
 						if (p.Length > distance) {
 							p.PreviousNode = current.End;
 							p.PathFromPrevious = link.Geometry;
-							_open.Update(p, distance);
+                            _open.Update(p, distance);
+                            p.Id = link.Id;
 						}
 					}
 					else if (_close.ContainsKey(link.To)) {
@@ -161,6 +163,7 @@ namespace LK.TMatch {
 							_close[link.To].Length = distance;
 							_close[link.To].End = current.End;
 							_close[link.To].PathFromPrevious = link.Geometry;
+                            _close[link.To].Id = link.Id;
 						}
 					}
 					else {
@@ -168,7 +171,7 @@ namespace LK.TMatch {
 						PartialPath expanded = new PartialPath() {
 							Length = distance,
 							EstimationToEnd = Calculations.GetDistance2D(link.To.MapPoint, to.MapPoint),
-							                                         End = link.To, PreviousNode = current.End, PathFromPrevious = link.Geometry };
+							                                         End = link.To, PreviousNode = current.End, PathFromPrevious = link.Geometry, Id = link.Id };
 						_open.Add(expanded);
 					}
 				}

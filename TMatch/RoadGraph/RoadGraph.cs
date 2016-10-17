@@ -91,6 +91,7 @@ namespace LK.TMatch {
 
 				double speed = double.Parse(segment.Tags["speed"].Value, System.Globalization.CultureInfo.InvariantCulture);
 				int wayId = int.Parse(segment.Tags["way-id"].Value, System.Globalization.CultureInfo.InvariantCulture);
+                long id = segment.ID;
 
 				ConnectionGeometry geometry = new ConnectionGeometry();
 				geometry.WayID = wayId;
@@ -111,8 +112,8 @@ namespace LK.TMatch {
                     if (segment.Tags.ContainsTag("traffic"))
                     {
                         var traffic = new HashSet<long>(segment.Tags["traffic"].Value.Split(',').Select(x => long.Parse(x)));
-                        sc = new Connection(start, end) { Speed = speed, Geometry = geometry, Traffic = traffic };
-                    } else sc = new Connection(start, end) { Speed = speed, Geometry = geometry, Traffic = new HashSet<long>() };
+                        sc = new Connection(start, end) { Speed = speed, Geometry = geometry, Traffic = traffic, Id = id };
+                    } else sc = new Connection(start, end) { Speed = speed, Geometry = geometry, Traffic = new HashSet<long>(), Id = id };
                     geometry.Connections.Add(sc);
 					_connections.Add(sc);
 				}
@@ -122,9 +123,9 @@ namespace LK.TMatch {
                     if (segment.Tags.ContainsTag("traffic"))
                     {
                         var traffic = new HashSet<long>(segment.Tags["traffic"].Value.Split(',').Select(x => long.Parse(x)));
-                        sc = new Connection(end, start) { Speed = speed, Geometry = geometry, Traffic = traffic };
+                        sc = new Connection(end, start) { Speed = speed, Geometry = geometry, Traffic = traffic, Id = id };
                     }
-                    else sc = new Connection(end, start) { Speed = speed, Geometry = geometry, Traffic = new HashSet<long>() };
+                    else sc = new Connection(end, start) { Speed = speed, Geometry = geometry, Traffic = new HashSet<long>(), Id = id };
 					geometry.Connections.Add(sc);
 					_connections.Add(sc);
 				}

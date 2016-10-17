@@ -27,5 +27,6 @@ namespace LK.TMatch {
 		public Node From { get; set; }
 		public Node To { get; set; }
 		public ConnectionGeometry Road { get; set; }
-	}
+        public long Id { get; internal set; }
+    }
 }
