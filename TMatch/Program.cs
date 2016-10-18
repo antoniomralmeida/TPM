@@ -212,25 +212,21 @@ namespace LK.TMatch
             {
                 if (b.Paths.Any())
                 {
-                    var mapCopy = ObjectCopier.Clone<OSMDB>(map);                 
-                    //var uniqueCp = b.CandidatePoints.GroupBy(x => new { x.Road.WayID, x.TrackId }).Select(x => x.First()); //works as a distinctBy
-                    
-                    foreach (var p in b.Paths)
-                    {
-                        //var matchingWays = mapCopy.Ways.Where(x => Convert.ToInt32(x.Tags["way-id"].Value) == cp.Road.WayID);
-                        Console.WriteLine("pid: " + p.Id);
-                        var matchingWays = mapCopy.Ways.Where(x => x.ID == p.Id);
+                    var mapCopy = ObjectCopier.Clone<OSMDB>(map);
+                    var uniquePaths = b.Paths.GroupBy(x => new { x.Id, x.TrackId }).Select(x => x.First()); //works as a distinctBy
 
-                        if (matchingWays.Any())
-                            foreach (var way in matchingWays)
+                    foreach (var p in uniquePaths)
+                    {
+                        if (p.Id != 0)
+                        {
+                            var matchingWay = mapCopy.Ways[p.Id];
+                            if (matchingWay.Tags.ContainsTag("traffic"))
                             {
-                                if (way.Tags.ContainsTag("traffic"))
-                                {
-                                    way.Tags["traffic"].Value += "," + p.TrackId;
-                                }
-                                else
-                                    way.Tags.Add(new OSMTag("traffic", p.TrackId));
+                                matchingWay.Tags["traffic"].Value += "," + p.TrackId;
                             }
+                            else
+                                matchingWay.Tags.Add(new OSMTag("traffic", p.TrackId));
+                        }
                     }
                     mapCopy.Save("map" + b.Name + "withTraffic.osm");
 

@@ -41,19 +41,12 @@ namespace LK.TMatch
             get; set;
         }
 
-        public List<CandidatePoint> CandidatePoints
-        {
-            get; set;
-        }
-
         public Bucket(string name, TimeSpan start, TimeSpan end)
         {
             Name = name;
             Start = start;
             End = end;
             Paths = new List<Polyline<IPointGeo>>();
-            CandidatePoints = new List<CandidatePoint>();
-            //Trajectories = new Dictionary<OSMDB, HashSet<Connection>>();
         }
 
         public Bucket()

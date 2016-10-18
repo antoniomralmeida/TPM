@@ -55,12 +55,14 @@ namespace LK.GeoUtils.Geometry {
 			}
 		}
 
-		/// <summary>
-		/// Determines whethet specified object is equal to the current Segment
-		/// </summary>
-		/// <param name="obj">The object to compare with the current Segment</param>
-		/// <returns>true if obj is Segment and has the same StartPoint and EndPoint as this Segment, otherwise returns false</returns>
-		public override bool Equals(object obj) {
+        public long Id { get; set; }
+
+        /// <summary>
+        /// Determines whethet specified object is equal to the current Segment
+        /// </summary>
+        /// <param name="obj">The object to compare with the current Segment</param>
+        /// <returns>true if obj is Segment and has the same StartPoint and EndPoint as this Segment, otherwise returns false</returns>
+        public override bool Equals(object obj) {
 			Segment<T> other = obj as Segment<T>;
 			if (other != null) {
 				return StartPoint.Equals(other.StartPoint) && EndPoint.Equals(other.EndPoint);

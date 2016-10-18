@@ -151,7 +151,9 @@ namespace LK.TMatch {
 
 				// both points are on the same road segment
 				if (wayGeometry != null) {
-                    result.Add(CreateLine(matched[i].MapPoint, matched[i + 1].MapPoint, matched[i].Layer.TrackPoint.Time, matched[i + 1].Layer.TrackPoint.Time, wayGeometry, 1/*matched[i].Road.Id*/));
+                    double length = double.PositiveInfinity;
+                    var pathSegments = _pathfinder.FindPath(matched[i], matched[i + 1], ref length);
+                    result.Add(CreateLine(matched[i].MapPoint, matched[i + 1].MapPoint, matched[i].Layer.TrackPoint.Time, matched[i + 1].Layer.TrackPoint.Time, wayGeometry, pathSegments[0].Id));
 				}
 				else {
 					double length = double.PositiveInfinity;
@@ -169,7 +171,7 @@ namespace LK.TMatch {
 							result.Add(CreateLine(pathSegments[j].From.MapPoint, pathSegments[j].To.MapPoint, pathSegments[j].Road, pathSegments[j].Id));
                         }
 
-                        //result.Add(CreateLine(pathSegments[pathSegments.Count - 1].From.MapPoint, pathSegments[pathSegments.Count - 1].To.MapPoint, DateTime.MinValue, matched[i + 1].Layer.TrackPoint.Time, pathSegments[pathSegments.Count - 1].Road, pathSegments[pathSegments.Count - 1].Id)); //AQUI
+                        result.Add(CreateLine(pathSegments[pathSegments.Count - 1].From.MapPoint, pathSegments[pathSegments.Count - 1].To.MapPoint, DateTime.MinValue, matched[i + 1].Layer.TrackPoint.Time, pathSegments[pathSegments.Count - 1].Road, pathSegments[pathSegments.Count - 1].Id)); //AQUI
 					}
 					else {
 						result.Add(CreateLine(pathSegments[0].From.MapPoint, pathSegments[0].To.MapPoint, matched[i].Layer.TrackPoint.Time, matched[i + 1].Layer.TrackPoint.Time, pathSegments[0].Road, pathSegments[0].Id));

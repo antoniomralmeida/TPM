@@ -123,14 +123,14 @@ namespace LK.GeoUtils {
 		/// <param name="line">The polyline, point will be projected to</param>
 		/// <returns>the orthogonaly projected point that lies on the Polyline</returns>
 		public static IPointGeo ProjectPoint(IPointGeo point, IPolyline<IPointGeo> line) {
-			double minDiatance = double.PositiveInfinity;
+			double minDistance = double.PositiveInfinity;
 			IPointGeo closestPoint = null;
 
 			foreach (var segment in line.Segments) {
 				IPointGeo projected = ProjectPoint(point, segment);
 				double distance = Calculations.GetDistance2D(point, projected);
-				if (distance < minDiatance) {
-					minDiatance = distance;
+				if (distance < minDistance) {
+					minDistance = distance;
 					closestPoint = projected;
 				}
 			}
