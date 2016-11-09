@@ -41,6 +41,10 @@ namespace LK.GPXUtils {
 			get {
 				return _segments;
 			}
+            set
+            {
+                this._segments = value;
+            }
 		}
 
 		/// <summary>

@@ -36,7 +36,7 @@ namespace LK.TMatch
             get; set;
         }
 
-        public List<Polyline<IPointGeo>> Paths
+        public Dictionary<String, List<Polyline<IPointGeo>>> Paths
         {
             get; set;
         }
@@ -46,7 +46,7 @@ namespace LK.TMatch
             Name = name;
             Start = start;
             End = end;
-            Paths = new List<Polyline<IPointGeo>>();
+            Paths = new Dictionary<String, List<Polyline<IPointGeo>>>();
         }
 
         public Bucket()

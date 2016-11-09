@@ -90,17 +90,12 @@ namespace LK.TMatch
             graph.Build(map);
             Console.WriteLine("\tDone.");
 
-            TMM processor = new TMM(graph);
-            PathReconstructer reconstructor = new PathReconstructer(graph);
+            TMM processor = new TMM(graph) { _db = map };
+            PathReconstructer reconstructor = new PathReconstructer(graph) { _db = map };
 
             XMLDocument xml = new XMLDocument();
             xml.Load(xmlPath);
             var buckets = xml.Buckets;
-
-            /*var buckets = new List<Bucket>();
-            var start = new TimeSpan(0,1,0);
-            var end = new TimeSpan(23,59,0);
-            buckets.Add(new Bucket("single", start, end));*/
 
             // Process single file
             if (File.Exists(gpxPath))
@@ -154,6 +149,7 @@ namespace LK.TMatch
                     try
                     {
                         GPXTrackSegment toProcess = gpx.Tracks[trackIndex].Segments[segmentIndex];
+
                         if (samplingPeriod > 0)
                             toProcess = filter.Filter(new TimeSpan(0, 0, samplingPeriod), toProcess);
 
@@ -171,12 +167,10 @@ namespace LK.TMatch
                             }
 
                             Console.WriteLine(".");
-                            
-                            foreach (var v in reconstructedPath) {
-                                v.TrackId = gpx.Tracks[trackIndex].Name.Replace("trk_", "");
-                            }
 
-                            buckets = GetUpdatedBuckets(toProcess, reconstructedPath, buckets);
+                            var trackId = gpx.Tracks[trackIndex].Name.Replace("trk_", "");
+
+                            buckets = GetUpdatedBuckets(toProcess, reconstructedPath, buckets, trackId);
 
                         } else {
                             throw new Exception(string.Format("Track segment discarded because number of nodes is less than 2."));
@@ -191,16 +185,16 @@ namespace LK.TMatch
         }
 
         static List<Bucket> GetUpdatedBuckets(GPXTrackSegment toProcess, List<Polyline<IPointGeo>> path, 
-            List<Bucket> buckets)
+            List<Bucket> buckets, String trackId)
         {
             var start = toProcess.Nodes.First().Time.TimeOfDay;
             var end = toProcess.Nodes.Last().Time.TimeOfDay;
             
             foreach (var b in buckets)
             {
-                if (start < b.End && end >= b.Start)
+                if (start >= b.Start && end <= b.End)
                 {
-                    b.Paths.AddRange(path);
+                    b.Paths.Add(trackId, path);
                 }
             }
             return buckets;
@@ -213,27 +207,64 @@ namespace LK.TMatch
                 if (b.Paths.Any())
                 {
                     var mapCopy = ObjectCopier.Clone<OSMDB>(map);
-                    var uniquePaths = b.Paths.GroupBy(x => new { x.Id, x.TrackId }).Select(x => x.First()); //works as a distinctBy
+                    List<Polyline<IPointGeo>> pathList = new List<Polyline<IPointGeo>>();
 
-                    foreach (var p in uniquePaths)
+                    foreach (var p in b.Paths)
                     {
-                        if (p.Id != 0)
+                        var uniquePath = p.Value.GroupBy(x => new { x.Id }).Select(x => x.First());
+                        Console.WriteLine("NUMBER PATHS: " + uniquePath.Count());
+                        foreach (var seg in uniquePath)
                         {
-                            var matchingWay = mapCopy.Ways[p.Id];
-                            if (matchingWay.Tags.ContainsTag("traffic"))
+                            if (seg.Id != 0)
                             {
-                                matchingWay.Tags["traffic"].Value += "," + p.TrackId;
+                                var matchingWay = mapCopy.Ways[seg.Id];
+                                if (matchingWay.Tags.ContainsTag("traffic"))
+                                {
+                                    matchingWay.Tags["traffic"].Value += "," + p.Key;
+                                }
+                                else
+                                {
+                                    matchingWay.Tags.Add(new OSMTag("traffic", p.Key));
+                                }
                             }
-                            else
-                                matchingWay.Tags.Add(new OSMTag("traffic", p.TrackId));
                         }
                     }
-                    mapCopy.Save("map" + b.Name + "withTraffic.osm");
 
-                    OSMDB resultMap = reconstructor.SaveToOSM(b.Paths);
-                    resultMap.Save("map" + b.Name + ".osm");
+                    // Saving the Map to GPX instead of OSM - START
+                    var tracks = new List<GPXTrack>();
+
+                    foreach (var p in b.Paths)
+                    {
+                        GPXTrack track = new GPXTrack(p.Key);
+                        foreach (var t in p.Value)
+                        {
+                            List<GPXPoint> list = new List<GPXPoint>();
+
+                            foreach (var s in t.Segments)
+                            {                             
+                                GPXPoint start = new GPXPoint() { Latitude = s.StartPoint.Latitude, Longitude = s.StartPoint.Longitude };
+                                GPXPoint end = new GPXPoint() { Latitude = s.EndPoint.Latitude, Longitude = s.EndPoint.Longitude };
+
+                                list.Add(start);
+                                list.Add(end);
+                            }
+
+                            GPXTrackSegment gpxTrack = new GPXTrackSegment(list);
+                            track.Segments.Add(gpxTrack);
+                        }
+                        tracks.Add(track);
+                    }
+
+                    var gpx = new GPXDocument() { Tracks = tracks };
+                    gpx.Save("map" + b.Name + ".gpx");
+                    // END
+
+                    //OSMDB resultMap = reconstructor.SaveToOSM(b.Paths);
+                    //resultMap.Save("map" + b.Name + ".osm");
+
+                    mapCopy.Save("map" + b.Name + "withTraffic.osm");
                 }
-            }
+            }   
         }
 
         /// <summary>

@@ -46,7 +46,8 @@ namespace LK.GPXUtils {
 		/// </summary>
 		public List<GPXTrack> Tracks {
 			get { return _tracks; }
-		}
+            set { this._tracks = value; }
+        }
 
 		/// <summary>
 		/// Creates a new GPXDocument

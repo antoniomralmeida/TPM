@@ -107,15 +107,20 @@ namespace LK.TMatch {
 				}
 				_connectionGeometries.Add(geometry);
 
+
 				if (segment.Tags["accessible"].Value == "yes") {
                     Connection sc;
                     if (segment.Tags.ContainsTag("traffic"))
                     {
                         var traffic = new HashSet<long>(segment.Tags["traffic"].Value.Split(',').Select(x => long.Parse(x)));
                         sc = new Connection(start, end) { Speed = speed, Geometry = geometry, Traffic = traffic, Id = id };
-                    } else sc = new Connection(start, end) { Speed = speed, Geometry = geometry, Traffic = new HashSet<long>(), Id = id };
+                    }
+                    else
+                    {
+                        sc = new Connection(start, end) { Speed = speed, Geometry = geometry, Traffic = new HashSet<long>(), Id = id };
+                    }
                     geometry.Connections.Add(sc);
-					_connections.Add(sc);
+                    _connections.Add(sc);
 				}
 
 				if (segment.Tags["accessible-reverse"].Value == "yes") {
@@ -125,7 +130,10 @@ namespace LK.TMatch {
                         var traffic = new HashSet<long>(segment.Tags["traffic"].Value.Split(',').Select(x => long.Parse(x)));
                         sc = new Connection(end, start) { Speed = speed, Geometry = geometry, Traffic = traffic, Id = id };
                     }
-                    else sc = new Connection(end, start) { Speed = speed, Geometry = geometry, Traffic = new HashSet<long>(), Id = id };
+                    else
+                    {
+                        sc = new Connection(end, start) { Speed = speed, Geometry = geometry, Traffic = new HashSet<long>(), Id = id };
+                    }
 					geometry.Connections.Add(sc);
 					_connections.Add(sc);
 				}

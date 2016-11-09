@@ -24,17 +24,18 @@ using LK.GeoUtils.Geometry;
 
 namespace LK.TMatch {
 	public class PathReconstructer {
-		OSMDB _db;
+		public OSMDB _db;
 		int _dbCounter;
-		AstarPathfinder _pathfinder;
+	    AstarPathfinder _pathfinder;
 		Dictionary<IPointGeo, PointEx> _points;
+        public List<IPolyline<IPointGeo>> _idLine;
 
 		/// <summary>
 		/// Creates a new instance of the PathReconstructer
 		/// </summary>
 		/// <param name="graph">The RoadGraph object with the road network that will be used in the reconstruction process</param>
 		public PathReconstructer(RoadGraph graph) {
-			_pathfinder = new AstarPathfinder(graph);
+            _pathfinder = new AstarPathfinder(graph);
 		}
 
 		/*/// <summary>
@@ -133,12 +134,12 @@ namespace LK.TMatch {
 			return line;
 		}
 
-		/// <summary>
-		/// Recostrcucts Path from the list of candidate points
-		/// </summary>
-		/// <param name="matched">List of the candidate points</param>
-		/// <returns>List of Polylines that represents matched path</returns>
-		public List<Polyline<IPointGeo>> Reconstruct(IList<CandidatePoint> matched) {
+        /// <summary>
+        /// Recostrcucts Path from the list of candidate points
+        /// </summary>
+        /// <param name="matched">List of the candidate points</param>
+        /// <returns>List of Polylines that represents matched path</returns>
+        public List<Polyline<IPointGeo>> Reconstruct(IList<CandidatePoint> matched) {
 			_points = new Dictionary<IPointGeo, PointEx>();
 			List<Polyline<IPointGeo>> result = new List<Polyline<IPointGeo>>();
 
@@ -152,30 +153,41 @@ namespace LK.TMatch {
 				// both points are on the same road segment
 				if (wayGeometry != null) {
                     double length = double.PositiveInfinity;
-                    var pathSegments = _pathfinder.FindPath(matched[i], matched[i + 1], ref length);
-                    result.Add(CreateLine(matched[i].MapPoint, matched[i + 1].MapPoint, matched[i].Layer.TrackPoint.Time, matched[i + 1].Layer.TrackPoint.Time, wayGeometry, pathSegments[0].Id));
-				}
-				else {
-					double length = double.PositiveInfinity;
+                    var pathSegments = _pathfinder.FindPath(matched[i], matched[i+1], ref length);
 
-					// find path between matched[i] and matched[i+1]
-					var pathSegments = _pathfinder.FindPath(matched[i], matched[i + 1], ref length);
+                    if (pathSegments != null)
+                    {
+                        //Console.WriteLine("pathSegment[0].id: " + pathSegments[0].Id);
+                        result.Add(CreateLine(matched[i].MapPoint, matched[i + 1].MapPoint,
+                            matched[i].Layer.TrackPoint.Time, matched[i + 1].Layer.TrackPoint.Time, wayGeometry, pathSegments[pathSegments.Count - 1].Id));
+                    }
+                }
+				else {
+                    double length = double.PositiveInfinity;
+
+                    // find path between matched[i] and matched[i+1]
+                    var pathSegments = _pathfinder.FindPath(matched[i], matched[i + 1], ref length);
 
                     if (pathSegments == null) {
 						throw new ArgumentException(string.Format("Can not find path between points {0} and {1}", matched[i].MapPoint, matched[i + 1].MapPoint));
 					}
 					if (pathSegments.Count > 1) {
-						result.Add(CreateLine(pathSegments[0].From.MapPoint, pathSegments[0].To.MapPoint, matched[i].Layer.TrackPoint.Time, DateTime.MinValue, pathSegments[0].Road, pathSegments[0].Id));
+                        result.Add(CreateLine(pathSegments[0].From.MapPoint, pathSegments[0].To.MapPoint,
+                            matched[i].Layer.TrackPoint.Time, DateTime.MinValue, pathSegments[0].Road, pathSegments[0].Id));
 
-						for (int j = 1; j < pathSegments.Count - 1; j++) {
-							result.Add(CreateLine(pathSegments[j].From.MapPoint, pathSegments[j].To.MapPoint, pathSegments[j].Road, pathSegments[j].Id));
+                        for (int j = 1; j < pathSegments.Count - 1; j++) {
+                            result.Add(CreateLine(pathSegments[j].From.MapPoint, pathSegments[j].To.MapPoint, pathSegments[j].Road, pathSegments[j].Id));
                         }
 
-                        result.Add(CreateLine(pathSegments[pathSegments.Count - 1].From.MapPoint, pathSegments[pathSegments.Count - 1].To.MapPoint, DateTime.MinValue, matched[i + 1].Layer.TrackPoint.Time, pathSegments[pathSegments.Count - 1].Road, pathSegments[pathSegments.Count - 1].Id)); //AQUI
-					}
+                        result.Add(CreateLine(pathSegments[pathSegments.Count - 1].From.MapPoint, pathSegments[pathSegments.Count - 1].To.MapPoint,
+                            DateTime.MinValue, matched[i + 1].Layer.TrackPoint.Time, pathSegments[pathSegments.Count - 1].Road, pathSegments[pathSegments.Count - 1].Id));
+
+                    }
 					else {
-						result.Add(CreateLine(pathSegments[0].From.MapPoint, pathSegments[0].To.MapPoint, matched[i].Layer.TrackPoint.Time, matched[i + 1].Layer.TrackPoint.Time, pathSegments[0].Road, pathSegments[0].Id));
-					}
+
+                        result.Add(CreateLine(pathSegments[0].From.MapPoint, pathSegments[0].To.MapPoint, matched[i].Layer.TrackPoint.Time,
+                            matched[i + 1].Layer.TrackPoint.Time, pathSegments[0].Road, pathSegments[0].Id));
+                    }
                 }
 			}
 			return result;
@@ -348,20 +360,27 @@ namespace LK.TMatch {
 		public OSMDB SaveToOSM(IList<Polyline<IPointGeo>> path) {
 			_db = new OSMDB();
 			_dbCounter = -1;
+            _idLine = new List<IPolyline<IPointGeo>>();
             //Dictionary<IPointGeo, IPointGeo> knownSegs = new Dictionary<IPointGeo, IPointGeo>();
 
             IPointGeo lastPoint = null;
 			OSMNode node = null;
 
 			foreach (var line in path) {
-				if (line.Nodes.Count == 0)
+                if (line != null)
+                    _idLine.Add(line);
+
+                if (line.Nodes.Count == 0)
 					continue;
 
 				if (line.Nodes.Count == 1)
 					throw new Exception();
-                
-				OSMWay way = new OSMWay(_dbCounter--);
-				way.Tags.Add(new OSMTag("way-id", line.WayID.ToString()));
+
+                OSMWay way = new OSMWay(_dbCounter--);
+                //OSMWay way = new OSMWay(line.Id);
+           
+
+                way.Tags.Add(new OSMTag("way-id", line.WayID.ToString()));
 				way.Tags.Add(new OSMTag("order", (_db.Ways.Count + 1).ToString()));
 
                 /*var traffic = new HashSet<long>();
@@ -375,12 +394,14 @@ namespace LK.TMatch {
                 _db.Ways.Add(way);
                 
 				foreach (var point in line.Nodes) {
+
 					if (point != lastPoint) {
 						lastPoint = point;
 						PointEx pt = (PointEx)point;
-
-						node = new OSMNode(_dbCounter--, pt.Latitude, pt.Longitude);
-						if (pt.NodeID != 0) {
+                  
+                        node = new OSMNode(_dbCounter--, pt.Latitude, pt.Longitude);
+                        //node = new OSMNode(point., pt.Latitude, pt.Longitude);
+                        if (pt.NodeID != 0) {
 							node.Tags.Add(new OSMTag("node-id", pt.NodeID.ToString()));
 						}
 						if (pt.Time != DateTime.MinValue) {
@@ -394,9 +415,9 @@ namespace LK.TMatch {
 					}
 					way.Nodes.Add(node.ID);
 				}
-			}
+            }
 
-			return _db;
+            return _db;
 		}
 	}
 }
