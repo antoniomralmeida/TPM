@@ -35,6 +35,8 @@ namespace LK.TMatch
         CandidatesGraph _candidatesGraph;
         AstarPathfinder _pathfinder;
         List<ConnectionGeometry> _trackCutout;
+        internal OSMDB _db;
+
         /// <summary>
         /// Create a new instance of the STMatching class
         /// </summary>
