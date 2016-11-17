@@ -43,31 +43,10 @@ namespace LK.TRoute
             var p = r.Segments.Last();
             var q = p.GetDirectlyTrafficDensityReachableNeighbors(minTraffic, eps);
 
-            /*if (r.Segments.Count < 10)
-            //{
-                Console.WriteLine("= HOT ROUTE =");
-                foreach (var v in r.Segments)
-                    Console.WriteLine(v.From.MapPoint.Latitude + " " + v.From.MapPoint.Longitude + " " + v.To.MapPoint.Latitude
-                        + " " + v.To.MapPoint.Longitude);
-                Console.WriteLine();
-            //}*/
-
-            /*if (r.Segments.Count < 10)
-            //{
-                Console.WriteLine("= NEIGHBORS =");
-                foreach (var v in q)
-                    Console.WriteLine(v.From.MapPoint.Latitude + " " + v.From.MapPoint.Longitude + " " + v.To.MapPoint.Latitude 
-                        + " " + v.To.MapPoint.Longitude);
-                Console.WriteLine();
-            //}*/
-
             if (q.Any())
             {
                 foreach (var split in q)
                 {
-                    /*Console.WriteLine("from lat: " + split.From.MapPoint.Latitude + ", from lng: " + split.From.MapPoint.Longitude);
-                    Console.WriteLine("from lat: " + split.To.MapPoint.Latitude + ", from lng: " + split.To.MapPoint.Longitude);
-                    Console.WriteLine();*/
                     if (IsRouteTrafficDensityReachable(r, split))
                     {
                         if (!r.Segments.Contains(split))
@@ -147,6 +126,7 @@ namespace LK.TRoute
             foreach (var ci in candidates)
             {
                 var incoming = ci.From.Connections.Where(c => c.Traffic.Count() >= minTraffic && c.To == ci.From);
+                //var incoming = ci.From.Connections.Where(c => c.To == ci.From);
 
                 if (incoming.Any())
                 {

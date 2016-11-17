@@ -38,8 +38,7 @@ namespace LK.TRoute
                 Console.WriteLine("Try `TRoute --help' for more information.");
                 return;
             }
-
-
+            
             if (showHelp || string.IsNullOrEmpty(osmPath) || eps < 0 || minTraffic < 0)
             {
                 ShowHelp(parameters);
@@ -52,21 +51,60 @@ namespace LK.TRoute
             roadGraph.Build(osmFile);
             
             var hotRoutes = new FlowScan().Run(roadGraph, eps, minTraffic);
-            
-            var csv = new StringBuilder();
 
-            foreach (var hr in hotRoutes)
+
+            //OSMDB hotRouteOutput = new OSMDB();
+            //List<OSMNode> hotRouteNodesList = new List<OSMNode>();
+
+            /*foreach (var hr in hotRoutes)
             {
                 foreach (var seg in hr.Segments)
                 {
+                    OSMNode nd = new OSMNode();
                     string line = seg.From.MapPoint.Latitude + "," + seg.From.MapPoint.Longitude + " " + seg.To.MapPoint.Latitude
                         + "," + seg.To.MapPoint.Longitude;
                     csv.AppendLine(line);
                 }
-                csv.AppendLine("");
+            }*/
+
+
+            // Saving GPX file of the Hot Route
+            List<GPXPoint> listPoints;
+            List<GPXTrackSegment> listSegments;
+            GPXTrackSegment segTrack;
+
+            List<GPXTrack> track = new List<GPXTrack>();
+            GPXTrack tr;
+
+            Console.WriteLine(hotRoutes.Count);
+            foreach (var hr in hotRoutes)
+            {
+                listSegments = new List<GPXTrackSegment>();
+
+                foreach (var seg in hr.Segments)
+                {
+                    listPoints = new List<GPXPoint>();
+                    
+                    foreach (var segInception in seg.Geometry.Segments)
+                    {
+                        GPXPoint start = new GPXPoint() { Latitude = segInception.StartPoint.Latitude, Longitude = segInception.StartPoint.Longitude };
+                        GPXPoint end = new GPXPoint() { Latitude = segInception.EndPoint.Latitude, Longitude = segInception.EndPoint.Longitude };
+                        listPoints.Add(start);
+                        listPoints.Add(end);
+                    }
+
+                    segTrack = new GPXTrackSegment(listPoints);
+                    listSegments.Add(segTrack);
+                }
+                
+                tr = new GPXTrack();
+                tr.Segments.AddRange(listSegments);
+                track.Add(tr);
+
             }
-            
-            File.WriteAllText("./Tests/output.csv", csv.ToString());
+            var gpx = new GPXDocument() { Tracks = track };
+            gpx.Save("HotRoute.gpx");
+
         }
 
         /// <summary>
