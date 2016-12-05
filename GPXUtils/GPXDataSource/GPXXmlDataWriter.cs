@@ -90,16 +90,19 @@ namespace LK.GPXUtils.GPXDataSource {
 		/// </example>
 		protected void WritePointData(GPXPoint point, string tag) {
 			_xmlWriter.WriteStartElement(tag);
+            
+            // writing id
+            _xmlWriter.WriteAttributeString("id", point.Id.ToString(System.Globalization.CultureInfo.InvariantCulture));
 
-			_xmlWriter.WriteAttributeString("lat", point.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            _xmlWriter.WriteAttributeString("lat", point.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
 			_xmlWriter.WriteAttributeString("lon", point.Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
 
-			if (point.Elevation != 0) {
+            if (point.Elevation != 0) {
 				_xmlWriter.WriteElementString("ele", point.Elevation.ToString(System.Globalization.CultureInfo.InvariantCulture));
 			}
 
 			if (point.Time != DateTime.MinValue) {
-				_xmlWriter.WriteElementString("time", point.Time.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"));			
+			    _xmlWriter.WriteElementString("time", point.Time.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"));			
 			}
 
 			if (string.IsNullOrEmpty(point.Name) == false) {
@@ -113,6 +116,7 @@ namespace LK.GPXUtils.GPXDataSource {
 			if (string.IsNullOrEmpty(point.Commenet) == false) {
 				_xmlWriter.WriteElementString("cmt", point.Commenet);
 			}
+
 
 			_xmlWriter.WriteEndElement();
 		}
@@ -145,11 +149,22 @@ namespace LK.GPXUtils.GPXDataSource {
 			if (string.IsNullOrEmpty(track.Name) == false) {
 				_xmlWriter.WriteElementString("name", track.Name);
 			}
-
+            
 			foreach (GPXTrackSegment segment in track.Segments) {
 				_xmlWriter.WriteStartElement("trkseg");
 
-				foreach (GPXPoint point in segment.Nodes) {
+                // Traffic
+                /*_xmlWriter.WriteStartElement("trafficSeg");
+                _xmlWriter.WriteAttributeString("traffic", segment.Traffic.Count.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                _xmlWriter.WriteEndElement();*/
+
+                // Average Speed
+                /*_xmlWriter.WriteStartElement("avgSpeed");
+                _xmlWriter.WriteAttributeString("speed", segment.AverageSpeed.ToString());
+                _xmlWriter.WriteEndElement();*/
+
+                // Points
+                foreach (GPXPoint point in segment.Nodes) {
 					WritePointData(point, "trkpt");
 				}
 

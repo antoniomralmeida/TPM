@@ -361,7 +361,6 @@ namespace LK.TMatch {
 			_db = new OSMDB();
 			_dbCounter = -1;
             _idLine = new List<IPolyline<IPointGeo>>();
-            //Dictionary<IPointGeo, IPointGeo> knownSegs = new Dictionary<IPointGeo, IPointGeo>();
 
             IPointGeo lastPoint = null;
 			OSMNode node = null;
@@ -377,30 +376,20 @@ namespace LK.TMatch {
 					throw new Exception();
 
                 OSMWay way = new OSMWay(_dbCounter--);
-                //OSMWay way = new OSMWay(line.Id);
            
-
                 way.Tags.Add(new OSMTag("way-id", line.WayID.ToString()));
 				way.Tags.Add(new OSMTag("order", (_db.Ways.Count + 1).ToString()));
-
-                /*var traffic = new HashSet<long>();
-                foreach (var seg in line.Segments) {
-                    //if (knownSegs.Contains(seg.StartPoint, seg.EndPoint)) ;
-                    //traffic.Add(seg.);
-                    knownSegs.Add(seg.StartPoint, seg.EndPoint)
-                }
-                way.Tags.Add(new OSMTag("traffic", String.Join(",", traffic)));*/
 
                 _db.Ways.Add(way);
                 
 				foreach (var point in line.Nodes) {
-
+                    
 					if (point != lastPoint) {
 						lastPoint = point;
 						PointEx pt = (PointEx)point;
                   
                         node = new OSMNode(_dbCounter--, pt.Latitude, pt.Longitude);
-                        //node = new OSMNode(point., pt.Latitude, pt.Longitude);
+
                         if (pt.NodeID != 0) {
 							node.Tags.Add(new OSMTag("node-id", pt.NodeID.ToString()));
 						}

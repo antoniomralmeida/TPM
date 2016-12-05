@@ -17,16 +17,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.IO;
-
 using NDesk.Options;
 using Utils;
-
 using LK.OSMUtils.OSMDatabase;
 using LK.GPXUtils;
 using LK.TMatch.XMLUtils;
 using LK.GeoUtils.Geometry;
+using LK.GeoUtils;
 
 namespace LK.TMatch
 {
@@ -101,7 +99,8 @@ namespace LK.TMatch
             if (File.Exists(gpxPath))
             {
                 ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, samplingPeriod, filter, buckets);
-                GenerateOsmFiles(buckets, reconstructor, map);
+                GenerateOsmFiles(buckets, reconstructor, map, gpxPath);
+                GenerateGpxFiles(buckets);
             }
             // Process all GPX in directory
             else if (Directory.Exists(gpxPath))
@@ -114,7 +113,13 @@ namespace LK.TMatch
                     ProcessGPXFile(file, processor, reconstructor, outputPath, samplingPeriod, filter, buckets);
                     Console.WriteLine();
                 }
-                GenerateOsmFiles(buckets, reconstructor, map);
+                
+                GenerateGpxFiles(buckets);
+                foreach (var file in files)
+                {
+                    GenerateOsmFiles(buckets, reconstructor, map, file);
+                }
+                
             }
             else
             {
@@ -141,7 +146,7 @@ namespace LK.TMatch
                 Console.WriteLine(gpx.Tracks[trackIndex].Name);
 
                 for (int segmentIndex = 0; segmentIndex < gpx.Tracks[trackIndex].Segments.Count; segmentIndex++)
-                {
+                { 
                     string name = string.IsNullOrEmpty(gpx.Tracks[trackIndex].Name) ? "t" + trackIndex.ToString() : gpx.Tracks[trackIndex].Name.Replace('\\', '-').Replace(":", "");
                     name += "_s" + segmentIndex.ToString();
                     Console.Write("\t" + name + " ");
@@ -169,7 +174,6 @@ namespace LK.TMatch
                             Console.WriteLine(".");
 
                             var trackId = gpx.Tracks[trackIndex].Name.Replace("trk_", "");
-
                             buckets = GetUpdatedBuckets(toProcess, reconstructedPath, buckets, trackId);
 
                         } else {
@@ -200,8 +204,18 @@ namespace LK.TMatch
             return buckets;
         }
 
-        static void GenerateOsmFiles(List<Bucket> buckets, PathReconstructer reconstructor, OSMDB map)
+        static void GenerateOsmFiles(List<Bucket> buckets, PathReconstructer reconstructor, OSMDB map, string gpxPath)
         {
+            GPXDocument gpx = new GPXDocument();
+            Console.WriteLine(gpxPath);
+            gpx.Load(gpxPath);
+
+            List<GPXTrack> gpxTrackList = new List<GPXTrack>();
+            foreach (var trk in gpx.Tracks)
+            {
+                gpxTrackList.Add(trk);
+            }
+
             foreach (var b in buckets)
             {
                 if (b.Paths.Any())
@@ -212,12 +226,27 @@ namespace LK.TMatch
                     foreach (var p in b.Paths)
                     {
                         var uniquePath = p.Value.GroupBy(x => new { x.Id }).Select(x => x.First());
-                        Console.WriteLine("NUMBER PATHS: " + uniquePath.Count());
+
                         foreach (var seg in uniquePath)
                         {
                             if (seg.Id != 0)
                             {
                                 var matchingWay = mapCopy.Ways[seg.Id];
+                                var avgSpeed = getAverageSpeed(p.Key, gpxTrackList);
+
+                                if (avgSpeed != null)
+                                {
+                                    if (matchingWay.Tags.ContainsTag("avgSpeed"))
+                                    {
+                                        matchingWay.Tags["avgSpeed"].Value = avgSpeed;
+                                    }
+                                    else
+                                    {
+                                        matchingWay.Tags.Add(new OSMTag("avgSpeed", avgSpeed));
+                                    }
+
+                                }
+
                                 if (matchingWay.Tags.ContainsTag("traffic"))
                                 {
                                     matchingWay.Tags["traffic"].Value += "," + p.Key;
@@ -226,10 +255,70 @@ namespace LK.TMatch
                                 {
                                     matchingWay.Tags.Add(new OSMTag("traffic", p.Key));
                                 }
+
                             }
                         }
+                        pathList.AddRange(uniquePath);
                     }
 
+                    //OSMDB resultMap = reconstructor.SaveToOSM(pathList);
+                    //resultMap.Save("map" + b.Name + ".osm");
+
+                    mapCopy.Save("map" + b.Name + "withTraffic.osm");
+                }
+            }
+        }
+
+        // 
+        // It gets as parameters the traffic, and a list of gpx tracks list.
+        // Return the avarage speed of the specific traffic, if there are more
+        // than one segment, it calculate the mean. 
+        //
+        static string getAverageSpeed(string traffic, List<GPXTrack> gpxTrackList)
+        {
+            double length;
+            double avgSpeed = 0;
+            TimeSpan intervalTime = new TimeSpan();
+            
+            foreach(var trk in gpxTrackList)
+            {
+                var name = trk.Name.Replace("trk_", "");
+                // found the correct segment
+                if (name.ToString() == traffic)
+                {
+                    foreach (var seg in trk.Segments)
+                    {
+                        length = 0;
+                        for (int i = 0; i < seg.Nodes.Count; i++)
+                        {
+                            if (i + 1 < seg.Nodes.Count)
+                            {
+                                length += Calculations.GetDistance2D(seg.Nodes[i], seg.Nodes[i+1]);
+                            }
+                        }
+
+                        // meters to km
+                        length = length / 1000;
+                        intervalTime = seg.Nodes.Last().Time - seg.Nodes.First().Time;
+                        //Console.WriteLine("Length: " + length);
+                        //Console.WriteLine("Total hours: " + intervalTime.TotalHours);
+                        avgSpeed += (length / intervalTime.TotalHours);
+                    }
+
+                    avgSpeed = avgSpeed / trk.Segments.Count;
+                    return avgSpeed.ToString();
+                }
+            }
+            return null;
+        }
+
+        static void GenerateGpxFiles(List<Bucket> buckets)
+        {
+
+            foreach (var b in buckets)
+            {
+                if (b.Paths.Any())
+                {
                     // Saving the Map to GPX instead of OSM - START
                     var tracks = new List<GPXTrack>();
 
@@ -241,7 +330,7 @@ namespace LK.TMatch
                             List<GPXPoint> list = new List<GPXPoint>();
 
                             foreach (var s in t.Segments)
-                            {                             
+                            {
                                 GPXPoint start = new GPXPoint() { Latitude = s.StartPoint.Latitude, Longitude = s.StartPoint.Longitude };
                                 GPXPoint end = new GPXPoint() { Latitude = s.EndPoint.Latitude, Longitude = s.EndPoint.Longitude };
 
@@ -258,13 +347,8 @@ namespace LK.TMatch
                     var gpx = new GPXDocument() { Tracks = tracks };
                     gpx.Save("map" + b.Name + ".gpx");
                     // END
-
-                    //OSMDB resultMap = reconstructor.SaveToOSM(b.Paths);
-                    //resultMap.Save("map" + b.Name + ".osm");
-
-                    mapCopy.Save("map" + b.Name + "withTraffic.osm");
                 }
-            }   
+            }
         }
 
         /// <summary>

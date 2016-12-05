@@ -15,9 +15,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using LK.GeoUtils.Geometry;
 
@@ -26,10 +23,20 @@ namespace LK.GPXUtils {
 	/// Represents a geographic point with optional elevation and time.
 	/// </summary>
 	public struct GPXPoint : IPointGeo {
-		/// <summary>
-		/// Gets or sets the latitude of this point
+
+        /// <summary>
+		/// Gets or sets the Id of the point
 		/// </summary>
-		public double Latitude {
+		public long Id
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the latitude of this point
+        /// </summary>
+        public double Latitude {
 			get;
 			set;
 		}
@@ -82,12 +89,28 @@ namespace LK.GPXUtils {
 			get;
 			set;
 		}
-		/// <summary>
+
+        /// <summary>
 		/// Creates a new instance of GPXPoint
 		/// </summary>
 		/// <param name="lat">The latitute of the point</param>
 		/// <param name="lon">The longitude of the point</param>
-		public GPXPoint(double lat, double lon) : this() {
+		public GPXPoint(long id, double lat, double lon) : this()
+        {
+            Latitude = lat;
+            Longitude = lon;
+            Id = id;
+
+            Elevation = 0;
+            Time = DateTime.MinValue;
+        }
+
+        /// <summary>
+        /// Creates a new instance of GPXPoint
+        /// </summary>
+        /// <param name="lat">The latitute of the point</param>
+        /// <param name="lon">The longitude of the point</param>
+        public GPXPoint(double lat, double lon) : this() {
 			Latitude = lat;
 			Longitude = lon;
 

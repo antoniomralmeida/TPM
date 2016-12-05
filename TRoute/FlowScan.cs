@@ -39,7 +39,6 @@ namespace LK.TRoute
 
         public HotRoute ExtendHotRoutes(HotRoute r)
         {
-
             var p = r.Segments.Last();
             var q = p.GetDirectlyTrafficDensityReachableNeighbors(minTraffic, eps);
 
@@ -53,11 +52,12 @@ namespace LK.TRoute
                         {
                             var r_ = r;
                             r_.Segments.Add(split);
-                            ExtendHotRoutes(r_);
+                            //ExtendHotRoutes(r_);
                         }
                     }
                 }
             }
+
             return r;
         }
 
@@ -68,7 +68,7 @@ namespace LK.TRoute
             segments.Add(split);
             int hrSize = segments.Count;
 
-            if (hrSize < eps)
+            if (hrSize < eps)   
             {
                 return true;
             }
@@ -76,45 +76,12 @@ namespace LK.TRoute
             {
                 int i = hrSize;
                 var s = segments[i-1];
-                //Console.WriteLine(s.From.MapPoint.Latitude + " " + s.From.MapPoint.Longitude + " " + s.To.MapPoint.Latitude
-                  //  + " " + s.To.MapPoint.Longitude);
                 
                 IEnumerable<long> intersected = segments[i-1].Traffic;
                 for (int j = i-1; j > i-eps; j--)
                 {
                     intersected = intersected.Intersect(segments[j-1].Traffic);
                 }
-
-                /*foreach (var v in intersected)
-                    Console.Write(v + " ");
-                Console.WriteLine();
-
-                if (intersected.Count() < minTraffic)
-                {
-                    Console.WriteLine("false");
-                    return false;
-                }*/
-
-                /*while (i >= eps)
-                {
-                    IEnumerable<long> intersected = segments[i-1].Traffic;
-                    for (int j = i-1; j > i-eps; j--)
-                    {
-                        intersected = intersected.Intersect(segments[j-1].Traffic);
-                    }
-
-                    foreach (var v in intersected)
-                        Console.Write(v + " ");
-                    Console.WriteLine();
-                    //Console.WriteLine(intersected.Count());
-
-                    if (intersected.Count() < minTraffic)
-                    {
-                        Console.WriteLine("false");
-                        return false;
-                    }
-                    i--;
-                }*/
             }
             return true;
         }
@@ -126,7 +93,6 @@ namespace LK.TRoute
             foreach (var ci in candidates)
             {
                 var incoming = ci.From.Connections.Where(c => c.Traffic.Count() >= minTraffic && c.To == ci.From);
-                //var incoming = ci.From.Connections.Where(c => c.To == ci.From);
 
                 if (incoming.Any())
                 {

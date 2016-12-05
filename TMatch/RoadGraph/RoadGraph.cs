@@ -88,9 +88,12 @@ namespace LK.TMatch {
 				catch (ArgumentException) {
 					continue; // If the end node was not found in the database, skip this path completely
 				}
-
+               
 				double speed = double.Parse(segment.Tags["speed"].Value, System.Globalization.CultureInfo.InvariantCulture);
-				int wayId = int.Parse(segment.Tags["way-id"].Value, System.Globalization.CultureInfo.InvariantCulture);
+                // It may cause dependency issues 
+                //double avgSpeed = double.Parse(segment.Tags["avgSpeed"].Value, System.Globalization.CultureInfo.InvariantCulture);
+                //////////////////////////////////
+                int wayId = int.Parse(segment.Tags["way-id"].Value, System.Globalization.CultureInfo.InvariantCulture);
                 long id = segment.ID;
 
 				ConnectionGeometry geometry = new ConnectionGeometry();

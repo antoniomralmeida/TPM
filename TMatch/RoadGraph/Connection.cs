@@ -88,8 +88,7 @@ namespace LK.TMatch {
             {
                 HashSet<Connection> epsNeighborhood = new HashSet<Connection>();
                 Queue<Connection> q = new Queue<Connection>();
-
-                //epsNeighborhood.Add(this);
+                
                 q.Enqueue(this);
 
                 for (int i = 0; i < eps; i++)

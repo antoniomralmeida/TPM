@@ -125,8 +125,8 @@ namespace LK.GPXUtils.GPXDataSource {
 				throw new XmlException("Attribute 'lon' is missing.");
 			}
 			double pointLon = double.Parse(lon, System.Globalization.CultureInfo.InvariantCulture);
-
-			GPXPoint parsedPoint = new GPXPoint(pointLat, pointLon);
+            
+            GPXPoint parsedPoint = new GPXPoint(pointLat, pointLon);
 
 			if (_xmlReader.IsEmptyElement == false) {
 				_xmlReader.Read();
@@ -142,9 +142,8 @@ namespace LK.GPXUtils.GPXDataSource {
 							case "time":
 								string time = _xmlReader.ReadString();
 								parsedPoint.Time = DateTime.Parse(time, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal | System.Globalization.DateTimeStyles.AssumeUniversal);
-								
-							//parsedPoint.Time = DateTime.ParseExact(time, "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal | System.Globalization.DateTimeStyles.AssumeUniversal);
-								_xmlReader.Skip();								
+                                //parsedPoint.Time = TimeSpan.ParseExact(time, "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal | System.Globalization.DateTimeStyles.AssumeUniversal);
+                                _xmlReader.Skip();								
 								break;
 							case "name":
 								parsedPoint.Name = _xmlReader.ReadString();
