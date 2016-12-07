@@ -47,9 +47,9 @@ namespace LK.TRoute
             roadGraph.Build(osmFile);
             
             var hotRoutes = new FlowScan().Run(roadGraph, eps, minTraffic);
-            
+
             // Saving GPX file of the Hot Route
-            List<GPXPoint> listPoints;
+            HashSet<GPXPoint> listPoints;
             List<GPXTrackSegment> listSegments;
             GPXTrackSegment segTrack;
 
@@ -64,12 +64,12 @@ namespace LK.TRoute
 
                 foreach (var seg in hr.Segments)
                 {
-                    listPoints = new List<GPXPoint>();
+                    listPoints = new HashSet<GPXPoint>();
 
-                    foreach (var segInception in seg.Geometry.Segments)
+                    foreach (var segInner in seg.Geometry.Segments)
                     {
-                        GPXPoint start = new GPXPoint() { Id = seg.Id, Latitude = segInception.StartPoint.Latitude, Longitude = segInception.StartPoint.Longitude };
-                        GPXPoint end = new GPXPoint() { Id = seg.Id, Latitude = segInception.EndPoint.Latitude, Longitude = segInception.EndPoint.Longitude };
+                        GPXPoint start = new GPXPoint() { Id = seg.Id, Latitude = segInner.StartPoint.Latitude, Longitude = segInner.StartPoint.Longitude };
+                        GPXPoint end = new GPXPoint() { Id = seg.Id, Latitude = segInner.EndPoint.Latitude, Longitude = segInner.EndPoint.Longitude };
                         listPoints.Add(start);
                         listPoints.Add(end);
                     }
