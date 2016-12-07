@@ -92,7 +92,7 @@ namespace LK.GPXUtils.GPXDataSource {
 			_xmlWriter.WriteStartElement(tag);
             
             // writing id
-            _xmlWriter.WriteAttributeString("id", point.Id.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            //_xmlWriter.WriteAttributeString("id", point.Id.ToString(System.Globalization.CultureInfo.InvariantCulture));
 
             _xmlWriter.WriteAttributeString("lat", point.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
 			_xmlWriter.WriteAttributeString("lon", point.Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
@@ -153,11 +153,16 @@ namespace LK.GPXUtils.GPXDataSource {
 			foreach (GPXTrackSegment segment in track.Segments) {
 				_xmlWriter.WriteStartElement("trkseg");
 
+                if (segment.Id != 0)
+                {
+                    _xmlWriter.WriteAttributeString("id", segment.Id.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                }
+
                 // Traffic
                 if (segment.Traffic != null)
                 {
-                    _xmlWriter.WriteStartElement("trafficSeg");
-                    _xmlWriter.WriteAttributeString("traffic", segment.Traffic.Count.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                    _xmlWriter.WriteStartElement("traffiseg");
+                    _xmlWriter.WriteAttributeString("v", segment.Traffic.Count.ToString(System.Globalization.CultureInfo.InvariantCulture));
                     _xmlWriter.WriteEndElement();
                 }
 
@@ -165,7 +170,7 @@ namespace LK.GPXUtils.GPXDataSource {
                 if (segment.AvgSpeed != 0)
                 {
                     _xmlWriter.WriteStartElement("avgSpeed");
-                    _xmlWriter.WriteAttributeString("speed", segment.AvgSpeed.ToString("R"));
+                    _xmlWriter.WriteAttributeString("v", segment.AvgSpeed.ToString("R"));
                     _xmlWriter.WriteEndElement();
                 }
                 

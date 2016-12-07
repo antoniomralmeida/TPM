@@ -40,6 +40,15 @@ namespace LK.GPXUtils {
         /// <summary>
 		/// Gets or sets the traffic
 		/// </summary>
+		public long Id
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+		/// Gets or sets the traffic
+		/// </summary>
 		public HashSet<long> Traffic
         {
             get;
@@ -73,10 +82,12 @@ namespace LK.GPXUtils {
         /// Creates a new instance of GPXTrackSegment and initializes it with specific collection of GPXPoints
         /// </summary>
         /// <param name="points">Points that belong to the GPXTrackSegment</param>
-        public GPXTrackSegment(IEnumerable<GPXPoint> points, double avgSpeed)
+        public GPXTrackSegment(IEnumerable<GPXPoint> points, double avgSpeed, long id)
             : base()
         {
+            Id = id;
             AvgSpeed = avgSpeed;
+            
             foreach (var point in points)
             {
                 _nodes.Add(point);
