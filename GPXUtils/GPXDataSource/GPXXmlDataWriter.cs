@@ -154,14 +154,21 @@ namespace LK.GPXUtils.GPXDataSource {
 				_xmlWriter.WriteStartElement("trkseg");
 
                 // Traffic
-                /*_xmlWriter.WriteStartElement("trafficSeg");
-                _xmlWriter.WriteAttributeString("traffic", segment.Traffic.Count.ToString(System.Globalization.CultureInfo.InvariantCulture));
-                _xmlWriter.WriteEndElement();*/
+                if (segment.Traffic != null)
+                {
+                    _xmlWriter.WriteStartElement("trafficSeg");
+                    _xmlWriter.WriteAttributeString("traffic", segment.Traffic.Count.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                    _xmlWriter.WriteEndElement();
+                }
 
                 // Average Speed
-                /*_xmlWriter.WriteStartElement("avgSpeed");
-                _xmlWriter.WriteAttributeString("speed", segment.AverageSpeed.ToString());
-                _xmlWriter.WriteEndElement();*/
+                if (segment.AvgSpeed != 0)
+                {
+                    _xmlWriter.WriteStartElement("avgSpeed");
+                    _xmlWriter.WriteAttributeString("speed", segment.AvgSpeed.ToString("R"));
+                    _xmlWriter.WriteEndElement();
+                }
+                
 
                 // Points
                 foreach (GPXPoint point in segment.Nodes) {

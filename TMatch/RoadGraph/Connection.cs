@@ -68,6 +68,11 @@ namespace LK.TMatch {
 		public double Speed { get; set; }
 
         /// <summary>
+		/// Gets or sets average speed on this connection
+		/// </summary>
+		public double AvgSpeed { get; set; }
+
+        /// <summary>
         /// Gets or sets traffic on this connection
         /// </summary>
         public HashSet<long> Traffic { get; set; }
@@ -112,11 +117,6 @@ namespace LK.TMatch {
                 HashSet<Connection> directlyTrafficDensityReachableNeighbors = new HashSet<Connection>();
 
                 var epsN = this.GetEpsNeighborhood(eps);
-
-                /*Console.WriteLine("this: " + this.From.MapPoint.Latitude + " " + this.From.MapPoint.Longitude + " " + this.To.MapPoint.Latitude + " " + this.To.MapPoint.Longitude);
-                foreach(var s in epsN)
-                    Console.WriteLine("others: " + s.From.MapPoint.Latitude + " " + s.From.MapPoint.Longitude + " " + s.To.MapPoint.Latitude + " " + s.To.MapPoint.Longitude);
-                Console.WriteLine("----");*/
 
                 foreach (var s in epsN)
                 {

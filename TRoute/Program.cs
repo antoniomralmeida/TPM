@@ -73,7 +73,8 @@ namespace LK.TRoute
                         listPoints.Add(start);
                         listPoints.Add(end);
                     }
-                    segTrack = new GPXTrackSegment(listPoints);
+
+                    segTrack = new GPXTrackSegment(listPoints, seg.AvgSpeed);
                     // passing the traffic
                     segTrack.Traffic = seg.Traffic;
                     listSegments.Add(segTrack);

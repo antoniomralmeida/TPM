@@ -47,6 +47,15 @@ namespace LK.GPXUtils {
         }
 
         /// <summary>
+		/// Gets or sets the average speed
+		/// </summary>
+		public double AvgSpeed
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Creates a new instance of GPXTrackSegment and initializes it with specific collection of GPXPoints
         /// </summary>
         /// <param name="points">Points that belong to the GPXTrackSegment</param>
@@ -54,6 +63,20 @@ namespace LK.GPXUtils {
             : base()
         {
 
+            foreach (var point in points)
+            {
+                _nodes.Add(point);
+            }
+        }
+
+        /// <summary>
+        /// Creates a new instance of GPXTrackSegment and initializes it with specific collection of GPXPoints
+        /// </summary>
+        /// <param name="points">Points that belong to the GPXTrackSegment</param>
+        public GPXTrackSegment(IEnumerable<GPXPoint> points, double avgSpeed)
+            : base()
+        {
+            AvgSpeed = avgSpeed;
             foreach (var point in points)
             {
                 _nodes.Add(point);

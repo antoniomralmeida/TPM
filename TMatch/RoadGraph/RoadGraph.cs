@@ -73,6 +73,7 @@ namespace LK.TMatch {
 			Dictionary<long, Node> usedNodes = new Dictionary<long, Node>();
 
 			foreach (var segment in map.Ways) {
+
 				Node start = GetOrCreateNode(segment.Nodes[0], usedNodes);
 				try {
 					start.MapPoint = map.Nodes[segment.Nodes[0]];
@@ -87,12 +88,21 @@ namespace LK.TMatch {
 				}
 				catch (ArgumentException) {
 					continue; // If the end node was not found in the database, skip this path completely
-				}
-               
-				double speed = double.Parse(segment.Tags["speed"].Value, System.Globalization.CultureInfo.InvariantCulture);
-                // It may cause dependency issues 
-                //double avgSpeed = double.Parse(segment.Tags["avgSpeed"].Value, System.Globalization.CultureInfo.InvariantCulture);
-                //////////////////////////////////
+			    }	
+
+                double speed = double.Parse(segment.Tags["speed"].Value, System.Globalization.CultureInfo.InvariantCulture);
+
+                // Getting the average speed
+                double avgSpeed = 0;
+                try
+                {
+                    avgSpeed = double.Parse(segment.Tags["avgSpeed"].Value);
+                }
+                catch (ArgumentException)
+                {
+                    continue;
+                }
+
                 int wayId = int.Parse(segment.Tags["way-id"].Value, System.Globalization.CultureInfo.InvariantCulture);
                 long id = segment.ID;
 
@@ -105,7 +115,7 @@ namespace LK.TMatch {
 						//geometry.Nodes.Add(new PointGeo(mapPoint.Latitude, mapPoint.Longitude));
 					}
 					catch (ArgumentException) {
-					continue; // If an intermediate node was not found in the database, skip just that node
+					    continue; // If an intermediate node was not found in the database, skip just that node
 					}
 				}
 				_connectionGeometries.Add(geometry);
@@ -116,11 +126,11 @@ namespace LK.TMatch {
                     if (segment.Tags.ContainsTag("traffic"))
                     {
                         var traffic = new HashSet<long>(segment.Tags["traffic"].Value.Split(',').Select(x => long.Parse(x)));
-                        sc = new Connection(start, end) { Speed = speed, Geometry = geometry, Traffic = traffic, Id = id };
+                        sc = new Connection(start, end) { Speed = speed, Geometry = geometry, Traffic = traffic, Id = id, AvgSpeed = avgSpeed };
                     }
                     else
                     {
-                        sc = new Connection(start, end) { Speed = speed, Geometry = geometry, Traffic = new HashSet<long>(), Id = id };
+                        sc = new Connection(start, end) { Speed = speed, Geometry = geometry, Traffic = new HashSet<long>(), Id = id, AvgSpeed = avgSpeed };
                     }
                     geometry.Connections.Add(sc);
                     _connections.Add(sc);
@@ -131,11 +141,11 @@ namespace LK.TMatch {
                     if (segment.Tags.ContainsTag("traffic"))
                     {
                         var traffic = new HashSet<long>(segment.Tags["traffic"].Value.Split(',').Select(x => long.Parse(x)));
-                        sc = new Connection(end, start) { Speed = speed, Geometry = geometry, Traffic = traffic, Id = id };
+                        sc = new Connection(end, start) { Speed = speed, Geometry = geometry, Traffic = traffic, Id = id, AvgSpeed = avgSpeed };
                     }
                     else
                     {
-                        sc = new Connection(end, start) { Speed = speed, Geometry = geometry, Traffic = new HashSet<long>(), Id = id };
+                        sc = new Connection(end, start) { Speed = speed, Geometry = geometry, Traffic = new HashSet<long>(), Id = id, AvgSpeed = avgSpeed };
                     }
 					geometry.Connections.Add(sc);
 					_connections.Add(sc);
