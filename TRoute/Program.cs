@@ -86,7 +86,7 @@ namespace LK.TRoute
 
             }
             var gpx = new GPXDocument() { Tracks = track };
-            gpx.Save("HotRoute.gpx");
+            gpx.Save("mapWithHotRoutes.gpx");
 
         }
 
