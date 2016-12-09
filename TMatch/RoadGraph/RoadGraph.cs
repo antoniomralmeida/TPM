@@ -94,13 +94,9 @@ namespace LK.TMatch {
 
                 // Getting the average speed
                 double avgSpeed = 0;
-                try
+                if (segment.Tags.ContainsTag("avgSpeed"))
                 {
                     avgSpeed = double.Parse(segment.Tags["avgSpeed"].Value);
-                }
-                catch (ArgumentException)
-                {
-                    continue;
                 }
 
                 int wayId = int.Parse(segment.Tags["way-id"].Value, System.Globalization.CultureInfo.InvariantCulture);
