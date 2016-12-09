@@ -54,7 +54,7 @@ namespace LK.CSV2GPX
             // Process all GPX in directory
             else if (Directory.Exists(csvPath))
             {
-                var files = Directory.GetFiles(csvPath, "*.CSV");
+                var files = Directory.GetFiles(csvPath, "*.txt");
                 
                 Console.WriteLine("Found {0} CSV file(s).", files.Length);
 
