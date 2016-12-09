@@ -98,28 +98,31 @@ namespace LK.TMatch
             // Process single file
             if (File.Exists(gpxPath))
             {
+                List<GPXTrack> result = new List<GPXTrack>();
+                result.AddRange(getAllGpxTrackList(gpxPath));
+
                 ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, samplingPeriod, filter, buckets);
-                GenerateOsmFiles(buckets, reconstructor, map, gpxPath);
-                GenerateGpxFiles(buckets);
+                GenerateOsmFiles(buckets, reconstructor, map, result);
+                GenerateGpxFiles(buckets, gpxPath, 0);
             }
             // Process all GPX in directory
             else if (Directory.Exists(gpxPath))
             {
                 var files = Directory.GetFiles(gpxPath, "*.gpx");
+                List<GPXTrack> result = new List<GPXTrack>();
+
                 Console.WriteLine("Found {0} GPX file(s).", files.Length);
 
-                foreach (var file in files)
+                for (int i = 0; i < files.Length; i++)
                 {
-                    ProcessGPXFile(file, processor, reconstructor, outputPath, samplingPeriod, filter, buckets);
-                    Console.WriteLine();
+                    ProcessGPXFile(files[i], processor, reconstructor, outputPath, samplingPeriod, filter, buckets);
+                    GenerateGpxFiles(buckets, gpxPath, i);
+                    result.AddRange(getAllGpxTrackList(files[i]));
+
+                    Console.WriteLine("NEW FILE BEING PROCESSED");
                 }
-                
-                GenerateGpxFiles(buckets);
-                foreach (var file in files)
-                {
-                    GenerateOsmFiles(buckets, reconstructor, map, file);
-                }
-                
+
+                GenerateOsmFiles(buckets, reconstructor, map, result);
             }
             else
             {
@@ -129,6 +132,43 @@ namespace LK.TMatch
             Console.WriteLine("\tDone.");
             Console.WriteLine("\tSpan=" + (DateTime.Now - span));
 
+        }
+
+        static List<GPXTrack> getAllGpxTrackList(string file)
+        {
+            GPXDocument gpx = new GPXDocument();
+            List<GPXTrack> gpxTrackList = new List<GPXTrack>();
+            List<GPXTrackSegment> gpxTrackSegList;
+            //GPXTrack gpxTrack;
+
+
+            gpx.Load(file);
+
+            foreach (var trk in gpx.Tracks)
+            {
+                gpxTrackSegList = new List<GPXTrackSegment>();
+
+                // Sanatizing the data, some segments have zero nodes. 
+                foreach (var seg in trk.Segments)
+                {
+                    if (seg.Nodes.Count != 0)
+                    {
+                        gpxTrackSegList.Add(seg);
+                    }
+                }
+
+                // Clearing the olds
+                trk.Segments.Clear();
+                // Assigning the new ones. 
+                trk.Segments.AddRange(gpxTrackSegList);
+
+                if (trk.Segments.Count != 0)
+                {
+                    gpxTrackList.Add(trk);
+                }
+            }
+
+            return gpxTrackList;
         }
 
         static void ProcessGPXFile(string path, TMM processor, PathReconstructer reconstructor, string outputPath, int samplingPeriod, 
@@ -204,18 +244,9 @@ namespace LK.TMatch
             return buckets;
         }
 
-        static void GenerateOsmFiles(List<Bucket> buckets, PathReconstructer reconstructor, OSMDB map, string gpxPath)
+        static void GenerateOsmFiles(List<Bucket> buckets, PathReconstructer reconstructor, OSMDB map, List<GPXTrack> gpxTrackList)
         {
-            GPXDocument gpx = new GPXDocument();
-            Console.WriteLine(gpxPath);
-            gpx.Load(gpxPath);
-
-            List<GPXTrack> gpxTrackList = new List<GPXTrack>();
-            foreach (var trk in gpx.Tracks)
-            {
-                gpxTrackList.Add(trk);
-            }
-
+           
             foreach (var b in buckets)
             {
                 if (b.Paths.Any())
@@ -264,7 +295,7 @@ namespace LK.TMatch
                     //OSMDB resultMap = reconstructor.SaveToOSM(pathList);
                     //resultMap.Save("map" + b.Name + ".osm");
 
-                    mapCopy.Save("map" + b.Name + "withTraffic.osm");
+                    mapCopy.Save("map" + b.Name + ".osm");
                 }
             }
         }
@@ -293,13 +324,22 @@ namespace LK.TMatch
                         {
                             if (i + 1 < seg.Nodes.Count)
                             {
-                                length += Calculations.GetDistance2D(seg.Nodes[i], seg.Nodes[i+1]);
+                                length += Calculations.GetDistance2D(seg.Nodes[i], seg.Nodes[i + 1]);
                             }
                         }
 
                         // meters to km
                         length = length / 1000;
-                        intervalTime = seg.Nodes.Last().Time - seg.Nodes.First().Time;
+                        if (seg.Nodes.Count != 0)
+                        {
+                            intervalTime = seg.Nodes.Last().Time - seg.Nodes.First().Time;
+                        }
+                        else
+                        {
+                            avgSpeed = 0;
+                            return avgSpeed.ToString();
+                        }
+
                         //Console.WriteLine("Length: " + length);
                         //Console.WriteLine("Total hours: " + intervalTime.TotalHours);
                         avgSpeed += (length / intervalTime.TotalHours);
@@ -309,10 +349,11 @@ namespace LK.TMatch
                     return avgSpeed.ToString();
                 }
             }
+                
             return null;
         }
 
-        static void GenerateGpxFiles(List<Bucket> buckets)
+        static void GenerateGpxFiles(List<Bucket> buckets, string file, int positionFile)
         {
 
             foreach (var b in buckets)
@@ -345,7 +386,7 @@ namespace LK.TMatch
                     }
 
                     var gpx = new GPXDocument() { Tracks = tracks };
-                    gpx.Save("map" + b.Name + ".gpx");
+                    gpx.Save("mapGpx" + positionFile + ".gpx");
                     // END
                 }
             }
