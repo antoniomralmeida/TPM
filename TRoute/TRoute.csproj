@@ -132,9 +132,9 @@
       <Project>{1dd2bdf4-8d35-42b6-9426-eed5cd098058}</Project>
       <Name>OSMUtils</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TMatch\TMatch.csproj">
+    <ProjectReference Include="..\TMatch\FDI.csproj">
       <Project>{ea461709-3ac8-4fd2-85b4-fb1af7ddf8fe}</Project>
-      <Name>TMatch</Name>
+      <Name>FDI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utils\Utils.csproj">
       <Project>{154ec14e-0896-4947-9d32-c70b18995483}</Project>

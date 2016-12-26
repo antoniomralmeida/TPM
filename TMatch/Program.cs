@@ -22,11 +22,12 @@ using NDesk.Options;
 using Utils;
 using LK.OSMUtils.OSMDatabase;
 using LK.GPXUtils;
-using LK.TMatch.XMLUtils;
+using LK.FDI.XMLUtils;
 using LK.GeoUtils.Geometry;
 using LK.GeoUtils;
 
-namespace LK.TMatch
+namespace LK.FDI
+
 {
     class Program
     {
@@ -58,9 +59,9 @@ namespace LK.TMatch
             }
             catch (OptionException e)
             {
-                Console.Write("TMatch: ");
+                Console.Write("FDI: ");
                 Console.WriteLine(e.Message);
-                Console.WriteLine("Try `tmatch --help' for more information.");
+                Console.WriteLine("Try `fdi --help' for more information.");
                 return;
             }
 
@@ -398,8 +399,8 @@ namespace LK.TMatch
         /// <param name="p">The parameters accepted by this program</param>
         static void ShowHelp(OptionSet p)
         {
-            Console.WriteLine("Usage: tmatch [OPTIONS]+");
-            Console.WriteLine("Matches GPX track to the OSM map");
+            Console.WriteLine("Usage: fdi [OPTIONS]+");
+            Console.WriteLine("Flow Density Inference by matching");
             Console.WriteLine();
 
             Console.WriteLine("Options:");

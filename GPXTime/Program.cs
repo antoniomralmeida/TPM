@@ -98,16 +98,31 @@ namespace LK.GPXTime
 
             //Discretization Round Time
             
-            Console.Write("Testing Discretization Round Time");
-            clustering = DiscTime.DiscretizationRoundTime(rawData, out numClusters, out means, out count, out withinss);
+            Console.Write("Testing Downscaling (mim)");
+
+            clustering = DiscTime.DiscretizationRoundTime(rawData, out numClusters, out means, out count, out withinss, "M");
             Console.WriteLine(",numClusters= "+ numClusters + ", withinss=" + withinss);
             rre.Add(withinss);
             log.WriteLine(numClusters + ";" + withinss);
 
-            csv = new System.IO.StreamWriter("GPXTime1.csv");
+            csv = new System.IO.StreamWriter("GPXTime1-M.csv");
             for (int n=0;n<numClusters;n++)
                 csv.WriteLine(means[n][0] + ";" + count[n]);
             csv.Close();
+
+
+            Console.Write("Testing Downscaling (Hour)");
+
+            clustering = DiscTime.DiscretizationRoundTime(rawData, out numClusters, out means, out count, out withinss, "H");
+            Console.WriteLine(",numClusters= " + numClusters + ", withinss=" + withinss);
+            rre.Add(withinss);
+            log.WriteLine(numClusters + ";" + withinss);
+
+            csv = new System.IO.StreamWriter("GPXTime1-H.csv");
+            for (int n = 0; n < numClusters; n++)
+                csv.WriteLine(means[n][0] + ";" + count[n]);
+            csv.Close();
+
 
             //Discretization Histogram
 

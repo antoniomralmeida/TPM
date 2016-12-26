@@ -22,7 +22,7 @@ using System.Text;
 using LK.GeoUtils;
 using LK.OSMUtils.OSMDatabase;
 
-namespace LK.TMatch {
+namespace LK.FDI {
 	/// <summary>
 	/// Represents class that is able to find path beteewn two points in the RoadGraph
 	/// </summary>

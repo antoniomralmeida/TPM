@@ -21,7 +21,7 @@ using System.Text;
 
 using LK.CommonLib.Collections;
 
-namespace LK.TMatch {
+namespace LK.FDI {
 	/// <summary>
 	/// Represents a priority queue of the PartialPath, it is used as open list in the A* algorithm
 	/// </summary>

@@ -8,7 +8,7 @@ namespace LK.GPXTime
     class DiscTime
     {
 
-            public static int[] DiscretizationRoundTime(double[][] rawData, out int numClusters, out double[][] means, out int[] clusterCounts, out double withinss)
+            public static int[] DiscretizationRoundTime(double[][] rawData, out int numClusters, out double[][] means, out int[] clusterCounts, out double withinss, string type)
         {
 
             int[] bestClustering = new int[rawData.Length];
@@ -16,9 +16,13 @@ namespace LK.GPXTime
 
             Dictionary<String, int> Clusters = new Dictionary<String, int>();
             int l = -1;
-            for (int d = 0; d < rawData.Length; d++) { 
-                String key = String.Format("{0:00}:{1:00}", (int)(rawData[d][0] * 24), (int)(rawData[d][0] * 24 * 60) % 24);
-
+            for (int d = 0; d < rawData.Length; d++) {
+                String key;
+                if (type == "H")
+                    key = String.Format("{0:00}:{1:00}", (int)(rawData[d][0] * 24), 0);
+                else    
+                    key = String.Format("{0:00}:{1:00}", (int)(rawData[d][0] * 24), (int)(rawData[d][0] * 24 * 60) % 24);
+                
                 if (Clusters.ContainsKey(key))
                     Clusters[key]++;
                 else

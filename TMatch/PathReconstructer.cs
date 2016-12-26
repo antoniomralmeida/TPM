@@ -22,7 +22,7 @@ using LK.GeoUtils;
 using LK.OSMUtils.OSMDatabase;
 using LK.GeoUtils.Geometry;
 
-namespace LK.TMatch {
+namespace LK.FDI {
 	public class PathReconstructer {
 		public OSMDB _db;
 		int _dbCounter;

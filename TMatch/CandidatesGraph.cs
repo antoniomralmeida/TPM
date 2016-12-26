@@ -20,7 +20,7 @@ using System.Linq;
 using System.Text;
 using LK.GPXUtils;
 
-namespace LK.TMatch {
+namespace LK.FDI {
 	/// <summary>
 	/// Represents candidates graph
 	/// </summary>

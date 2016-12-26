@@ -22,7 +22,7 @@ using System.Text;
 using LK.GeoUtils;
 using LK.GeoUtils.Geometry;
 
-namespace LK.TMatch {
+namespace LK.FDI {
     [Serializable]
 	/// <summary>
 	/// Represents a node in the routable road graph

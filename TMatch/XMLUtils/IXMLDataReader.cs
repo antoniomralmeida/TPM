@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LK.TMatch.XMLUtils
+namespace LK.FDI.XMLUtils
 {
     public delegate void XMLBucketReadHandler(List<Bucket> parsedBuckets);
 

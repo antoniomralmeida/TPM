@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace LK.TMatch.XMLUtils
+namespace LK.FDI.XMLUtils
 {
     public class XMLDocument
     {

@@ -21,7 +21,7 @@ using System.Text;
 
 using LK.GeoUtils.Geometry;
 
-namespace LK.TMatch {
+namespace LK.FDI {
     [Serializable]
 	/// <summary>
 	/// Represents a directed connection (an edge in the roadgraph) between two nodes.

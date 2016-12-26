@@ -21,7 +21,7 @@ using System.Text;
 
 using LK.GPXUtils;
 
-namespace LK.TMatch {
+namespace LK.FDI {
 	/// <summary>
 	/// Represents set of the candidate points for the GPX point
 	/// </summary>

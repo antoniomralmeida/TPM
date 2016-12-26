@@ -23,7 +23,7 @@ using LK.OSMUtils.OSMDatabase;
 using LK.OSMUtils.OSMDataSource;
 using LK.GeoUtils.Geometry;
 
-namespace LK.TMatch {
+namespace LK.FDI {
 	//Represents routable road graph, every road segment is represented by directed Connection and every road crossing by Node
 	public class RoadGraph {
 		private List<Node> _nodes;

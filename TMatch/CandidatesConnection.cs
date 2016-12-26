@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LK.TMatch {
+namespace LK.FDI {
 	/// <summary>
 	/// Represents connection between two candidate points 
 	/// </summary>

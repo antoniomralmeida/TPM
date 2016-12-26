@@ -25,7 +25,7 @@ using LK.GPXUtils;
 using LK.OSMUtils.OSMDatabase;
 using System.Collections;
 
-namespace LK.TMatch
+namespace LK.FDI
 {
     public class TMM
     {

@@ -21,7 +21,7 @@ using System.Text;
 
 using LK.GeoUtils.Geometry;
 
-namespace LK.TMatch {
+namespace LK.FDI {
 	/// <summary>
 	/// Represents candidate point during map-matching
 	/// </summary>

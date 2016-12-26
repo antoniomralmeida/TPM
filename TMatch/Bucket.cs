@@ -3,7 +3,7 @@ using LK.OSMUtils.OSMDatabase;
 using System;
 using System.Collections.Generic;
 
-namespace LK.TMatch
+namespace LK.FDI
 {
     public class Bucket
     {
