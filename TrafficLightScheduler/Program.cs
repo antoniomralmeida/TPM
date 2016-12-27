@@ -2,7 +2,7 @@
 
 using NDesk.Options;
 
-namespace LK.TrafficLightScheduler
+namespace LK.TLS
 {
     class Program
     {
@@ -26,9 +26,9 @@ namespace LK.TrafficLightScheduler
             }
             catch (OptionException e)
             {
-                Console.Write("TGreenWave: ");
+                Console.Write("TLS: ");
                 Console.WriteLine(e.Message);
-                Console.WriteLine("Try `TGreenWave --help' for more information.");
+                Console.WriteLine("Try `TLS --help' for more information.");
                 return;
             }
 
@@ -47,7 +47,7 @@ namespace LK.TrafficLightScheduler
         /// <param name="p">The parameters accepted by this program</param>
         static void ShowHelp(OptionSet p)
         {
-            Console.WriteLine("Usage: TGreenWave [OPTIONS]+");
+            Console.WriteLine("Usage: TLS [OPTIONS]+");
             Console.WriteLine("Outputs hot routes found");
             Console.WriteLine();
 

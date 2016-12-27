@@ -7,8 +7,8 @@
     <ProjectGuid>{FFA3493D-B3FE-4669-BF22-4FB8E922C6FA}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TrafficLightScheduler</RootNamespace>
-    <AssemblyName>TrafficLightScheduler</AssemblyName>
+    <RootNamespace>LK.TLS</RootNamespace>
+    <AssemblyName>TLS</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

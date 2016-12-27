@@ -8,7 +8,7 @@ using System.Text;
 // This code can be used in at least two ways. You can do a copy-paste and then insert the code into some system that uses clustering.
 // Or you can wrap the code up in a Class Library. The single public method is Cluster().
 
-namespace LK.GPXTime
+namespace LK.TimeWindows
 {
 
     class KMeans

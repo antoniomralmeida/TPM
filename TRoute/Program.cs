@@ -5,7 +5,7 @@ using LK.OSMUtils.OSMDatabase;
 using LK.FDI;
 using LK.GPXUtils;
 
-namespace LK.TRoute
+namespace LK.HRT
 {
     class Program
     {

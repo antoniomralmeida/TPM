@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace LK.TGreeNWave
+namespace LK.GreenRoute
 {
     class Program
     {

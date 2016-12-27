@@ -8,7 +8,7 @@ using NDesk.Options;
 using LK.GPXUtils;
 using System.Xml;
 
-namespace LK.GPXTime
+namespace LK.TimeWindows
 {
     class Program
     {
@@ -37,9 +37,9 @@ namespace LK.GPXTime
             }
             catch (OptionException e)
             {
-                Console.Write("GPXTime: ");
+                Console.Write("TimeWindows: ");
                 Console.WriteLine(e.Message);
-                Console.WriteLine("Try `GPXTime --help' for more information.");
+                Console.WriteLine("Try `TimeWindows --help' for more information.");
                 return;
             }
 
@@ -82,7 +82,7 @@ namespace LK.GPXTime
             int[] clustering;
             System.IO.StreamWriter csv;
 
-            System.IO.StreamWriter log = new System.IO.StreamWriter("GPXTime.log");
+            System.IO.StreamWriter log = new System.IO.StreamWriter("TimeWindows.log");
 
             Console.WriteLine("Sorting DataSetSize=" + DataSetSize);
             tlist.Sort();
@@ -90,7 +90,7 @@ namespace LK.GPXTime
             for (int l = 0; l < DataSetSize; l++)
                 rawData[l] = new double[] { tlist[l] };
 
-            csv = new System.IO.StreamWriter("GPXTime.csv");
+            csv = new System.IO.StreamWriter("TimeWindows.csv");
             for (int n = 0; n < rawData.Length; n++)
                 csv.WriteLine(rawData[n][0] );
             csv.Close();
@@ -98,27 +98,27 @@ namespace LK.GPXTime
 
             //Discretization Round Time
             
-            Console.Write("Testing Downscaling (mim)");
+            Console.Write("Testing Discretization by Downscaling (mim)");
 
             clustering = DiscTime.DiscretizationRoundTime(rawData, out numClusters, out means, out count, out withinss, "M");
             Console.WriteLine(",numClusters= "+ numClusters + ", withinss=" + withinss);
             rre.Add(withinss);
             log.WriteLine(numClusters + ";" + withinss);
 
-            csv = new System.IO.StreamWriter("GPXTime1-M.csv");
+            csv = new System.IO.StreamWriter("TimeWindows1-M.csv");
             for (int n=0;n<numClusters;n++)
                 csv.WriteLine(means[n][0] + ";" + count[n]);
             csv.Close();
 
 
-            Console.Write("Testing Downscaling (Hour)");
+            Console.Write("Testing Discretization by Downscaling (Hour)");
 
             clustering = DiscTime.DiscretizationRoundTime(rawData, out numClusters, out means, out count, out withinss, "H");
             Console.WriteLine(",numClusters= " + numClusters + ", withinss=" + withinss);
             rre.Add(withinss);
             log.WriteLine(numClusters + ";" + withinss);
 
-            csv = new System.IO.StreamWriter("GPXTime1-H.csv");
+            csv = new System.IO.StreamWriter("TimeWindows1-H.csv");
             for (int n = 0; n < numClusters; n++)
                 csv.WriteLine(means[n][0] + ";" + count[n]);
             csv.Close();
@@ -126,13 +126,13 @@ namespace LK.GPXTime
 
             //Discretization Histogram
 
-            Console.Write("Testing Discretization Histogram");
+            Console.Write("Testing Discretization by Histogram");
             clustering = HistSample.Histogram(rawData, out numClusters, out means, out count, out withinss);
             Console.WriteLine(",numClusters= " + numClusters + ", withinss=" + withinss);
             rre.Add( withinss);
             log.WriteLine(numClusters + ";" + withinss);
 
-            csv = new System.IO.StreamWriter("GPXTime2.csv");
+            csv = new System.IO.StreamWriter("TimeWindows2.csv");
             for (int n = 0; n < numClusters; n++)
                 csv.WriteLine(means[n][0] + ";" + count[n]);
             csv.Close();
@@ -174,13 +174,10 @@ namespace LK.GPXTime
             Console.WriteLine(",numClusters= " + numClusters + ", withinss=" + withinss);
 
 
-            csv = new System.IO.StreamWriter("GPXTime3.csv");
+            csv = new System.IO.StreamWriter("TimeWindows3.csv");
             for (int n = 0; n < numClusters; n++)
                 csv.WriteLine(means[n][0] + ";" + count[n]);
             csv.Close();
-
-
-
 
             List<Double> buckets = new List<double>();
             buckets.Add(0);
@@ -232,7 +229,7 @@ namespace LK.GPXTime
 
              }
 
-             String fileout = Path.Combine(Path.GetDirectoryName(gpxPath), "GPXTime.xml");
+             String fileout = Path.Combine(Path.GetDirectoryName(gpxPath), "TimeWindows.xml");
              doc.Save(fileout);
              
             Console.WriteLine("\t\tDone.");
@@ -283,7 +280,7 @@ namespace LK.GPXTime
         /// <param name="p">The parameters accepted by this program</param>
         static void ShowHelp(OptionSet p)
         {
-            Console.WriteLine("Usage: GPXTime [OPTIONS]+");
+            Console.WriteLine("Usage: TimeWindows [OPTIONS]+");
             Console.WriteLine("Matches GPX track to the OSM map");
             Console.WriteLine();
 

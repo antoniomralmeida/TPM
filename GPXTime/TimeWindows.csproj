@@ -7,8 +7,8 @@
     <ProjectGuid>{02CEF606-AD1B-4D60-9C1C-7BF5C802AACA}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LK.GPXTime</RootNamespace>
-    <AssemblyName>GPXTime</AssemblyName>
+    <RootNamespace>LK.TimeWindows</RootNamespace>
+    <AssemblyName>TimeWindows</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
