@@ -89,7 +89,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>LK.TRoute.Program</StartupObject>
+    <StartupObject>LK.HRT.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -132,7 +132,7 @@
       <Project>{1dd2bdf4-8d35-42b6-9426-eed5cd098058}</Project>
       <Name>OSMUtils</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TMatch\FDI.csproj">
+    <ProjectReference Include="..\FDI\FDI.csproj">
       <Project>{ea461709-3ac8-4fd2-85b4-fb1af7ddf8fe}</Project>
       <Name>FDI</Name>
     </ProjectReference>

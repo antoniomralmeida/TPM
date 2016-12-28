@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using LK.OSMUtils.OSMDatabase;
 using LK.FDI;
 
-namespace LK.TRoute
+namespace LK.HRT
 {
     public class HotRoute
     {
