@@ -4,6 +4,7 @@ using NDesk.Options;
 using LK.OSMUtils.OSMDatabase;
 using LK.FDI;
 using LK.GPXUtils;
+using System.Linq;
 
 namespace LK.HRT
 {

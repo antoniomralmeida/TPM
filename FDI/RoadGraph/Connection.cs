@@ -34,7 +34,7 @@ namespace LK.FDI {
 		/// <param name="to">The noe where this connection ends</param>
 		public Connection(Node from, Node to) {
 			this.From = from;
-			from.Connections.Add(this);
+            from.Connections.Add(this);
 
 			this.To = to;
             to.Connections.Add(this);
@@ -98,11 +98,15 @@ namespace LK.FDI {
 
                 for (int i = 0; i < eps; i++)
                 {
-                    var next = q.Dequeue();
-                    foreach (var s in next.To.Connections.Where(c => c.From == next.To))
+                    if (q.Count != 0)
                     {
-                        epsNeighborhood.Add(s);
-                        q.Enqueue(s);
+                        var next = q.Dequeue();
+
+                        foreach (var s in next.To.Connections.Where(c => c.From == next.To))
+                        {
+                            epsNeighborhood.Add(s);
+                            q.Enqueue(s);
+                        }
                     }
                 }
                 this.epsNeighborhood = epsNeighborhood;
