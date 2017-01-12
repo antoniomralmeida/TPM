@@ -65,6 +65,15 @@ namespace LK.GPXUtils {
         }
 
         /// <summary>
+		/// Gets or sets the speed of the road
+		/// </summary>
+		public double Speed
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Creates a new instance of GPXTrackSegment and initializes it with specific collection of GPXPoints
         /// </summary>
         /// <param name="points">Points that belong to the GPXTrackSegment</param>
@@ -82,12 +91,13 @@ namespace LK.GPXUtils {
         /// Creates a new instance of GPXTrackSegment and initializes it with specific collection of GPXPoints
         /// </summary>
         /// <param name="points">Points that belong to the GPXTrackSegment</param>
-        public GPXTrackSegment(IEnumerable<GPXPoint> points, double avgSpeed, long id)
+        public GPXTrackSegment(IEnumerable<GPXPoint> points, double avgSpeed, double speed, long id)
             : base()
         {
             Id = id;
             AvgSpeed = avgSpeed;
-            
+            Speed = speed;
+
             foreach (var point in points)
             {
                 _nodes.Add(point);

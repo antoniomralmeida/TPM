@@ -91,6 +91,14 @@ namespace LK.GPXUtils {
 		}
 
         /// <summary>
+		/// Gets or sets the traffic signal of a point
+		/// </summary>
+		public Boolean TrafficSignal
+        {
+            get;
+            set;
+        }
+        /// <summary>
 		/// Creates a new instance of GPXPoint
 		/// </summary>
 		/// <param name="lat">The latitute of the point</param>
@@ -100,6 +108,22 @@ namespace LK.GPXUtils {
             Latitude = lat;
             Longitude = lon;
             Id = id;
+
+            Elevation = 0;
+            Time = DateTime.MinValue;
+        }
+
+        /// <summary>
+		/// Creates a new instance of GPXPoint
+		/// </summary>
+		/// <param name="lat">The latitute of the point</param>
+		/// <param name="lon">The longitude of the point</param>
+		public GPXPoint(long id, double lat, double lon, Boolean trafficSignal) : this()
+        {
+            Latitude = lat;
+            Longitude = lon;
+            Id = id;
+            TrafficSignal = trafficSignal;
 
             Elevation = 0;
             Time = DateTime.MinValue;

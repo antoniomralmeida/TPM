@@ -90,7 +90,6 @@ namespace LK.GPXUtils.GPXDataSource {
 		/// </example>
 		protected void WritePointData(GPXPoint point, string tag) {
 			_xmlWriter.WriteStartElement(tag);
-            
             // writing id
             //_xmlWriter.WriteAttributeString("id", point.Id.ToString(System.Globalization.CultureInfo.InvariantCulture));
 
@@ -117,7 +116,10 @@ namespace LK.GPXUtils.GPXDataSource {
 				_xmlWriter.WriteElementString("cmt", point.Commenet);
 			}
 
-
+            if (point.TrafficSignal != false)
+            {
+                _xmlWriter.WriteAttributeString("traffic_signal", point.TrafficSignal.ToString());
+            }
 			_xmlWriter.WriteEndElement();
 		}
 
@@ -173,7 +175,14 @@ namespace LK.GPXUtils.GPXDataSource {
                     _xmlWriter.WriteAttributeString("v", segment.AvgSpeed.ToString("R"));
                     _xmlWriter.WriteEndElement();
                 }
-                
+
+                // Route Speed
+                if (segment.Speed != 0)
+                {
+                    _xmlWriter.WriteStartElement("speed");
+                    _xmlWriter.WriteAttributeString("v", segment.Speed.ToString("R"));
+                    _xmlWriter.WriteEndElement();
+                }
 
                 // Points
                 foreach (GPXPoint point in segment.Nodes) {

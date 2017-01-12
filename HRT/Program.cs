@@ -46,7 +46,24 @@ namespace LK.HRT
             osmFile.Load(osmPath);
             var roadGraph = new RoadGraph();
             roadGraph.Build(osmFile);
-            
+
+            // Getting all the nodes with traffic signals
+            Dictionary<double, bool> tagsNodes = new Dictionary<double, bool>();
+            foreach (var node in osmFile.Nodes)
+            {
+                foreach (var tag in node.Tags)
+                {
+                    if (tag.Value.Equals("traffic_signals"))
+                    {
+                        if (!tagsNodes.Keys.Contains(node.Latitude + node.Longitude))
+                        {
+                            tagsNodes.Add(node.Latitude + node.Longitude, true);
+                        }
+                        
+                    }
+                }
+            }
+
             var hotRoutes = new FlowScan().Run(roadGraph, eps, minTraffic);
 
             // Saving GPX file of the Hot Route
@@ -69,13 +86,35 @@ namespace LK.HRT
 
                     foreach (var segInner in seg.Geometry.Segments)
                     {
-                        GPXPoint start = new GPXPoint() { Id = seg.Id, Latitude = segInner.StartPoint.Latitude, Longitude = segInner.StartPoint.Longitude };
-                        GPXPoint end = new GPXPoint() { Id = seg.Id, Latitude = segInner.EndPoint.Latitude, Longitude = segInner.EndPoint.Longitude };
+                        GPXPoint start;
+                        if (tagsNodes.Keys.Contains(segInner.StartPoint.Latitude + segInner.StartPoint.Longitude))
+                        {
+                            Boolean trafficSignal = tagsNodes[segInner.StartPoint.Latitude + segInner.StartPoint.Longitude];
+                            start = new GPXPoint() { Id = seg.Id, Latitude = segInner.StartPoint.Latitude,
+                                Longitude = segInner.StartPoint.Longitude, TrafficSignal = trafficSignal };
+                        } else
+                        {
+                            start = new GPXPoint() { Id = seg.Id, Latitude = segInner.StartPoint.Latitude,
+                                Longitude = segInner.StartPoint.Longitude, TrafficSignal = false };
+                        }
+
+                        GPXPoint end;
+                        if (tagsNodes.Keys.Contains(segInner.EndPoint.Latitude + segInner.EndPoint.Longitude))
+                        {
+                            Boolean trafficSignal = tagsNodes[segInner.EndPoint.Latitude + segInner.EndPoint.Longitude];
+                            end = new GPXPoint() { Id = seg.Id, Latitude = segInner.EndPoint.Latitude,
+                                Longitude = segInner.EndPoint.Longitude, TrafficSignal = trafficSignal };
+                        } else
+                        {
+                            end = new GPXPoint() { Id = seg.Id, Latitude = segInner.EndPoint.Latitude,
+                                Longitude = segInner.EndPoint.Longitude, TrafficSignal = false };
+                        }
+
                         listPoints.Add(start);
                         listPoints.Add(end);
                     }
-
-                    segTrack = new GPXTrackSegment(listPoints, seg.AvgSpeed, seg.Id);
+                    
+                    segTrack = new GPXTrackSegment(listPoints, seg.AvgSpeed, seg.Speed, seg.Id);
                     // passing the traffic
                     segTrack.Traffic = seg.Traffic;
                     listSegments.Add(segTrack);
