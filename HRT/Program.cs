@@ -68,7 +68,7 @@ namespace LK.HRT
 
             // Saving GPX file of the Hot Route
             HashSet<GPXPoint> listPoints;
-            List<GPXTrackSegment> listSegments;
+            HashSet<GPXTrackSegment> listSegments;
             GPXTrackSegment segTrack;
 
             List<GPXTrack> track = new List<GPXTrack>();
@@ -78,7 +78,7 @@ namespace LK.HRT
             foreach (var hr in hotRoutes)
             {
                 //Console.WriteLine("Number segs: " + hr.Segments.Count);
-                listSegments = new List<GPXTrackSegment>();
+                listSegments = new HashSet<GPXTrackSegment>();
 
                 foreach (var seg in hr.Segments)
                 {

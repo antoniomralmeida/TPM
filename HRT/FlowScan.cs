@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using LK.OSMUtils.OSMDatabase;
 using Utils;
 using LK.FDI;
+using LK.GeoUtils;
 
 namespace LK.HRT
 {
@@ -16,6 +17,7 @@ namespace LK.HRT
         int eps;
         int minTraffic;
         RoadGraph roadGraph;
+        AstarPathfinder aStart;
 
         public HashSet<HotRoute> Run(RoadGraph roadGraph, int eps, int minTraffic)
         {
@@ -28,25 +30,28 @@ namespace LK.HRT
 
             //var test = roadGraph.Connections.Where(c => c.Traffic.Count() >= minTraffic);
             //Console.WriteLine(test.ToList().Count);
+
+            this.aStart = new AstarPathfinder(this.roadGraph);
             FindHotRouteStarts();
-            Console.WriteLine(hotRouteStarts.Count);
+            Console.WriteLine("Return FindHotRouteStars(): " + hotRouteStarts.Count);
 
             foreach (var hrs in hotRouteStarts)
             {
                 var r = new HotRoute(hrs);
-                hotRoutes.Add(ExtendHotRoutes(r));
+                ExtendHotRoutes(ref r);
+                hotRoutes.Add(r);
             }
             
             return hotRoutes;
         }
 
-        public HotRoute ExtendHotRoutes(HotRoute r)
+        public void ExtendHotRoutes(ref HotRoute r)
         {
             var p = r.Segments.Last();
             //Console.WriteLine("P: " + p.Id);
             var q = p.GetDirectlyTrafficDensityReachableNeighbors(minTraffic, eps);
             //Console.WriteLine("Q: " + q.ToList().Count);
-
+ 
             if (q.Any())
             {
                 foreach (var split in q)
@@ -56,40 +61,38 @@ namespace LK.HRT
                     {
                         if (!r.Segments.Contains(split))
                         {
-                            var r_ = r;
-                            r_.Segments.Add(split);
-                            ExtendHotRoutes(r_);
+                            
+                            r.Segments.Add(split);
+                            ExtendHotRoutes(ref r);
+                        } else
+                        {
+                            return;
                         }
                     }
                 }
             }
-
-            return r;
         }
 
         public bool IsRouteTrafficDensityReachable(HotRoute r, Connection split)
         {
-            var segments = new List<Connection>();
-            segments.AddRange(r.Segments);
-            segments.Add(split);
-            int hrSize = segments.Count;
+            Connection last = r.Segments.Last();
+            double len = Calculations.GetDistance2D(last.From.MapPoint, split.To.MapPoint);
 
-            if (hrSize < eps)   
+            CandidatePoint from = new CandidatePoint();
+            from.MapPoint = last.From.MapPoint;
+            from.Road = last.Geometry;
+            CandidatePoint to = new CandidatePoint();
+            to.MapPoint = split.To.MapPoint;
+            to.Road = split.Geometry;
+
+            IList<PathSegment> result = this.aStart.FindPath(from, to, ref len);
+
+            if (result.Count <= eps)
             {
                 return true;
             }
-            else
-            {
-                int i = hrSize;
-                var s = segments[i-1];
-                
-                IEnumerable<long> intersected = segments[i-1].Traffic;
-                for (int j = i-1; j > i-eps; j--)
-                {
-                    intersected = intersected.Intersect(segments[j-1].Traffic);
-                }
-            }
-            return true;
+
+            return false;
         }
 
         private void FindHotRouteStarts()
@@ -111,17 +114,17 @@ namespace LK.HRT
 
                 if (incoming.Any())
                 {
-                    //var incomingAggreg = incoming.Select(c => c.Traffic.AsEnumerable()).Aggregate((a, b) => a.Union(b));
-                    var incomingAggreg = incoming.Select(c => c.Traffic.AsEnumerable()).Distinct();
+                    var incomingAggreg = incoming.Select(c => c.Traffic.AsEnumerable()).Aggregate((a, b) => a.Union(b));
+                    //var incomingAggreg = incoming.Select(c => c.Traffic.AsEnumerable()).Distinct();
                     //Console.WriteLine("INCOMING AGGREG: " + incomingAggreg.ToList().Count);
                     //Console.WriteLine("ci.Traffic.Except(incomingAggreg).Count():  " + ci.Traffic.Except(incomingAggreg).Count() + "\n");
 
-                    /*if (ci.Traffic.Except(incomingAggreg).Count() >= minTraffic)
+                    if (ci.Traffic.Except(incomingAggreg).Count() >= minTraffic)
                     {
                         hotRouteStarts.Add(ci);
-                    }*/
+                    }
 
-                    List<long> listAggreg = new List<long>();
+                    /*List<long> listAggreg = new List<long>();
                     foreach (var l in incomingAggreg)
                     {
                         listAggreg.AddRange(l);
@@ -130,7 +133,7 @@ namespace LK.HRT
                     if (list.Except(listAggreg).ToList().Count >= minTraffic)
                     {
                         hotRouteStarts.Add(ci);
-                    }
+                    }*/
                 }
 
             }
