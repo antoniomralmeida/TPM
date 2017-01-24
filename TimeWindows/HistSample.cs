@@ -40,17 +40,19 @@ namespace LK.TimeWindows
                 var d = (xMax - xMin) / n;
                 var ki = CountBin(rawData, n, xMin, d);
                 var ki2 = ki.Skip(1).Take(ki.Length - 2).ToArray();
-
-                var mean = ki2.Average();
-                var variance = ki2.Select(v => Math.Pow(v - mean, 2)).Sum() / n;
-
-                var offset = (2 * mean - variance) / Math.Pow(d, 2);
-
-                if (offset < minOffset)
+                if (ki2.Any())
                 {
-                    minKi = ki;
-                    minOffset = offset;
-                    optimalBinWidth = d;
+                    var mean = ki2.Average();
+                    var variance = ki2.Select(v => Math.Pow(v - mean, 2)).Sum() / n;
+
+                    var offset = (2 * mean - variance) / Math.Pow(d, 2);
+
+                    if (offset < minOffset)
+                    {
+                        minKi = ki;
+                        minOffset = offset;
+                        optimalBinWidth = d;
+                    }
                 }
             }
             numClusters = minKi.Length;

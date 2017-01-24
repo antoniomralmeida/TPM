@@ -202,7 +202,7 @@ namespace LK.CSV2GPX
                     long id = Convert.ToInt64(fields[id_field]);
                     if (id == next_id)
                     {
-                        if (!(fields[uf3_field] == "null" && fields[uf4_field] == "null"))
+                        if (!(fields[lat_field] == "null" && fields[lon_field] == "null"))
                         {
                             var lat = Double.Parse(fields[lat_field], System.Globalization.CultureInfo.InvariantCulture);
                             var lon = Double.Parse(fields[lon_field], System.Globalization.CultureInfo.InvariantCulture);
