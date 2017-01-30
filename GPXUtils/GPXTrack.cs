@@ -32,6 +32,12 @@ namespace LK.GPXUtils {
 			set;
 		}
 
+        private int _yellowTime;
+        private int _globalRedTime;
+        private int _minGreenTime;
+        private int _maxGreenTime;
+        private int _greenTime;    
+        
 		protected List<GPXTrackSegment> _segments;
 
 		/// <summary>
@@ -63,5 +69,55 @@ namespace LK.GPXUtils {
 
 			Name = name;
 		}
-	}
+
+        public int MaxSpeed()
+        {
+            int maxSpeed = 0;
+            foreach (GPXTrackSegment s in _segments)
+            {
+                if (s.Speed > maxSpeed)
+                    maxSpeed = (int)s.Speed;
+            }
+            return maxSpeed;
+        }
+
+        public void Webster()
+        {
+            int maxSpeed = MaxSpeed();
+            switch(maxSpeed)
+            {
+                case 80:
+                    _yellowTime = 5;
+                    _globalRedTime = 1;
+                    _minGreenTime = 17;
+                    break;
+                case 60:
+                    _yellowTime = 4;
+                    _globalRedTime = 1;
+                    _minGreenTime = 15;
+                    break;
+                case 40:
+                    _yellowTime = 3;
+                    _globalRedTime = 2;
+                    _minGreenTime = 12;
+                    break;
+            }
+            _maxGreenTime = (120 - _yellowTime - _globalRedTime) / 2;
+            _greenTime = _minGreenTime;
+        }
+
+        public void NextGreenTime()
+        {
+            if (_greenTime < _maxGreenTime)
+                _greenTime++;
+        }
+
+        public int CycleTime()
+        {
+            int redTime = _yellowTime + _globalRedTime + _greenTime;
+
+            return _yellowTime + _globalRedTime + _greenTime + redTime;
+        }
+
+    }
 }
