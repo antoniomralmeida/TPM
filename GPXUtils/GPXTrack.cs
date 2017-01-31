@@ -74,9 +74,9 @@ namespace LK.GPXUtils {
         public int MaxSpeed()
         {
             int maxSpeed = 0;
-            foreach (GPXTrackSegment s in _segments)
+            foreach (GPXTrackSegment s in this.Segments)
             {
-                if (s.Speed > maxSpeed)
+                if (s.Speed >= maxSpeed)
                     maxSpeed = (int)s.Speed;
             }
             return maxSpeed;
@@ -85,24 +85,24 @@ namespace LK.GPXUtils {
         public void Webster()
         {
             int maxSpeed = MaxSpeed();
-            switch(maxSpeed)
+
+            if (maxSpeed >= 80)
             {
-                case 80:
-                    _yellowTime = 5;
-                    _globalRedTime = 1;
-                    _minGreenTime = 17;
-                    break;
-                case 60:
-                    _yellowTime = 4;
-                    _globalRedTime = 1;
-                    _minGreenTime = 15;
-                    break;
-                case 40:
-                    _yellowTime = 3;
-                    _globalRedTime = 2;
-                    _minGreenTime = 12;
-                    break;
+                _yellowTime = 5;
+                _globalRedTime = 1;
+                _minGreenTime = 17;
+            } else if (maxSpeed >= 60)
+            {
+                _yellowTime = 4;
+                _globalRedTime = 1;
+                _minGreenTime = 15;
+            } else
+            {
+                _yellowTime = 3;
+                _globalRedTime = 2;
+                _minGreenTime = 12;
             }
+
             _maxGreenTime = (120 - _yellowTime - _globalRedTime) / 2;
             _greenTime = _minGreenTime;
         }
@@ -135,7 +135,15 @@ namespace LK.GPXUtils {
                 double timeAvgSegment = distance / segment.AvgSpeed;
                 timeAvgSegments += timeAvgSegment;
             }
+
             return timeAvgSegments;
+        }
+
+        public int getTotalConvoy()
+        {
+            Webster();
+            int cycleTime = CycleTime();
+            return ( (int) getTotalTimeRoute() / cycleTime);
         }
     }
 }
