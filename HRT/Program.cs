@@ -122,6 +122,7 @@ namespace LK.HRT
 
                 tr = new GPXTrack();
                 tr.Segments.AddRange(listSegments);
+                //Console.WriteLine("Avg Time: " + tr.getAverageTimeRoute());
                 track.Add(tr);
 
             }

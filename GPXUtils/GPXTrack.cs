@@ -14,6 +14,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using LK.GeoUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -119,5 +120,22 @@ namespace LK.GPXUtils {
             return _yellowTime + _globalRedTime + _greenTime + redTime;
         }
 
+        public double getAverageTimeRoute()
+        {
+            List<GPXTrackSegment> segments = this.Segments;
+            double timeAvgSegments = 0;
+
+            foreach (var segment in segments)
+            {
+                GPXPoint firstPoint = segment.Nodes.First();
+                GPXPoint lastPoint = segment.Nodes.Last();
+
+                var distance = Calculations.GetDistance2D(firstPoint, lastPoint);
+
+                double timeAvgSegment = distance / segment.AvgSpeed;
+                timeAvgSegments += timeAvgSegment;
+            }
+            return timeAvgSegments / segments.Count;
+        }
     }
 }

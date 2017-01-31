@@ -126,7 +126,6 @@ namespace LK.FDI {
                 {
                     if (this.Traffic.Intersect(s.Traffic).Count() >= minTraffic)
                     {
-                        Console.WriteLine("Id: " + s.Id);
                         directlyTrafficDensityReachableNeighbors.Add(s);
                     }
                 }
