@@ -120,7 +120,7 @@ namespace LK.GPXUtils {
             return _yellowTime + _globalRedTime + _greenTime + redTime;
         }
 
-        public double getAverageTimeRoute()
+        public double getTotalTimeRoute()
         {
             List<GPXTrackSegment> segments = this.Segments;
             double timeAvgSegments = 0;
@@ -135,7 +135,7 @@ namespace LK.GPXUtils {
                 double timeAvgSegment = distance / segment.AvgSpeed;
                 timeAvgSegments += timeAvgSegment;
             }
-            return timeAvgSegments / segments.Count;
+            return timeAvgSegments;
         }
     }
 }
