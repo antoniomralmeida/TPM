@@ -40,24 +40,40 @@ namespace LK.GPXUtils {
         private int _greenTime;    
         
 		protected List<GPXTrackSegment> _segments;
+        protected List<GPXPoint> _trafficLight;
 
-		/// <summary>
-		/// Gets the list of track segments that are part of this track
-		/// </summary>
-		public List<GPXTrackSegment> Segments {
+        /// <summary>
+        /// Gets the list of track segments that are part of this track
+        /// </summary>
+        public List<GPXPoint> TrafficLight {
 			get {
-				return _segments;
+				return _trafficLight;
 			}
+            set
+            {
+                this._trafficLight = value;
+            }
+		}
+
+        /// <summary>
+        /// Gets the list of track segments that are part of this track
+        /// </summary>
+        public List<GPXTrackSegment> Segments
+        {
+            get
+            {
+                return _segments;
+            }
             set
             {
                 this._segments = value;
             }
-		}
+        }
 
-		/// <summary>
-		/// Creates a new, empty instance of GPXTrack 
-		/// </summary>
-		public GPXTrack() {
+        /// <summary>
+        /// Creates a new, empty instance of GPXTrack 
+        /// </summary>
+        public GPXTrack() {
 			_segments = new List<GPXTrackSegment>();
 		}
 
@@ -137,6 +153,21 @@ namespace LK.GPXUtils {
             }
 
             return timeAvgSegments;
+        }
+
+        public void setTrafficLights()
+        {
+            List<GPXTrackSegment> segments = this.Segments;
+            foreach (var segment in segments)
+            {
+                foreach (var node in segment.Nodes)
+                {
+                    if (node.TrafficSignal)
+                    {
+                        TrafficLight.Add(node);
+                    }
+                }
+            }
         }
 
         public int getTotalConvoy()
