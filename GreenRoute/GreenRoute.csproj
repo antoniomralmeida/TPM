@@ -88,6 +88,7 @@
     <Compile Include="Convoy.cs" />
     <Compile Include="HRDocument.cs" />
     <Compile Include="Job.cs" />
+    <Compile Include="JobShop.cs" />
     <Compile Include="Processor.cs" />
     <Compile Include="TrafficLight.cs" />
     <Compile Include="HotRoute.cs" />
