@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace LK.GreenRoute
 {
-    class Webster
+    class Convoy
     {
+        public  int ProcessingTime { get; set; }
+        public int timeinRH { get; set; }
     }
 }

@@ -33,27 +33,12 @@ namespace LK.GPXUtils {
 			set;
 		}
 
-        private int _yellowTime;
-        private int _globalRedTime;
-        private int _minGreenTime;
-        private int _maxGreenTime;
-        private int _greenTime;    
-        
-		protected List<GPXTrackSegment> _segments;
-        protected List<GPXPoint> _trafficLight;
+   
 
-        /// <summary>
-        /// Gets the list of track segments that are part of this track
-        /// </summary>
-        public List<GPXPoint> TrafficLight {
-			get {
-				return _trafficLight;
-			}
-            set
-            {
-                this._trafficLight = value;
-            }
-		}
+        protected List<GPXTrackSegment> _segments;
+
+        
+       
 
         /// <summary>
         /// Gets the list of track segments that are part of this track
@@ -86,95 +71,7 @@ namespace LK.GPXUtils {
 
 			Name = name;
 		}
+        
 
-        public int MaxSpeed()
-        {
-            int maxSpeed = 0;
-            foreach (GPXTrackSegment s in this.Segments)
-            {
-                if (s.Speed >= maxSpeed)
-                    maxSpeed = (int)s.Speed;
-            }
-            return maxSpeed;
-        }
-
-        public void Webster()
-        {
-            int maxSpeed = MaxSpeed();
-
-            if (maxSpeed >= 80)
-            {
-                _yellowTime = 5;
-                _globalRedTime = 1;
-                _minGreenTime = 17;
-            } else if (maxSpeed >= 60)
-            {
-                _yellowTime = 4;
-                _globalRedTime = 1;
-                _minGreenTime = 15;
-            } else
-            {
-                _yellowTime = 3;
-                _globalRedTime = 2;
-                _minGreenTime = 12;
-            }
-
-            _maxGreenTime = (120 - _yellowTime - _globalRedTime) / 2;
-            _greenTime = _minGreenTime;
-        }
-
-        public void NextGreenTime()
-        {
-            if (_greenTime < _maxGreenTime)
-                _greenTime++;
-        }
-
-        public int CycleTime()
-        {
-            int redTime = _yellowTime + _globalRedTime + _greenTime;
-
-            return _yellowTime + _globalRedTime + _greenTime + redTime;
-        }
-
-        public double getTotalTimeRoute()
-        {
-            List<GPXTrackSegment> segments = this.Segments;
-            double timeAvgSegments = 0;
-
-            foreach (var segment in segments)
-            {
-                GPXPoint firstPoint = segment.Nodes.First();
-                GPXPoint lastPoint = segment.Nodes.Last();
-
-                var distance = Calculations.GetDistance2D(firstPoint, lastPoint);
-
-                double timeAvgSegment = distance / segment.AvgSpeed;
-                timeAvgSegments += timeAvgSegment;
-            }
-
-            return timeAvgSegments;
-        }
-
-        public void setTrafficLights()
-        {
-            List<GPXTrackSegment> segments = this.Segments;
-            foreach (var segment in segments)
-            {
-                foreach (var node in segment.Nodes)
-                {
-                    if (node.TrafficSignal)
-                    {
-                        TrafficLight.Add(node);
-                    }
-                }
-            }
-        }
-
-        public int getTotalConvoy()
-        {
-            Webster();
-            int cycleTime = CycleTime();
-            return ( (int) getTotalTimeRoute() / cycleTime);
-        }
     }
 }

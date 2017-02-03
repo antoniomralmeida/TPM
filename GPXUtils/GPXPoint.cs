@@ -22,8 +22,12 @@ namespace LK.GPXUtils {
 	/// <summary>
 	/// Represents a geographic point with optional elevation and time.
 	/// </summary>
-	public struct GPXPoint : IPointGeo {
+	public class GPXPoint : IPointGeo {
 
+
+        public GPXPoint() {
+            
+        }
         /// <summary>
 		/// Gets or sets the Id of the point
 		/// </summary>
