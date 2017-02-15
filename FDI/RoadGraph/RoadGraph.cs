@@ -75,6 +75,7 @@ namespace LK.FDI {
 			foreach (var segment in map.Ways) {
 
 				Node start = GetOrCreateNode(segment.Nodes[0], usedNodes);
+
 				try {
 					start.MapPoint = map.Nodes[segment.Nodes[0]];
 				}

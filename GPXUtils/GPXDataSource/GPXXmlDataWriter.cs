@@ -91,7 +91,7 @@ namespace LK.GPXUtils.GPXDataSource {
 		protected void WritePointData(GPXPoint point, string tag) {
 			_xmlWriter.WriteStartElement(tag);
             // writing id
-            //_xmlWriter.WriteAttributeString("id", point.Id.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            _xmlWriter.WriteAttributeString("id", point.Id.ToString(System.Globalization.CultureInfo.InvariantCulture));
 
             _xmlWriter.WriteAttributeString("lat", point.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
 			_xmlWriter.WriteAttributeString("lon", point.Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture));

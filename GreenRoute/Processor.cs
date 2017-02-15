@@ -9,5 +9,11 @@ namespace LK.GreenRoute
     class Processor
     {
         public TrafficLight trafficLight { get; set; }
+        public List<Job> jobs { get; set; }
+
+        public Processor()
+        {
+            jobs = new List<Job>();
+        }
     }
 }

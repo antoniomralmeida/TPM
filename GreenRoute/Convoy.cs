@@ -8,7 +8,7 @@ namespace LK.GreenRoute
 {
     class Convoy
     {
-        public  int ProcessingTime { get; set; }
+        public int ProcessingTime { get; set; }
         public int timeinRH { get; set; }
     }
 }

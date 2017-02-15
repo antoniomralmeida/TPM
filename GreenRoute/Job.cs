@@ -10,5 +10,17 @@ namespace LK.GreenRoute
     {
         public Convoy convoy;
         public int TimetoStart;
+        private static int counter = 0;
+        private readonly int instanceId;
+
+        public Job()
+        {
+            this.instanceId = ++counter;
+        }
+
+        public int UniqueId
+        {
+            get { return this.instanceId; }
+        }
     }
 }

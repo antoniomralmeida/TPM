@@ -15,9 +15,12 @@ class JobShop {
     public const int timeLimitInMs = 0;
 
     // Constructor
-    public JobShop() {
-        this.machinesCount = 3;
-        this.jobsCount = 3;
+    public JobShop(List<List<int>> machines, List<List<int>> processingTime) {
+        this.machinesCount = machines.Count;
+        this.jobsCount = processingTime.Count;
+
+        Console.WriteLine("machinesCount: " + this.machinesCount);
+        Console.WriteLine("jobsCount: " + this.jobsCount);
 
         this.allMachines = new List<int>();
         for (var i = 0; i < this.machinesCount; i++) this.allMachines.Add(i);
@@ -26,21 +29,22 @@ class JobShop {
         for (var i = 0; i < this.jobsCount; i++) this.allJobs.Add(i);
 
         // Define data.
-        this.machines = new List<List<int>>();
-        this.machines.Add(new List<int>(){0, 1, 2});
-        this.machines.Add(new List<int>(){0, 2, 1});
-        this.machines.Add(new List<int>(){1, 2});
+        this.machines = machines;
 
-        this.processingTimes = new List<List<int>>();
-        this.processingTimes.Add(new List<int>(){3, 2, 2});
-        this.processingTimes.Add(new List<int>(){2, 1, 4});
-        this.processingTimes.Add(new List<int>(){4, 3});
+        this.processingTimes = processingTime;
+
+        
+        /*foreach (var m in machines)
+        {
+            Console.WriteLine("Machine: " + m.First());
+        }*/
+
 
         // Computes horizon
         for (var i = 0; i < allMachines.Count; i++) {
             this.horizon += processingTimes.ElementAt(i).Sum();
         }
-
+        //Console.WriteLine("Horizon: " + this.horizon);
     }
 
     public void RunJobShopScheduling(String solverType) {

@@ -2,6 +2,8 @@
 using System;
 using Google.OrTools.ConstraintSolver;
 using System.Linq;
+using System.Collections.Generic;
+using LK.GPXUtils;
 
 namespace LK.GreenRoute
 {
@@ -10,13 +12,12 @@ namespace LK.GreenRoute
         static void Main(string[] args)
         {
 
-            string osmPath = "";
+            string gpxPath = "";
             bool showHelp = false;
-
-            Solve();
+            
 
             OptionSet parameters = new OptionSet() {
-                { "osm=", "path to the map file",                                                    v => osmPath = v},
+                { "gpx=", "path to the map file",                                                    v => gpxPath = v},
                 { "h|?|help",                                                                        v => showHelp = v != null},
             };
 
@@ -32,15 +33,17 @@ namespace LK.GreenRoute
                 return;
             }
 
-            if (showHelp || string.IsNullOrEmpty(osmPath))
+            if (showHelp || string.IsNullOrEmpty(gpxPath))
             {
                 ShowHelp(parameters);
                 return;
             }
 
             HRDocument hr = new HRDocument();
-            hr.Load(osmPath);
+            hr.Load(gpxPath);
+            Console.WriteLine("Track: " + hr.Tracks.Count);
             hr.Webster();
+            Solve(hr.getListProcessor(), hr.getJobTime());
         }
 
         /// <summary>
@@ -57,10 +60,10 @@ namespace LK.GreenRoute
             p.WriteOptionDescriptions(Console.Out);
         }
 
-        static void Solve()
+        static void Solve(List<List<int>> machines, List<List<int>> processingTimes)
         {
             Console.WriteLine("\n---- Job shop Scheduling Program ----");
-            JobShop jobShop = new JobShop();
+            JobShop jobShop = new JobShop(machines, processingTimes);
             jobShop.RunJobShopScheduling("Jobshop");
         }
     }

@@ -30,6 +30,8 @@ namespace LK.GPXUtils.GPXDataSource {
 	/// <remarks>GPXXmlDataReader can process only tracks</remarks>
 	public class GPXXmlDataReader : IGPXDataReader {
 		XmlReader _xmlReader;
+
+        static long id = 0;
 		
 		/// <summary>
 		/// Reads data from the gpx file
@@ -124,11 +126,23 @@ namespace LK.GPXUtils.GPXDataSource {
 			if (string.IsNullOrEmpty(lon)) {
 				throw new XmlException("Attribute 'lon' is missing.");
 			}
-			double pointLon = double.Parse(lon, System.Globalization.CultureInfo.InvariantCulture);
+
+            // longitude attribute
+            string trafficSignal = _xmlReader.GetAttribute("traffic_signal");   
+
+            double pointLon = double.Parse(lon, System.Globalization.CultureInfo.InvariantCulture);
             
             GPXPoint parsedPoint = new GPXPoint(pointLat, pointLon);
 
-			if (_xmlReader.IsEmptyElement == false) {
+            // Id Point
+            parsedPoint.Id = long.Parse(_xmlReader.GetAttribute("id"));
+
+            if (trafficSignal != null)
+            {
+                parsedPoint.TrafficSignal = bool.Parse(trafficSignal);
+            }
+            
+            if (_xmlReader.IsEmptyElement == false) {
 				_xmlReader.Read();
 
 				while (_xmlReader.NodeType != XmlNodeType.EndElement) {
@@ -189,7 +203,11 @@ namespace LK.GPXUtils.GPXDataSource {
 					if (_xmlReader.NodeType == XmlNodeType.Element) {
 						switch (_xmlReader.Name) {
 							case "trkseg":
-								parsedTrack.Segments.Add(ReadTrackSegment());
+                                long id = long.Parse(_xmlReader.GetAttribute("id"));
+
+                                parsedTrack.Segments.Add(ReadTrackSegment(id));
+
+
 								break;
 							case "name":
 								parsedTrack.Name = _xmlReader.ReadString();
@@ -244,19 +262,31 @@ namespace LK.GPXUtils.GPXDataSource {
 			OnRouteRead(parsedRoute);
 		}
 
-		private GPXTrackSegment ReadTrackSegment() {
+		private GPXTrackSegment ReadTrackSegment(long id) {
 			GPXTrackSegment parsedSegment = new GPXTrackSegment();
-
-			if (_xmlReader.IsEmptyElement == false) {
+            
+            if (_xmlReader.IsEmptyElement == false) {
 				_xmlReader.Read();
+                parsedSegment.Id = id;
 
-				while (_xmlReader.NodeType != XmlNodeType.EndElement) {
-					if (_xmlReader.NodeType == XmlNodeType.Element) {
-						switch (_xmlReader.Name) {
-							case "trkpt":
-								parsedSegment.Nodes.Add(ReadPoint());
-								break;
-							default:
+                while (_xmlReader.NodeType != XmlNodeType.EndElement) {
+                    if (_xmlReader.NodeType == XmlNodeType.Element) {
+                        
+                        if (_xmlReader.Name == "avgSpeed" && Convert.ToDouble(_xmlReader.GetAttribute("v")) != 0)
+                        {
+                            parsedSegment.AvgSpeed = Convert.ToDouble(_xmlReader.GetAttribute("v"));
+                        }
+
+                        if (_xmlReader.Name == "speed" && Convert.ToDouble(_xmlReader.GetAttribute("v")) != 0)
+                        {
+                            parsedSegment.Speed = Convert.ToDouble(_xmlReader.GetAttribute("v"));
+                        }
+
+                        switch (_xmlReader.Name) {
+                            case "trkpt":
+                                parsedSegment.Nodes.Add(ReadPoint());
+                                break;
+                            default:
 								_xmlReader.Skip();
 								break;
 						}

@@ -32,13 +32,8 @@ namespace LK.GPXUtils {
 			get;
 			set;
 		}
-
-   
-
-        protected List<GPXTrackSegment> _segments;
-
         
-       
+        protected List<GPXTrackSegment> _segments;
 
         /// <summary>
         /// Gets the list of track segments that are part of this track

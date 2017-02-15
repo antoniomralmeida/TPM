@@ -1,17 +1,19 @@
-﻿using LK.GPXUtils;
-using LK.GPXUtils.GPXDataSource;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+
+using LK.GPXUtils.GPXDataSource;
+using LK.GPXUtils;
 
 namespace LK.GreenRoute
 {
     class HRDocument
     {
         private List<GPXPoint> _waypoins;
+        private List<Processor> _processor;
+        private List<HotRoute> _hotRoutes;
         /// <summary>
         /// Gets the list of waypoints
         /// </summary>
@@ -49,6 +51,7 @@ namespace LK.GreenRoute
             _waypoins = new List<GPXPoint>();
             _routes = new List<GPXRoute>();
             _tracks = new List<GPXTrack>();
+            _processor = new List<Processor>();
         }
 
         /// <summary>
@@ -57,11 +60,11 @@ namespace LK.GreenRoute
         /// <param name="input">Stream with the GPX file</param>
         public void Load(Stream input)
         {
+            
             GPXXmlDataReader reader = new GPXXmlDataReader();
             reader.WaypointRead += new GPXWaypointReadHandler(waypoint => _waypoins.Add(waypoint));
             reader.RouteRead += new GPXRouteReadHandler(route => _routes.Add(route));
             reader.TrackRead += new GPXTrackReadHandler(track => _tracks.Add(track));
-
             reader.Read(input);
         }
 
@@ -119,11 +122,52 @@ namespace LK.GreenRoute
 
         public void Webster()
         {
-            foreach (GPXTrack hr in _tracks)
+            _hotRoutes = new List<HotRoute>();
+            foreach (GPXTrack t in _tracks)
             {
+                /*foreach (var tr in t.Segments)
+                    Console.WriteLine("AvgSpeed=" + tr.AvgSpeed);*/
                 HotRoute hotRoute = new HotRoute();
-                hotRoute.Segments.AddRange(hr.Segments);
+                hotRoute.Segments = t.Segments;
+                hotRoute.makeConvoys();
+                hotRoute.makeTrafficLights(_processor);
+                //Console.WriteLine("Number Processors: " + _processor.Count());
+                //Console.WriteLine("Number Traffic Ligth: " + hotRoute._trafficLight.Count());
+                hotRoute.makeJobs(_processor);
+                _hotRoutes.Add(hotRoute);
             }
+        }
+
+        public List<List<int>> getListProcessor()
+        {
+            List<List<int>> returnList = new List<List<int>>();
+
+            foreach (var p in _processor)
+            {
+                List<int> pList = new List<int>();
+                foreach (var j in p.jobs)
+                {
+                    pList.Add(j.UniqueId);
+                }
+                returnList.Add(pList);
+            }
+            return returnList;
+        }
+
+        public List<List<int>> getJobTime()
+        {
+
+            List<List<int>> returnList = new List<List<int>>();
+            foreach (var p in _processor)
+            {
+                List<int> pList = new List<int>();
+                foreach (var j in p.jobs)
+                {
+                    pList.Add(j.convoy.ProcessingTime);
+                }
+                returnList.Add(pList);
+            }
+            return returnList;
         }
 
     }

@@ -48,7 +48,7 @@ namespace LK.HRT
             roadGraph.Build(osmFile);
 
             // Getting all the nodes with traffic signals
-            Dictionary<double, bool> tagsNodes = new Dictionary<double, bool>();
+            Dictionary<double, OSMNode> tagsNodes = new Dictionary<double, OSMNode>();
             foreach (var node in osmFile.Nodes)
             {
                 foreach (var tag in node.Tags)
@@ -57,7 +57,7 @@ namespace LK.HRT
                     {
                         if (!tagsNodes.Keys.Contains(node.Latitude + node.Longitude))
                         {
-                            tagsNodes.Add(node.Latitude + node.Longitude, true);
+                            tagsNodes.Add(node.Latitude + node.Longitude, node);
                         }
                         
                     }
@@ -89,24 +89,28 @@ namespace LK.HRT
                         GPXPoint start;
                         if (tagsNodes.Keys.Contains(segInner.StartPoint.Latitude + segInner.StartPoint.Longitude))
                         {
-                            Boolean trafficSignal = tagsNodes[segInner.StartPoint.Latitude + segInner.StartPoint.Longitude];
-                            start = new GPXPoint() { Id = seg.Id, Latitude = segInner.StartPoint.Latitude,
-                                Longitude = segInner.StartPoint.Longitude, TrafficSignal = trafficSignal };
+                            OSMNode osmNode = tagsNodes[segInner.StartPoint.Latitude + segInner.StartPoint.Longitude];
+                            start = new GPXPoint() { Id = osmNode.ID, Latitude = segInner.StartPoint.Latitude,
+                                Longitude = segInner.StartPoint.Longitude, TrafficSignal = true };
                         } else
                         {
-                            start = new GPXPoint() { Id = seg.Id, Latitude = segInner.StartPoint.Latitude,
+                            OSMNode osmNode = osmFile.Nodes.ToList().First(x => x.Latitude == segInner.StartPoint.Latitude &&
+                                                                                x.Longitude == segInner.StartPoint.Longitude);
+                            start = new GPXPoint() { Id = osmNode.ID, Latitude = segInner.StartPoint.Latitude,
                                 Longitude = segInner.StartPoint.Longitude, TrafficSignal = false };
                         }
 
                         GPXPoint end;
                         if (tagsNodes.Keys.Contains(segInner.EndPoint.Latitude + segInner.EndPoint.Longitude))
                         {
-                            Boolean trafficSignal = tagsNodes[segInner.EndPoint.Latitude + segInner.EndPoint.Longitude];
-                            end = new GPXPoint() { Id = seg.Id, Latitude = segInner.EndPoint.Latitude,
-                                Longitude = segInner.EndPoint.Longitude, TrafficSignal = trafficSignal };
+                            OSMNode osmNode = tagsNodes[segInner.EndPoint.Latitude + segInner.EndPoint.Longitude];
+                            end = new GPXPoint() { Id = osmNode.ID, Latitude = segInner.EndPoint.Latitude,
+                                Longitude = segInner.EndPoint.Longitude, TrafficSignal = true };
                         } else
                         {
-                            end = new GPXPoint() { Id = seg.Id, Latitude = segInner.EndPoint.Latitude,
+                            OSMNode osmNode = osmFile.Nodes.ToList().First(x => x.Latitude == segInner.EndPoint.Latitude && 
+                                                                                x.Longitude == segInner.EndPoint.Longitude);
+                            end = new GPXPoint() { Id = osmNode.ID, Latitude = segInner.EndPoint.Latitude,
                                 Longitude = segInner.EndPoint.Longitude, TrafficSignal = false };
                         }
 

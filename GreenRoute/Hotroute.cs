@@ -19,10 +19,16 @@ namespace LK.GreenRoute
         private int _cycleTime;
         private int _redTime;
 
-        protected List<GPXTrackSegment> _segments { get; set; }
-        protected List<TrafficLight> _trafficLight;
-        protected List<Convoy> _convoys;
+       // new public List<GPXTrackSegment> _segments;
+        public List<TrafficLight> _trafficLight;
+        public List<Convoy> _convoys;
 
+        public HotRoute()
+        {
+            //_segments = new List<GPXTrackSegment>();
+            _trafficLight = new List<TrafficLight>();
+            _convoys = new List<Convoy>();
+        }
 
         public void Webster()
         {
@@ -77,21 +83,23 @@ namespace LK.GreenRoute
         {
             double timeAvgSegments = 0;
 
-            foreach (var segment in _segments)
+            foreach (var s in _segments)
             {
-                GPXPoint firstPoint = segment.Nodes.First();
-                GPXPoint lastPoint = segment.Nodes.Last();
+                GPXPoint firstPoint = s.Nodes.First();
+                GPXPoint lastPoint = s.Nodes.Last();
 
                 var distance = Calculations.GetDistance2D(firstPoint, lastPoint);
-
-                double timeAvgSegment = distance / segment.AvgSpeed;
-                timeAvgSegments += timeAvgSegment;
+                if (s.AvgSpeed != 0)
+                {
+                    double timeAvgSegment = distance / s.AvgSpeed;
+                    timeAvgSegments += timeAvgSegment;
+                }
             }
 
             return timeAvgSegments;
         }
 
-        public void setTrafficLights(List<Processor> _processors)
+        public void makeTrafficLights(List<Processor> _processors)
         {
             foreach (var segment in _segments)
             {
@@ -99,17 +107,22 @@ namespace LK.GreenRoute
                 {
                     if (node.TrafficSignal)
                     {
-                        TrafficLight t = (TrafficLight)node;
+                        TrafficLight t = new TrafficLight();
+                        t.Id = node.Id;
+
+                        //Console.WriteLine("Node.Id: " + node.Id);
+
                         _trafficLight.Add(t);
-                        Boolean achou = false;
+                        Boolean found = false;
                         foreach (Processor p in _processors)
-                            if (p.trafficLight == t)
-                                achou = true;
-                        if(!achou)
+                            if (p.trafficLight.Id == t.Id)
+                                found = true;
+                        if(!found)
                         {
                             Processor p = new Processor();
                             p.trafficLight = t;
                             _processors.Add(p);
+                            //Console.WriteLine("NP: " + _processors.Count());
                         }
                             
                     }
@@ -120,16 +133,14 @@ namespace LK.GreenRoute
         public void makeConvoys()
         {
             Webster();
-            int nconvoys = ((int)getTotalTimeRoute() / _cycleTime);
-
+            //Console.WriteLine("GreenTime: " + _greenTime);
+            int nconvoys = ((int) getTotalTimeRoute() / _cycleTime);
             for (int i = 0; i < nconvoys; i++)
             {
                 Convoy c = new Convoy();
                 c.ProcessingTime = _greenTime;
                 c.timeinRH = i * _cycleTime;
-
                 _convoys.Add(c);
-
             }
         }
 
@@ -147,12 +158,8 @@ namespace LK.GreenRoute
                     {
                         break;
                     }
-                        
                 }
-
-
                 var distance = Calculations.GetDistance2D(firstPoint, lastPoint);
-
                 double timeAvgSegment = distance / segment.AvgSpeed;
                 timeAvgSegments += timeAvgSegment;
                 if (segment.Nodes.Contains(t))
@@ -161,15 +168,24 @@ namespace LK.GreenRoute
             }
 
             return timeAvgSegments;
-
-
         }
 
-        public void calcTimeInRH()
+        public void makeJobs(List<Processor> _processors)
         {
-            foreach (var t in _trafficLight)
-                t.timeinRH = (int)getTimeInRH(t);
-                    
+            foreach (var p in _processors)
+            {
+                p.trafficLight.timeinRH = (int) getTimeInRH(p.trafficLight);
+                foreach (Convoy c in _convoys)
+                {
+                    if (c.timeinRH < p.trafficLight.timeinRH)
+                    {
+                        Job j = new Job();
+                        j.convoy = c;
+                        p.jobs.Add(j);
+                    }
+                }
+            }
+                
         }
     }
 }
