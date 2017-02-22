@@ -131,8 +131,8 @@ namespace LK.GreenRoute
                 hotRoute.Segments = t.Segments;
                 hotRoute.makeConvoys();
                 hotRoute.makeTrafficLights(_processor);
-                //Console.WriteLine("Number Processors: " + _processor.Count());
-                //Console.WriteLine("Number Traffic Ligth: " + hotRoute._trafficLight.Count());
+                Console.WriteLine("Number Processors: " + _processor.Count());
+                Console.WriteLine("Number Traffic Ligth: " + hotRoute._trafficLight.Count());
                 hotRoute.makeJobs(_processor);
                 _hotRoutes.Add(hotRoute);
             }
@@ -147,7 +147,8 @@ namespace LK.GreenRoute
                 List<int> pList = new List<int>();
                 foreach (var j in p.jobs)
                 {
-                    pList.Add(j.UniqueId);
+                    Console.WriteLine("UniqueId: " + p.UniqueId);
+                    pList.Add(p.UniqueId);
                 }
                 returnList.Add(pList);
             }
@@ -163,6 +164,7 @@ namespace LK.GreenRoute
                 List<int> pList = new List<int>();
                 foreach (var j in p.jobs)
                 {
+                    Console.WriteLine("PT: " + j.convoy.ProcessingTime);
                     pList.Add(j.convoy.ProcessingTime);
                 }
                 returnList.Add(pList);

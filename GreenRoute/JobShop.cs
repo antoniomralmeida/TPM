@@ -30,21 +30,14 @@ class JobShop {
 
         // Define data.
         this.machines = machines;
-
         this.processingTimes = processingTime;
-
-        
-        /*foreach (var m in machines)
-        {
-            Console.WriteLine("Machine: " + m.First());
-        }*/
 
 
         // Computes horizon
         for (var i = 0; i < allMachines.Count; i++) {
             this.horizon += processingTimes.ElementAt(i).Sum();
         }
-        //Console.WriteLine("Horizon: " + this.horizon);
+        Console.WriteLine("Horizon: " + this.horizon);
     }
 
     public void RunJobShopScheduling(String solverType) {
