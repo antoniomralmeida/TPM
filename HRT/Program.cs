@@ -129,7 +129,20 @@ namespace LK.HRT
                 track.Add(tr);
 
             }
+
+            // Bucket Information
+            GPXPoint pBucket = new GPXPoint(0, 0, 0, false);
+            var bucketInfo = osmFile.Nodes.ToList().Find(x => x.ID == 0);
+
+            if (bucketInfo != null)
+            {
+                pBucket.StartBucket = TimeSpan.Parse(bucketInfo.Tags.First().Value);
+                pBucket.EndBucket = TimeSpan.Parse(bucketInfo.Tags.Last().Value);
+            }
+            
+
             var gpx = new GPXDocument() { Tracks = track };
+            gpx.Waypoints.Add(pBucket);
             gpx.Save("mapWithHotRoutes.gpx");
 
         }
