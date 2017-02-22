@@ -8,7 +8,8 @@ namespace LK.GreenRoute
 {
     class Processor
     {
-        public TrafficLight trafficLight { get; set; }
+
+        public List<TrafficLight> trafficLights;
         public List<Job> jobs { get; set; }
         private static int counter = 0;
         private readonly int instanceId;
@@ -16,6 +17,7 @@ namespace LK.GreenRoute
         public Processor()
         {
             jobs = new List<Job>();
+            trafficLights = new List<TrafficLight>();
             this.instanceId = counter++;
         }
 

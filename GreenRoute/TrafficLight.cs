@@ -27,5 +27,10 @@ namespace LK.GreenRoute
             }
 
         }
+
+        public double Distance(TrafficLight t)
+        {
+            return GeoUtils.Calculations.GetDistance2D(this, t);
+        }
     }
 }

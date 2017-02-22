@@ -115,12 +115,20 @@ namespace LK.GreenRoute
                         _trafficLight.Add(t);
                         Boolean found = false;
                         foreach (Processor p in _processors)
-                            if (p.trafficLight.Id == t.Id)
-                                found = true;
+                            foreach (TrafficLight tl in p.trafficLights)
+                            {
+                                if (tl.Id == t.Id)
+                                    found = true;
+                                else
+                                    if (t.Distance(tl) < 30) {
+                                    found = true;
+                                    p.trafficLights.Add(t);
+                                }
+                            }
                         if(!found)
                         {
                             Processor p = new Processor();
-                            p.trafficLight = t;
+                            p.trafficLights.Add(t);
                             _processors.Add(p);
                             //Console.WriteLine("NP: " + _processors.Count());
                         }
@@ -174,16 +182,21 @@ namespace LK.GreenRoute
         {
             foreach (var p in _processors)
             {
-                p.trafficLight.timeinRH = (int) getTimeInRH(p.trafficLight);
-                foreach (Convoy c in _convoys)
-                {
-                    if (c.timeinRH < p.trafficLight.timeinRH)
+                foreach (TrafficLight t in p.trafficLights)
+                    if (_trafficLight.Contains(t))
                     {
-                        Job j = new Job();
-                        j.convoy = c;
-                        p.jobs.Add(j);
+
+                        t.timeinRH = (int)getTimeInRH(t);
+                        foreach (Convoy c in _convoys)
+                        {
+                            if (c.timeinRH < t.timeinRH)
+                            {
+                                Job j = new Job();
+                                j.convoy = c;
+                                p.jobs.Add(j);
+                            }
+                        }
                     }
-                }
             }
                 
         }
