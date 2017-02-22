@@ -134,9 +134,12 @@ namespace LK.GPXUtils.GPXDataSource {
             
             GPXPoint parsedPoint = new GPXPoint(pointLat, pointLon);
 
-            // Id Point
-            parsedPoint.Id = long.Parse(_xmlReader.GetAttribute("id"));
-
+            // Id 
+            if (_xmlReader.GetAttribute("id") != null)
+            {
+                parsedPoint.Id = long.Parse(_xmlReader.GetAttribute("id"));
+            }
+            
             if (trafficSignal != null)
             {
                 parsedPoint.TrafficSignal = bool.Parse(trafficSignal);
@@ -203,7 +206,11 @@ namespace LK.GPXUtils.GPXDataSource {
 					if (_xmlReader.NodeType == XmlNodeType.Element) {
 						switch (_xmlReader.Name) {
 							case "trkseg":
-                                long id = long.Parse(_xmlReader.GetAttribute("id"));
+                                long id = 0;
+                                if (_xmlReader.GetAttribute("id") != null)
+                                {
+                                    id = long.Parse(_xmlReader.GetAttribute("id"));
+                                }
 
                                 parsedTrack.Segments.Add(ReadTrackSegment(id));
 

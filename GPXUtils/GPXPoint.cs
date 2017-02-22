@@ -102,6 +102,24 @@ namespace LK.GPXUtils {
             get;
             set;
         }
+
+        /// <summary>
+		/// Gets or sets the start time of a bucket
+		/// </summary>
+		public TimeSpan StartBucket
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+		/// Gets or sets the end time of a bucket
+		/// </summary>
+		public TimeSpan EndBucket
+        {
+            get;
+            set;
+        }
         /// <summary>
 		/// Creates a new instance of GPXPoint
 		/// </summary>
