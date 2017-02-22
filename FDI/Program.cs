@@ -140,9 +140,7 @@ namespace LK.FDI
             GPXDocument gpx = new GPXDocument();
             List<GPXTrack> gpxTrackList = new List<GPXTrack>();
             List<GPXTrackSegment> gpxTrackSegList;
-            //GPXTrack gpxTrack;
-
-
+            
             gpx.Load(file);
 
             foreach (var trk in gpx.Tracks)
@@ -255,6 +253,12 @@ namespace LK.FDI
                     var mapCopy = ObjectCopier.Clone<OSMDB>(map);
                     List<Polyline<IPointGeo>> pathList = new List<Polyline<IPointGeo>>();
 
+                    OSMNode bucketInfo = new OSMNode(0, 0, 0);
+                    OSMTag start = new OSMTag("start", b.Start.ToString());
+                    OSMTag end = new OSMTag("end", b.End.ToString());
+                    bucketInfo.Tags.Add(start);
+                    bucketInfo.Tags.Add(end);
+
                     foreach (var p in b.Paths)
                     {
                         var uniquePath = p.Value.GroupBy(x => new { x.Id }).Select(x => x.First());
@@ -296,6 +300,7 @@ namespace LK.FDI
                     //OSMDB resultMap = reconstructor.SaveToOSM(pathList);
                     //resultMap.Save("map" + b.Name + ".osm");
 
+                    mapCopy.Nodes.Add(bucketInfo);
                     mapCopy.Save("map" + b.Name + ".osm");
                 }
             }
