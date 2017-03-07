@@ -41,9 +41,18 @@ namespace LK.GreenRoute
 
             HRDocument hr = new HRDocument();
             hr.Load(gpxPath);
-            Console.WriteLine("Track: " + hr.Tracks.Count);
             hr.Webster();
-            Solve(hr.getListProcessor(), hr.getJobTime());
+
+            GPXPoint bucketInfo = null;
+            foreach (var track in hr.Tracks)
+            {
+                foreach (var seg in track.Segments)
+                {
+                    bucketInfo = seg.Nodes.ToList().Find(x => x.Id == 0);
+                }
+            }
+            
+            Solve(hr.getListProcessor(), hr.getJobTime(), hr.getJobId(), bucketInfo, hr.cycleTime);
         }
 
         /// <summary>
@@ -60,10 +69,10 @@ namespace LK.GreenRoute
             p.WriteOptionDescriptions(Console.Out);
         }
 
-        static void Solve(List<List<int>> machines, List<List<int>> processingTimes)
+        static void Solve(List<List<int>> machines, List<List<int>> processingTimes, List<List<int>> jobIds, GPXPoint bucketInfo, int cycleTime)
         {
             Console.WriteLine("\n---- Job shop Scheduling Program ----");
-            JobShop jobShop = new JobShop(machines, processingTimes);
+            JobShop jobShop = new JobShop(machines, processingTimes, jobIds, bucketInfo, cycleTime);
             jobShop.RunJobShopScheduling("Jobshop");
         }
     }

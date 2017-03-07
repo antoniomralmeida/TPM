@@ -43,6 +43,8 @@ namespace LK.GreenRoute
 
         public List<Processor> Processors { get; set; }
 
+        public int cycleTime { get; set; }
+
         /// <summary>
         /// Creates a new GPXDocument
         /// </summary>
@@ -131,11 +133,11 @@ namespace LK.GreenRoute
                 hotRoute.Segments = t.Segments;
                 hotRoute.makeConvoys();
                 hotRoute.makeTrafficLights(_processor);
-                Console.WriteLine("Number Processors: " + _processor.Count());
-                Console.WriteLine("Number Traffic Ligth: " + hotRoute._trafficLight.Count());
                 hotRoute.makeJobs(_processor);
+                cycleTime = hotRoute._cycleTime;
                 _hotRoutes.Add(hotRoute);
             }
+            
         }
 
         public List<List<int>> getListProcessor()
@@ -147,7 +149,6 @@ namespace LK.GreenRoute
                 List<int> pList = new List<int>();
                 foreach (var j in p.jobs)
                 {
-                    Console.WriteLine("UniqueId: " + p.UniqueId);
                     pList.Add(p.UniqueId);
                 }
                 returnList.Add(pList);
@@ -164,13 +165,29 @@ namespace LK.GreenRoute
                 List<int> pList = new List<int>();
                 foreach (var j in p.jobs)
                 {
-                    Console.WriteLine("PT: " + j.convoy.ProcessingTime);
                     pList.Add(j.convoy.ProcessingTime);
                 }
                 returnList.Add(pList);
             }
             return returnList;
         }
+
+        public List<List<int>> getJobId()
+        {
+
+            List<List<int>> returnList = new List<List<int>>();
+            foreach (var p in _processor)
+            {
+                List<int> pList = new List<int>();
+                foreach (var j in p.jobs)
+                {
+                    pList.Add(j.convoy.hotRoute.UniqueId);
+                }
+                returnList.Add(pList);
+            }
+            return returnList;
+        }
+
 
     }
 }

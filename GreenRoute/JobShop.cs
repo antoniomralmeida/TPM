@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Google.OrTools.ConstraintSolver;
+using LK.GPXUtils;
+using System.Xml;
+using System.IO;
 
 class JobShop {
 
@@ -11,13 +14,19 @@ class JobShop {
     private List<int> allJobs { get; set; }
     private List<List<int>> machines { get; set; }
     private List<List<int>> processingTimes { get; set; }
+    private List<List<int>> jobIds { get; set; }
     private int horizon = 0;
+    private GPXPoint bucketInfo { get; set; }
+    private int cycleTime { get; set; }
     public const int timeLimitInMs = 0;
 
     // Constructor
-    public JobShop(List<List<int>> machines, List<List<int>> processingTime) {
+    public JobShop(List<List<int>> machines, List<List<int>> processingTime, List<List<int>> jobIds, GPXPoint bucketInfo, int cycleTime) {
         this.machinesCount = machines.Count;
         this.jobsCount = processingTime.Count;
+        this.bucketInfo = bucketInfo;
+        this.cycleTime = cycleTime;
+        this.jobIds = jobIds;
 
         Console.WriteLine("machinesCount: " + this.machinesCount);
         Console.WriteLine("jobsCount: " + this.jobsCount);
@@ -137,6 +146,8 @@ class JobShop {
             string solLineTasks = "";
             Console.WriteLine("Time Intervals for Tasks\n");
 
+            List<List<TimeSpan>> tuplesSolution = new List<List<TimeSpan>>();
+
             for (int m = 0; m < this.machinesCount; m++) {
                 //Console.WriteLine("MachineCount: " + this.machinesCount);
                 solLine = "Machine " + m + " :";
@@ -152,18 +163,63 @@ class JobShop {
                     //Console.WriteLine("Len: " + storedSequence.Length);
                 }
 
-                foreach (int taskIndex in storedSequence) {
-                    IntervalVar task = seq.Interval(taskIndex);
-                    string solTemp = "[" + collector.Value(0,task.StartExpr().Var()) + ",";
-                    solTemp += collector.Value(0,task.EndExpr().Var()) + "] ";
-                    solLine += solTemp;
+                // First GreenTime
+                //TimeSpan timeToAdd = tuplesSolution.First().Last();
+                TimeSpan timeEndBucket = this.bucketInfo.EndBucket;
+                TimeSpan timeStartBucket = this.bucketInfo.StartBucket;
+                
+
+                int solutionSize = tuplesSolution.Count;
+                bool isEnd = false;
+
+                List<int> list_id = jobIds.ElementAt(m);
+                // Adding GreenTime to Solution
+                while (timeStartBucket.CompareTo(timeEndBucket) < 0)
+                {
+
+                    foreach (int taskIndex in storedSequence)
+                    {
+                        IntervalVar task = seq.Interval(taskIndex);
+
+                        var startValue = TimeSpan.FromSeconds(collector.Value(0, task.StartExpr().Var()));
+                        var endValue = TimeSpan.FromSeconds(collector.Value(0, task.EndExpr().Var()));
+
+                        TimeSpan greenTime = endValue.Subtract(startValue);
+                        TimeSpan timeEnd;
+
+                        timeEnd = timeStartBucket.Add(greenTime);
+
+
+
+                        List<TimeSpan> tuple = new List<TimeSpan>();
+                        tuple.Add(timeStartBucket);
+                        if (timeEndBucket.CompareTo(timeEnd) < 0)
+                        {
+                            timeEnd = timeEndBucket;
+                            isEnd = true;
+                        }
+                                        
+                        tuple.Add(timeEnd);
+                        tuplesSolution.Add(tuple);
+                        if (taskIndex + 1 < list_id.Count() && list_id.ElementAt(taskIndex) == list_id.ElementAt(taskIndex + 1))
+                            timeStartBucket = timeStartBucket.Add(TimeSpan.FromSeconds(this.cycleTime));
+                        else
+                            timeStartBucket = timeEnd;
+                        if (isEnd)
+                            break;
+                    }
                 }
 
+                //
+                // Saving the Solution to a XML file
+                //
+                JobShop.save(m, tuplesSolution);
+
                 //solLine += "\n";
-                solLineTasks += "\n";
+                //solLineTasks += "\n";
 
                 //Console.WriteLine(solLineTasks);
-                Console.WriteLine(solLine);
+                //Console.WriteLine(solLine);
             }
 
 
@@ -171,6 +227,61 @@ class JobShop {
         else {
             Console.WriteLine("No solution found!");
         }
+    }
+
+    public static void save(int machine, List<List<TimeSpan>> tuplesSolution)
+    {
+        XmlDocument doc = null;
+
+        if (!File.Exists("./SolutionJobShop.xml"))
+        {
+            Console.WriteLine("First");
+            JobShop.createNewXML(machine, tuplesSolution);
+        } else
+        {
+            doc = new XmlDocument();
+            doc.Load("./SolutionJobShop.xml");
+            // To-do: Finishing when you have more than one machine
+        }
+        
+        
+    }
+
+    public static void createNewXML(int machine, List<List<TimeSpan>> tuplesSolution)
+    {
+        XmlDocument doc = new XmlDocument();
+
+        // Initial Setup
+        XmlDeclaration xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+        XmlElement root = doc.DocumentElement;
+        doc.InsertBefore(xmlDeclaration, root);
+
+        XmlElement jobshop = doc.CreateElement(string.Empty, "jobshop", string.Empty);
+        doc.AppendChild(jobshop);
+
+        XmlElement machineLabel = doc.CreateElement(string.Empty, "machine", string.Empty);
+        jobshop.AppendChild(machineLabel);
+
+        XmlAttribute id = doc.CreateAttribute("id");
+        id.Value = machine.ToString();
+        machineLabel.Attributes.Append(id);
+
+        for (var i = 0; i < tuplesSolution.Count; i++)
+        {
+            XmlElement green = doc.CreateElement(string.Empty, "green", string.Empty);
+            machineLabel.AppendChild(green);
+
+            XmlAttribute start = doc.CreateAttribute("start");
+            start.Value = tuplesSolution[i][0].ToString();
+            green.Attributes.Append(start);
+
+            XmlAttribute end = doc.CreateAttribute("end");
+            end.Value = tuplesSolution[i][1].ToString();
+            green.Attributes.Append(end);
+        }
+
+        String fileout = Path.Combine(Path.GetDirectoryName("."), "SolutionJobShop.xml");
+        doc.Save(fileout);
     }
 
     /*public static void Main(String[] args) {

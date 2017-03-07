@@ -128,10 +128,9 @@ namespace LK.GPXUtils.GPXDataSource {
 			}
 
             // longitude attribute
-            string trafficSignal = _xmlReader.GetAttribute("traffic_signal");   
-
+            string trafficSignal = _xmlReader.GetAttribute("traffic_signal");
             double pointLon = double.Parse(lon, System.Globalization.CultureInfo.InvariantCulture);
-            
+ 
             GPXPoint parsedPoint = new GPXPoint(pointLat, pointLon);
 
             // Id 
@@ -144,7 +143,15 @@ namespace LK.GPXUtils.GPXDataSource {
             {
                 parsedPoint.TrafficSignal = bool.Parse(trafficSignal);
             }
-            
+
+            // Reading bucket info
+            if (_xmlReader.GetAttribute("startBucket") != null && 
+                                _xmlReader.GetAttribute("endBucket") != null)
+            {
+                parsedPoint.StartBucket = TimeSpan.Parse(_xmlReader.GetAttribute("startBucket"));
+                parsedPoint.EndBucket = TimeSpan.Parse(_xmlReader.GetAttribute("endBucket"));
+            }
+
             if (_xmlReader.IsEmptyElement == false) {
 				_xmlReader.Read();
 

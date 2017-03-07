@@ -131,7 +131,10 @@ namespace LK.HRT
             }
 
             // Bucket Information
+            GPXTrack tBucket = new GPXTrack();
             GPXPoint pBucket = new GPXPoint(0, 0, 0, false);
+            GPXTrackSegment sBucket = new GPXTrackSegment();
+
             var bucketInfo = osmFile.Nodes.ToList().Find(x => x.ID == 0);
 
             if (bucketInfo != null)
@@ -139,10 +142,12 @@ namespace LK.HRT
                 pBucket.StartBucket = TimeSpan.Parse(bucketInfo.Tags.First().Value);
                 pBucket.EndBucket = TimeSpan.Parse(bucketInfo.Tags.Last().Value);
             }
-            
+
+            sBucket.Nodes.Add(pBucket);
+            tBucket.Segments.Add(sBucket);
 
             var gpx = new GPXDocument() { Tracks = track };
-            gpx.Waypoints.Add(pBucket);
+            gpx.Tracks.Add(tBucket);
             gpx.Save("mapWithHotRoutes.gpx");
 
         }

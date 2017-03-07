@@ -16,10 +16,12 @@ namespace LK.GreenRoute
         private int _minGreenTime;
         private int _maxGreenTime;
         private int _greenTime;
-        private int _cycleTime;
+        public int _cycleTime;
         private int _redTime;
+        private static int counter = 0;
+        private readonly int instanceId;
 
-       // new public List<GPXTrackSegment> _segments;
+        // new public List<GPXTrackSegment> _segments;
         public List<TrafficLight> _trafficLight;
         public List<Convoy> _convoys;
 
@@ -28,6 +30,12 @@ namespace LK.GreenRoute
             //_segments = new List<GPXTrackSegment>();
             _trafficLight = new List<TrafficLight>();
             _convoys = new List<Convoy>();
+            this.instanceId = ++counter;
+        }
+
+        public int UniqueId
+        {
+            get { return this.instanceId; }
         }
 
         public void Webster()
@@ -101,6 +109,7 @@ namespace LK.GreenRoute
 
         public void makeTrafficLights(List<Processor> _processors)
         {
+            List<TrafficLight> list = null;
             foreach (var segment in _segments)
             {
                 foreach (var node in segment.Nodes)
@@ -115,22 +124,25 @@ namespace LK.GreenRoute
                         _trafficLight.Add(t);
                         Boolean found = false;
                         foreach (Processor p in _processors)
-                            foreach (TrafficLight tl in p.trafficLights)
+                        {
+                            list = new List<TrafficLight>();
+                            list.AddRange(p.trafficLights);
+                            foreach (TrafficLight tl in list)
                             {
                                 if (tl.Id == t.Id)
                                     found = true;
-                                else
-                                    if (t.Distance(tl) < 30) {
+                                else if (t.Distance(tl) < 30)
+                                {
                                     found = true;
                                     p.trafficLights.Add(t);
                                 }
                             }
+                        }
                         if(!found)
                         {
                             Processor p = new Processor();
                             p.trafficLights.Add(t);
                             _processors.Add(p);
-                            //Console.WriteLine("NP: " + _processors.Count());
                         }
                             
                     }
@@ -146,6 +158,7 @@ namespace LK.GreenRoute
             for (int i = 0; i < nconvoys; i++)
             {
                 Convoy c = new Convoy();
+                c.hotRoute = this;
                 c.ProcessingTime = _greenTime;
                 c.timeinRH = i * _cycleTime;
                 _convoys.Add(c);

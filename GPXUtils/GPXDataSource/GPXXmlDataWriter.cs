@@ -121,7 +121,7 @@ namespace LK.GPXUtils.GPXDataSource {
                 _xmlWriter.WriteAttributeString("traffic_signal", point.TrafficSignal.ToString());
             }
 
-            if (point.StartBucket != null && point.EndBucket != null)
+            if (point.StartBucket >= TimeSpan.Zero && point.EndBucket != TimeSpan.Zero)
             {
                 _xmlWriter.WriteAttributeString("startBucket", point.StartBucket.ToString());
                 _xmlWriter.WriteAttributeString("endBucket", point.EndBucket.ToString());

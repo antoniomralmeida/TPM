@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <StartArguments>--osm=2017\mapA.osm --eps=1 --minTraffic=1</StartArguments>
+    <StartArguments>--osm=MAPA_A.osm --eps=2 --minTraffic=3</StartArguments>
     <StartAction>Program</StartAction>
     <StartProgram>C:\Users\luis.alves\devel\TPM\bin\HRT.exe</StartProgram>
     <RemoteDebugEnabled>false</RemoteDebugEnabled>
