@@ -98,7 +98,7 @@ namespace LK.TimeWindows
 
             //Discretization Round Time
             
-            Console.Write("Testing Discretization by Downscaling (mim)");
+            Console.Write("Testing Discretization by Downscaling (Minute)");
 
             clustering = DiscTime.DiscretizationRoundTime(rawData, out numClusters, out means, out count, out withinss, "M");
             Console.WriteLine(",numClusters= "+ numClusters + ", withinss=" + withinss);
@@ -148,6 +148,7 @@ namespace LK.TimeWindows
             double limWithinss = (2 * rre[0] + rre[1])/ 3;
             rre.Add(double.MaxValue);
             int c = min_cluster;
+            
             do
             {
                 Console.Write(".");
@@ -167,7 +168,9 @@ namespace LK.TimeWindows
                     break;
                 }
                 oldWithinss = withinss;
+               
             } while (c++ <= max_cluster);
+            
             log.Close();
 
             clustering = KMeans.Cluster(rawData, numClusters, out means, out count, out withinss, 3); // this is it
@@ -218,11 +221,11 @@ namespace LK.TimeWindows
 
 
                  XmlAttribute attribute2 = doc.CreateAttribute("start");
-                 attribute2.Value = DateTime.FromOADate(buckets[j]).ToString("HH:mm");
+                 attribute2.Value = DateTime.FromOADate(buckets[j]).ToString("HH:mm:ss");
                  element3.Attributes.Append(attribute2);
 
                  XmlAttribute attribute3 = doc.CreateAttribute("end");
-                 attribute3.Value = DateTime.FromOADate(buckets[j + 1]).ToString("HH:mm");
+                 attribute3.Value = DateTime.FromOADate(buckets[j + 1]).ToString("HH:mm:ss");
                  element3.Attributes.Append(attribute3);
 
                  i++;
