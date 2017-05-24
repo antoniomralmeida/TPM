@@ -143,7 +143,6 @@ namespace LK.GreenRoute
         public List<List<int>> getListProcessor()
         {
             List<List<int>> returnList = new List<List<int>>();
-
             foreach (var p in _processor)
             {
                 List<int> pList = new List<int>();
@@ -151,7 +150,8 @@ namespace LK.GreenRoute
                 {
                     pList.Add(p.UniqueId);
                 }
-                returnList.Add(pList);
+                if (p.jobs.Count > 0)
+                    returnList.Add(pList);
             }
             return returnList;
         }
@@ -167,7 +167,8 @@ namespace LK.GreenRoute
                 {
                     pList.Add(j.convoy.ProcessingTime);
                 }
-                returnList.Add(pList);
+                if (p.jobs.Count > 0)
+                    returnList.Add(pList);
             }
             return returnList;
         }

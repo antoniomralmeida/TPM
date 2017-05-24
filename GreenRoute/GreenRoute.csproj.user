@@ -12,6 +12,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <RemoteDebugEnabled>false</RemoteDebugEnabled>
-    <StartArguments>--gpx=TRACK1.gpx</StartArguments>
+    <StartArguments>--gpx=route_test_02.gpx</StartArguments>
   </PropertyGroup>
 </Project>

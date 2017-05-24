@@ -22,13 +22,13 @@ namespace LK.GreenRoute
         private readonly int instanceId;
 
         // new public List<GPXTrackSegment> _segments;
-        public List<TrafficLight> _trafficLight;
+        public HashSet<TrafficLight> _trafficLight;
         public List<Convoy> _convoys;
 
         public HotRoute()
         {
             //_segments = new List<GPXTrackSegment>();
-            _trafficLight = new List<TrafficLight>();
+            _trafficLight = new HashSet<TrafficLight>();
             _convoys = new List<Convoy>();
             this.instanceId = ++counter;
         }
@@ -114,15 +114,15 @@ namespace LK.GreenRoute
             {
                 foreach (var node in segment.Nodes)
                 {
+                    Boolean found = false;
                     if (node.TrafficSignal)
                     {
                         TrafficLight t = new TrafficLight();
                         t.Id = node.Id;
-
-                        //Console.WriteLine("Node.Id: " + node.Id);
-
+                        t.Latitude = node.Latitude;
+                        t.Longitude = node.Longitude;
                         _trafficLight.Add(t);
-                        Boolean found = false;
+                        
                         foreach (Processor p in _processors)
                         {
                             list = new List<TrafficLight>();
@@ -130,7 +130,7 @@ namespace LK.GreenRoute
                             foreach (TrafficLight tl in list)
                             {
                                 if (tl.Id == t.Id)
-                                    found = true;
+                                    found = true;     
                                 else if (t.Distance(tl) < 30)
                                 {
                                     found = true;
@@ -138,6 +138,7 @@ namespace LK.GreenRoute
                                 }
                             }
                         }
+
                         if(!found)
                         {
                             Processor p = new Processor();

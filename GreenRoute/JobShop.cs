@@ -29,8 +29,8 @@ class JobShop {
         this.jobIds = jobIds;
 
         Console.WriteLine("machinesCount: " + this.machinesCount);
-        Console.WriteLine("jobsCount: " + this.jobsCount);
-
+        Console.WriteLine("jobsCount: " + jobsCount);
+        
         this.allMachines = new List<int>();
         for (var i = 0; i < this.machinesCount; i++) this.allMachines.Add(i);
 
@@ -69,7 +69,7 @@ class JobShop {
                                               processingTimes.ElementAt(i).ElementAt(j),
                                               false,
                                               "Job_" + i + "_" + j);
-
+                //Console.WriteLine("Job_" + i + "_" + j);
                 allTasks.Add("Job_" + i + "_" + j, oneTask);
             }
         }
@@ -96,7 +96,7 @@ class JobShop {
         // Add conjunctive constraints
         foreach (var job in allJobs) {
             for (int j = 0; j < machines.ElementAt(job).Count - 1; j++) {
-              solver.Add(allTasks["Job_" + job + "_" + (j+1)].StartsAfterEnd(allTasks["Job_" + job + "_" + j]));
+                solver.Add(allTasks["Job_" + job + "_" + (j+1)].StartsAfterEnd(allTasks["Job_" + job + "_" + j]));
             }
         }
 
@@ -104,7 +104,7 @@ class JobShop {
         IntVar[] allEnds = new IntVar[jobsCount];
         for (int i = 0; i < allJobs.Count; i++)
         {
-          allEnds[i] = allTasks["Job_" + i + "_" + (machines.ElementAt(i).Count-1)].EndExpr().Var();
+            allEnds[i] = allTasks["Job_" + i + "_" + (machines.ElementAt(i).Count - 1)].EndExpr().Var();
         }
 
         // Objective: minimize the makespan (maximum end times of all tasks)
@@ -137,7 +137,7 @@ class JobShop {
         // Search.
         bool solutionFound = solver.Solve(mainPhase, null, objectiveMonitor, null, collector);
 
-        if(solutionFound) {
+        if (solutionFound) {
             //The index of the solution from the collector
             const int SOLUTION_INDEX = 0;
             Assignment solution = collector.Solution(SOLUTION_INDEX);
@@ -176,7 +176,6 @@ class JobShop {
                 // Adding GreenTime to Solution
                 while (timeStartBucket.CompareTo(timeEndBucket) < 0)
                 {
-
                     foreach (int taskIndex in storedSequence)
                     {
                         IntervalVar task = seq.Interval(taskIndex);
@@ -188,7 +187,6 @@ class JobShop {
                         TimeSpan timeEnd;
 
                         timeEnd = timeStartBucket.Add(greenTime);
-
 
 
                         List<TimeSpan> tuple = new List<TimeSpan>();
@@ -207,6 +205,7 @@ class JobShop {
                             timeStartBucket = timeEnd;
                         if (isEnd)
                             break;
+                        
                     }
                 }
 
@@ -231,20 +230,7 @@ class JobShop {
 
     public static void save(int machine, List<List<TimeSpan>> tuplesSolution)
     {
-        XmlDocument doc = null;
-
-        if (!File.Exists("./SolutionJobShop.xml"))
-        {
-            Console.WriteLine("First");
-            JobShop.createNewXML(machine, tuplesSolution);
-        } else
-        {
-            doc = new XmlDocument();
-            doc.Load("./SolutionJobShop.xml");
-            // To-do: Finishing when you have more than one machine
-        }
-        
-        
+        JobShop.createNewXML(machine, tuplesSolution);
     }
 
     public static void createNewXML(int machine, List<List<TimeSpan>> tuplesSolution)
@@ -280,7 +266,7 @@ class JobShop {
             green.Attributes.Append(end);
         }
 
-        String fileout = Path.Combine(Path.GetDirectoryName("."), "SolutionJobShop.xml");
+        String fileout = Path.Combine(Path.GetDirectoryName("."), "SolutionJobShopMachine" + machine + ".xml");
         doc.Save(fileout);
     }
 
