@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-
 using NDesk.Options;
-
 using LK.GPXUtils;
 using System.Xml;
 
@@ -176,6 +174,16 @@ namespace LK.TimeWindows
             clustering = KMeans.Cluster(rawData, numClusters, out means, out count, out withinss, 3); // this is it
             Console.WriteLine(",numClusters= " + numClusters + ", withinss=" + withinss);
 
+            // DBScan
+            //List<List<double>> clusters = new List<List<double>>() ;
+            List<double> list = new List<double>();
+            int row = 0, col = 0;
+            for (row = 0; row < rawData.Length; row++)
+                for (col = 0; col < rawData[row].Length; col++)
+                    list.Add(rawData[row][col]);
+
+
+            DBScan.dbscan(list, 0.030, 100);
 
             csv = new System.IO.StreamWriter("TimeWindows3.csv");
             for (int n = 0; n < numClusters; n++)
@@ -192,9 +200,10 @@ namespace LK.TimeWindows
                     k = clustering[j];
                 }
             buckets.Add(0.99999);
+
            
-            
-             System.Xml.XmlDocument doc = new XmlDocument();
+
+            System.Xml.XmlDocument doc = new XmlDocument();
 
              //(1) the xml declaration is recommended, but not mandatory
              XmlDeclaration xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
