@@ -174,16 +174,20 @@ namespace LK.TimeWindows
             clustering = KMeans.Cluster(rawData, numClusters, out means, out count, out withinss, 3); // this is it
             Console.WriteLine(",numClusters= " + numClusters + ", withinss=" + withinss);
 
-            // DBScan
-            //List<List<double>> clusters = new List<List<double>>() ;
-            List<double> list = new List<double>();
+            // DBScan - Variables
+            List<double> points = new List<double>();
             int row = 0, col = 0;
             for (row = 0; row < rawData.Length; row++)
+            {
                 for (col = 0; col < rawData[row].Length; col++)
-                    list.Add(rawData[row][col]);
-
-
-            DBScan.dbscan(list, 0.030, 100);
+                {
+                    points.Add(rawData[row][col]);
+                } 
+            }
+            
+            // Starting DBScan 
+            DBScan db = new DBScan();
+            db.dbscan(rawData, points, 0.03, 100);
 
             csv = new System.IO.StreamWriter("TimeWindows3.csv");
             for (int n = 0; n < numClusters; n++)

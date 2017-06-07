@@ -16,6 +16,7 @@ namespace LK.TimeWindows
             for (int i = 0; i < data.Length; ++i)
             {
                 int c = clustering[i];
+
                 for (int j = 0; j < data[i].Length; ++j)
                 {
                     result += Math.Pow(data[i][j] - means[c][j], 2);

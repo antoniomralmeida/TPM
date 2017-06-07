@@ -4,32 +4,33 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Accord.MachineLearning;
+using Accord.Collections;
 
 namespace LK.TimeWindows
 {  
     class DBScan
     {
-        private class DBScanPoint
-        {
-            public bool visited;
-            public double value;
-            public int id;
+        public static List<IEnumerable<DBScanPoint>> allClusters;
 
-            public DBScanPoint(double p)
-            {
-                this.id = 0; // Not classified
-                this.visited = false;
-                this.value = p;
-            }
-        }
-        
-        public static void dbscan(List<double> dbPoints, double eps, int minPoints)
+        public DBScan()
         {
-            List<List<DBScanPoint>> clusters = new List<List<DBScanPoint>>();
-            List<DBScanPoint> neighborPoints;
+            // To-Do
+        }
+
+        public void dbscan(double[][] rawData, List<double> dbPoints, double eps, int minPoints)
+        {
+            List<IEnumerable<DBScanPoint>> clusters = new List<IEnumerable<DBScanPoint>>();
+            IEnumerable<DBScanPoint> neighborPoints = null;
+
             var points = dbPoints.Select(x => new DBScanPoint(x)).ToArray();
             int clusterCount = 0;
-            
+            int[] pointByCluster = new int[points.Count()];
+
+            //double[][] pointsKDTree = dbPoints.Select(x => new double[] { x, 0.0 }).ToArray();
+            //KDTree<int> tree = new KDTree<int>(2);
+            //tree = KDTree.FromData<int>(pointsKDTree);
+
             for (int i = 0; i < points.Count(); i++)
             {
                 var p = points[i];
@@ -37,38 +38,52 @@ namespace LK.TimeWindows
                 {
                     p.visited = true;
                     neighborPoints = findNeighbours(points, p, eps);
-                    if (neighborPoints.Count < minPoints)
+                    if (neighborPoints.Count() < minPoints)
                     {
                         p.id = -1; // Noise point
                     }
                     else
                     {
                         clusterCount++;
+                        Console.WriteLine("clusterCount: " + clusterCount);
                         clusters.Add(neighborPoints);
                         expandCluster(points, p, neighborPoints, clusterCount, eps, minPoints);
                     }
                 }
+                if (p.id > 0)
+                    pointByCluster[i] = p.id - 1;
+                else
+                    Console.WriteLine("Noise point!");
+                
             }
-            Console.WriteLine("Testing Discretization by DBScan, numClusters:" + clusters.Count 
-                            + ", SSE:" + sumOfSquareErrors(clusters));
+            allClusters = clusters;
+
+            double[][] m = mean(rawData);
+            Console.WriteLine("RAW DATA: " + rawData.Count());
+            Console.WriteLine("PONT BY CLUSTER: " + pointByCluster.Count());
+
+            double sse = Utils.sumSquaresError(rawData, pointByCluster, m);
+
+            Console.WriteLine("Testing Discretization by DBScan, numClusters:"
+                           + allClusters.Count() + ", withinss: " + sse);
         }
 
-        private static void expandCluster(DBScanPoint[] points, DBScanPoint p, List<DBScanPoint> neighborPoints,
+        private static void expandCluster(IEnumerable<DBScanPoint> points, DBScanPoint p, IEnumerable<DBScanPoint> neighborPoints,
             int clusterCount, double eps, int minPoints)
         {
             p.id = clusterCount;
-            List<DBScanPoint> neighbors;
+            IEnumerable<DBScanPoint> neighbors;
 
-            for (int i = 0; i < neighborPoints.Count; i++)
+            for (int i = 0; i < neighborPoints.Count(); i++)
             {
-                var pointNeighbor = neighborPoints[i];
-                if (!neighborPoints[i].visited)
+                var pointNeighbor = neighborPoints.ElementAt(i);
+                if (!pointNeighbor.visited)
                 {
-                    neighborPoints[i].visited = true;
-                    neighbors = findNeighbours(points, p, eps);
-                    if (neighbors.Count >= minPoints)
-                    {
-                        neighborPoints.AddRange(neighbors);
+                    pointNeighbor.visited = true;
+                    neighbors = findNeighbours(points, pointNeighbor, eps);
+                    if (neighbors.Count() >= minPoints)
+                   { 
+                        neighborPoints = neighborPoints.Union(neighbors).ToArray();
                     }
                 }
                 if (pointNeighbor.id == 0) // not classified
@@ -76,32 +91,36 @@ namespace LK.TimeWindows
                     pointNeighbor.id = clusterCount;
                 } 
             }
-        }
+       }
 
-        private static List<DBScanPoint> findNeighbours(DBScanPoint[] points, DBScanPoint p, double eps)
+        private static IEnumerable<DBScanPoint> findNeighbours(IEnumerable<DBScanPoint> points, DBScanPoint p, double eps)
         {
             var neighborPoints = points.Where(x => Math.Abs(x.value - p.value) <= eps);
-            return neighborPoints.ToList();
+            return neighborPoints;
         }
 
-        private static double sumOfSquareErrors(List<List<DBScanPoint>> clusters)
+        public double[][] mean(double[][] rawData)
         {
-            double[] points = new double [clusters.Count];
-
-            for (int i = 0; i < clusters.Count; i++)
+            double[][] points = new double [allClusters.Count][];
+            for (int i = 0; i < allClusters.Count; i++)
             {
-                double meanCluster = 0;
+                points[i] = new double[1];
+            }
 
-                foreach (var p in clusters[i])
+            for (int i = 0; i < allClusters.Count; i++)
+            {
+                double meanCluster = 0; 
+
+                foreach (var p in allClusters[i])
                 {
                     meanCluster += p.value;
                 }
 
-                meanCluster = meanCluster / clusters[i].Count;
+                meanCluster = meanCluster / allClusters.ElementAt(i).Count();
 
                 double smallestSub = double.MaxValue;
                 double point = 0;
-                foreach (var p in clusters[i])
+                foreach (var p in allClusters[i])
                 {
                     double subtr = Math.Abs(p.value - meanCluster);
                     if (subtr < smallestSub)
@@ -111,16 +130,9 @@ namespace LK.TimeWindows
                     }
                         
                 }
-                points[i] = point;
+                points[i][0] = point;
             }
-
-            double meanClusters = 0;
-            for (var i = 0; i < points.Count(); i++)
-            {
-                meanClusters += points[i];
-            }
-
-            return meanClusters / points.Count();
+            return points;
         }
     }
 }

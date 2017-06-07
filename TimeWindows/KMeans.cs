@@ -68,7 +68,7 @@ namespace LK.TimeWindows
             return bestClustering;
         }
 
-        private static double[][] Normalized(double[][] rawData)
+        public static double[][] Normalized(double[][] rawData)
         {
             // normalize raw data by computing v' = (v - min) / (max - min)
 
